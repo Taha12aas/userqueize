@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/Mobile/views/add_teacher_view.dart';
 import 'package:userqueize/Mobile/views/generated_questions_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
@@ -23,7 +22,6 @@ class QuizApp extends StatelessWidget {
         HomeView.id: (context) => const HomeView(),
         RegisterView.id: (context) => const RegisterView(),
         LogInView.id: (context) => const LogInView(),
-        AddTeacherView.id: (context) => const AddTeacherView(),
         SubjectsView.id: (context) => const SubjectsView(),
         TeacherSubjects.id: (context) => const TeacherSubjects(),
         TeachersView.id: (context) => const TeachersView(),

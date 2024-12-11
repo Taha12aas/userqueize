@@ -18,7 +18,7 @@ class MainSections extends StatelessWidget {
             Navigator.pushNamed(context, TeachersView.id);
           },
           image: 'assets/images/subjects.png',
-          label: 'المدرسين',
+          label: 'انشاء اسئلة',
         ),
         MainCategoriesSection(
           image: 'assets/images/Teachers.png',
