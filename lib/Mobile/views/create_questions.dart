@@ -5,8 +5,8 @@ import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_v
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 
-class TeachersView extends StatelessWidget {
-  const TeachersView({super.key});
+class CreateQuestions extends StatelessWidget {
+  const CreateQuestions({super.key});
   static String id = 'TeachersView';
   @override
   Widget build(BuildContext context) {

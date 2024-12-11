@@ -23,7 +23,7 @@ class UserQueize extends StatelessWidget {
         LogInView.id: (context) => const LogInView(),
         SubjectsView.id: (context) => const SubjectsView(),
         TeacherSubjects.id: (context) => const TeacherSubjects(),
-        TeachersView.id: (context) => const TeachersView(),
+        CreateQuestions.id: (context) => const CreateQuestions(),
         GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),
         CreateSubjectQuestions.id: (context) => const CreateSubjectQuestions()
       },

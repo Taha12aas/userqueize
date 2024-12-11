@@ -15,7 +15,7 @@ class MainSections extends StatelessWidget {
       children: [
         MainCategoriesSection(
           onTap: () {
-            Navigator.pushNamed(context, TeachersView.id);
+            Navigator.pushNamed(context, CreateQuestions.id);
           },
           image: 'assets/images/subjects.png',
           label: 'انشاء اسئلة',
