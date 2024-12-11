@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/Mobile/views/generated_questions_view.dart';
+import 'package:userqueize/Mobile/views/create_subject_questions.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_subjects.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_view_buttin_class.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
@@ -29,7 +29,7 @@ class TeachersView extends StatelessWidget {
               subject: 'رياضات',
               teacherImag: 'assets/images/Teachers.png',
               onTap: () {
-                Navigator.pushNamed(context, GeneratedQuestionsView.id);
+                Navigator.pushNamed(context, CreateSubjectQuestions.id);
               },
             ),
           ],

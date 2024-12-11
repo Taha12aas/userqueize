@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/views/create_subject_questions.dart';
 import 'package:userqueize/Mobile/views/generated_questions_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
-import 'package:userqueize/Mobile/views/teachers_view.dart';
+import 'package:userqueize/Mobile/views/create_questions.dart';
 import 'package:userqueize/utils/constants.dart';
 
 void main(List<String> args) {
@@ -23,7 +24,8 @@ class QuizApp extends StatelessWidget {
         SubjectsView.id: (context) => const SubjectsView(),
         TeacherSubjects.id: (context) => const TeacherSubjects(),
         TeachersView.id: (context) => const TeachersView(),
-        GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView()
+        GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),
+        CreateSubjectQuestions.id: (context) => const CreateSubjectQuestions()
       },
       theme:
           ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),

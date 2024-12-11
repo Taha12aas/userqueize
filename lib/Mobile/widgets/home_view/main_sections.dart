@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
-import 'package:userqueize/Mobile/views/teachers_view.dart';
+import 'package:userqueize/Mobile/views/create_questions.dart';
 import 'package:userqueize/Mobile/widgets/home_view/main_categories_section.dart';
 
 class MainSections extends StatelessWidget {
