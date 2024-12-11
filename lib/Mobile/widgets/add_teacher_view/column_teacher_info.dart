@@ -4,8 +4,8 @@ import 'package:userqueize/Mobile/widgets/add_teacher_view/info_text_field.dart'
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
-class ColumnAddTeacher extends StatelessWidget {
-  const ColumnAddTeacher({
+class ColumnTeacherInfo extends StatelessWidget {
+  const ColumnTeacherInfo({
     super.key,
     required this.labelText,
     required this.hintText,

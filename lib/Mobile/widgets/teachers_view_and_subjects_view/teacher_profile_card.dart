@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
@@ -15,7 +16,9 @@ class TeacherProfileCard extends StatelessWidget {
 
     return InkWell(
       borderRadius: BorderRadius.circular(50),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context,TeacherProfileView.id );
+      },
       child: Container(
         width: screenWidth * 0.75,
         padding: EdgeInsets.symmetric(vertical: screenWidth * 0.001),
