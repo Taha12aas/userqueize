@@ -4,6 +4,7 @@ import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
+
 class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
     super.key,
@@ -31,10 +32,13 @@ class CustomAlertDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       backgroundColor: kAshenColor,
-      title: Text('أدخل رمز التحقق',
-          textAlign: TextAlign.center,
-          style: FontStyleApp.snakBarLabel
-              .copyWith(fontSize: getResponsiveText(context, 18))),
+      title: Text(
+        'أدخل رمز التحقق',
+        textAlign: TextAlign.center,
+        style: FontStyleApp.snakBarLabel.copyWith(
+          fontSize: getResponsiveText(context, 18),
+        ),
+      ),
       content: const AlertDialogTextField(),
     );
   }

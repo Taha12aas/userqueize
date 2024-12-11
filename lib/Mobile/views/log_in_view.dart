@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
-import 'package:userqueize/Mobile/views/register_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
-import 'package:userqueize/Mobile/widgets/log_in_view/register_or_log_in.dart';
 import 'package:userqueize/utils/custom_alert_dialog.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
@@ -58,13 +56,6 @@ class LogInView extends StatelessWidget {
                     hintText: 'كلمة المرور',
                     iconData: FontAwesomeIcons.lock,
                     obscureText: true,
-                  ),
-                  RegisterOrLogIn(
-                    label1: 'ليس لديك حساب ؟',
-                    label2: 'اضغط هنا لانشاء حساب',
-                    onPressed: () {
-                      Navigator.pushNamed(context, RegisterView.id);
-                    },
                   ),
                   const Spacer(),
                   CustomButton(
