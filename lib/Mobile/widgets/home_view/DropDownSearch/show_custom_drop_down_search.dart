@@ -26,7 +26,7 @@ void showCustomDropDownSearch(BuildContext context) {
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
-                'ابحث عن المدرس',
+                'ابحث عن مادة',
                 style: FontStyleApp.textStyleOrange18,
               ),
             ),
@@ -49,12 +49,12 @@ void showCustomDropDownSearch(BuildContext context) {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TeacherCardDropDownSearchItem(
-                          teacherImge: 'assets/images/TeachersTaha.jpg',
+                          teacherImge: 'assets/images/subject.png',
                           onTap: () {
                             Navigator.pushNamed(
                                 context, GeneratedQuestionsView.id);
                           },
-                          teacherName: 'طه حوراني',
+                          teacherName: 'علوم',
                         ),
                       ),
                     );
