@@ -38,7 +38,7 @@ class _YearQuestionsState extends State<YearQuestions> {
                     color: Colors.white,
                   )
                 : const Icon(
-                    Icons.sim_card_download_sharp,
+                    Icons.cloud_download_rounded,
                     color: Colors.white,
                   ),
           ),
