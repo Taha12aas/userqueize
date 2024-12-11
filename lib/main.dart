@@ -9,11 +9,11 @@ import 'package:userqueize/Mobile/views/create_questions.dart';
 import 'package:userqueize/utils/constants.dart';
 
 void main(List<String> args) {
-  runApp(const QuizApp());
+  runApp(const UserQueize());
 }
 
-class QuizApp extends StatelessWidget {
-  const QuizApp({super.key});
+class UserQueize extends StatelessWidget {
+  const UserQueize({super.key});
 
   @override
   Widget build(BuildContext context) {
