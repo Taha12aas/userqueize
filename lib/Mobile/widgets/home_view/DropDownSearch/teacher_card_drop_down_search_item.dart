@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -37,7 +36,7 @@ class TeacherCardDropDownSearchItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  ' اسم المدرس  :  ',
+                  ' اسم المادة  :  ',
                   style: FontStyleApp.textStylewite15
                       .copyWith(fontSize: getResponsiveText(context, 15)),
                 ),
