@@ -10,7 +10,7 @@ class ListViewCardSubjects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 6,
+      itemCount: 3,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(top: 10),
