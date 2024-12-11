@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/views/generated_questions_view.dart';
+import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_subjects.dart';
+
+class ListViewCardSubjects extends StatelessWidget {
+  const ListViewCardSubjects({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 6,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: CardSubjects(
+            subject: 'رياضات',
+            teacherImag: 'assets/images/Teachers.png',
+            onTap: () {
+              Navigator.pushNamed(context, GeneratedQuestionsView.id);
+            },
+          ),
+        );
+      },
+    );
+  }
+}
