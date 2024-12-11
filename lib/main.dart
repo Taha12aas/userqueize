@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/generated_questions_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
-import 'package:userqueize/Mobile/views/register_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
 import 'package:userqueize/Mobile/views/teachers_view.dart';
@@ -20,7 +19,6 @@ class QuizApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         HomeView.id: (context) => const HomeView(),
-        RegisterView.id: (context) => const RegisterView(),
         LogInView.id: (context) => const LogInView(),
         SubjectsView.id: (context) => const SubjectsView(),
         TeacherSubjects.id: (context) => const TeacherSubjects(),
