@@ -10,7 +10,7 @@ class GeneratedQuestionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('رياضيات'),
+      appBar: customAppBar('رياضيات',context),
       body: Padding(
         padding: const EdgeInsets.all(18),
         child: Center(

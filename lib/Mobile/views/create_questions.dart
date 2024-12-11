@@ -11,7 +11,7 @@ class CreateQuestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('أنشاء اسئلة'),
+      appBar: customAppBar('أنشاء اسئلة',context),
       body: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(

@@ -7,7 +7,7 @@ class CreateSubjectQuestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('انشاء اسئلة (رياضيات)'),
+      appBar: customAppBar('انشاء اسئلة (رياضيات)',context),
       body: const Column(),
     );
   }
