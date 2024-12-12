@@ -3,19 +3,18 @@ import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
-class YearQuestions extends StatefulWidget {
+class YearQuestions extends StatelessWidget {
   const YearQuestions({
     super.key,
     required this.year,
+    required this.value,
+    required this.onChanged,
   });
+
   final String year;
+  final bool value;
+  final ValueChanged<bool> onChanged;
 
-  @override
-  State<YearQuestions> createState() => _YearQuestionsState();
-}
-
-class _YearQuestionsState extends State<YearQuestions> {
-  bool value = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,8 +28,7 @@ class _YearQuestionsState extends State<YearQuestions> {
           const SizedBox(width: 10),
           IconButton(
             onPressed: () {
-              value = !value;
-              setState(() {});
+              onChanged(!value);
             },
             icon: value
                 ? const Icon(
@@ -44,12 +42,12 @@ class _YearQuestionsState extends State<YearQuestions> {
           ),
           const Spacer(),
           Text(
-            widget.year,
+            year,
             style: FontStyleApp.snakBarLabel.copyWith(
               fontSize: getResponsiveText(context, 18),
             ),
           ),
-          const SizedBox(width: 20)
+          const SizedBox(width: 20),
         ],
       ),
     );
