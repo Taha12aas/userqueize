@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -14,7 +13,8 @@ class TeacherName extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(padding: const EdgeInsets.only(top: 8),
+        IconButton(
+            padding: const EdgeInsets.only(top: 8),
             onPressed: () {},
             icon: const Icon(
               Icons.app_registration_rounded,
@@ -22,7 +22,7 @@ class TeacherName extends StatelessWidget {
             )),
         Text(
           'طه الفاخوري',
-          style: FontStyleApp.teacherName.copyWith(
+          style: FontStyleApp.textStyleWhiteBold18.copyWith(
             fontSize: getResponsiveText(context, 16),
           ),
         ),

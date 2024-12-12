@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
 
 class FontStyleApp {
-  static const teacherName = TextStyle(
+  static const textStyleWhiteBold18 = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 18,
     color: Colors.white,
@@ -43,11 +43,7 @@ class FontStyleApp {
     fontWeight: FontWeight.w700,
     color: kOrangeColor,
   );
-  static const textStyleWhiteBold18 = TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.bold,
-    fontSize: 18,
-  );
+
   static const textStyleOrangeBold10 = TextStyle(
     color: kOrangeColor,
     fontWeight: FontWeight.bold,
