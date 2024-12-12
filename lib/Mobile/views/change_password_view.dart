@@ -23,7 +23,6 @@ class ChangePasswordView extends StatelessWidget {
           const AuthTextField(
             hintText: 'كلمة المرور القديمة',
             iconData: FontAwesomeIcons.lock,
-            obscureText: true,
           ),
           const SizedBox(
             height: 18,
@@ -31,7 +30,6 @@ class ChangePasswordView extends StatelessWidget {
           const AuthTextField(
             hintText: 'كلمة المرور الجديدة',
             iconData: FontAwesomeIcons.lock,
-            obscureText: true,
           ),
           const SizedBox(
             height: 18,
@@ -39,7 +37,6 @@ class ChangePasswordView extends StatelessWidget {
           const AuthTextField(
             hintText: 'تأكيد كلمة المرور',
             iconData: FontAwesomeIcons.lock,
-            obscureText: true,
           ),
         ],
       ),
