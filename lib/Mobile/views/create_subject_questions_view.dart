@@ -3,6 +3,7 @@ import 'package:userqueize/Mobile/views/add_question.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 class CreateSubjectQuestionsView extends StatelessWidget {
   const CreateSubjectQuestionsView({super.key});
@@ -29,286 +30,6 @@ class CreateSubjectQuestionsView extends StatelessWidget {
         'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
         'correctAnswer': 'حاسوب مكتبي'
       },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question': 'ما هو الممر الذي يربط بين طابقين في المنزل؟',
-        'answers': ['سلم', 'مصعد', 'ممشى', 'جسر'],
-        'correctAnswer': 'سلم'
-      },
-      {
-        'question': 'جهاز ذكي يُستخدم يومياً في الاتصالات والتواصل الاجتماعي؟',
-        'answers': ['هاتف ذكي', 'ساعة ذكية', 'حاسوب', 'جهاز لوحي'],
-        'correctAnswer': 'هاتف ذكي'
-      },
     ];
 
     return Scaffold(
@@ -322,6 +43,9 @@ class CreateSubjectQuestionsView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(
+              height: 10,
+            ),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -334,7 +58,7 @@ class CreateSubjectQuestionsView extends StatelessWidget {
                 return Card(
                   margin:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  color: isOrangeBackground ? kOrangeColor : Colors.white,
+                  color: isOrangeBackground ? kAshenColor : Colors.white,
                   elevation: 5,
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -347,7 +71,8 @@ class CreateSubjectQuestionsView extends StatelessWidget {
                             Flexible(
                               child: Text(
                                 questionData['question'],
-                                style: FontStyleApp.textStyleOrange15.copyWith(
+                                style:
+                                    FontStyleApp.textStyleOrangeBold15.copyWith(
                                   color: isOrangeBackground
                                       ? Colors.white
                                       : Colors.black,
@@ -359,7 +84,8 @@ class CreateSubjectQuestionsView extends StatelessWidget {
                             const SizedBox(width: 10),
                             Text(
                               '- ${index + 1}',
-                              style: FontStyleApp.textStyleOrange15.copyWith(
+                              style:
+                                  FontStyleApp.textStyleOrangeBold15.copyWith(
                                 color: isOrangeBackground
                                     ? Colors.white
                                     : Colors.black,
@@ -373,27 +99,32 @@ class CreateSubjectQuestionsView extends StatelessWidget {
                           children:
                               questionData['answers'].map<Widget>((answer) {
                             return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 4.0),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      answer == questionData['correctAnswer']
-                                          ? Colors.grey[900]
-                                          : Colors.grey[300],
-                                  foregroundColor: Colors.black,
-                                ),
-                                onPressed: () {
-                                  print('Selected: $answer');
-                                },
-                                child: Text(
-                                  answer,
-                                  style: FontStyleApp.textStyleOrange15,
-                                  textAlign: TextAlign.center,
-                                  softWrap: true,
-                                ),
-                              ),
-                            );
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4.0),
+                                child: Container(
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      color: answer ==
+                                              questionData['correctAnswer']
+                                          ? kOrangeColor
+                                          : Colors.black54,
+                                      borderRadius: BorderRadius.circular(18)),
+                                  child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          questionData['correctAnswer'],
+                                          style: FontStyleApp
+                                              .textStyleOrangeBold15
+                                              .copyWith(
+                                            color: Colors.white,
+                                            fontSize:
+                                                getResponsiveText(context, 15),
+                                          ),
+                                        ),
+                                      )),
+                                ));
                           }).toList(),
                         ),
                         Align(

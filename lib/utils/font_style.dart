@@ -12,6 +12,8 @@ class FontStyleApp {
       TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: kOrangeColor);
   static const textStyleOrangeBold20 =
       TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: kOrangeColor);
+ static const textStyleOrangeBold15 =
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: kOrangeColor);
 
   static const textStylewite15 =
       TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white);
