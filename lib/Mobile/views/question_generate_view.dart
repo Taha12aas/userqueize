@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/utils/custom_app_bar.dart';
 
 class QuestionGenerateView extends StatelessWidget {
   const QuestionGenerateView({super.key});
@@ -6,6 +7,8 @@ class QuestionGenerateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return  Scaffold(
+      appBar: customAppBar('انشاء اسئلة', context),
+    );
   }
 }
