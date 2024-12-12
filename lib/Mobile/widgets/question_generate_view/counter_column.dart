@@ -17,9 +17,9 @@ class _CounterColumnState extends State<CounterColumn> {
     children: [
        Text(
         widget.title,
-        style: const TextStyle(color: Colors.orange, fontSize: 24),
+        style: const TextStyle(color: Colors.orange, fontSize: 20),
       ),
-      const SizedBox(height: 20),
+      const SizedBox(height: 12),
       Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.orange, width: 2),
