@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:userqueize/Mobile/widgets/add_teacher_view/column_subject_check.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/column_teacher_info.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subjects_display.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
