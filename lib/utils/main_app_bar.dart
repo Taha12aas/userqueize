@@ -30,6 +30,7 @@ AppBar mainAppBar(String title, BuildContext context) {
               .copyWith(fontWeight: FontWeight.w800),
         ),
         IconButton(
+          padding: const EdgeInsets.only(left: 25),
           tooltip: 'search',
           icon: const Icon(
             Icons.search,
