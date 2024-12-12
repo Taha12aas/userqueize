@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/add_question.dart';
+import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -141,10 +142,7 @@ class CreateSubjectQuestionsView extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: IconButton(
                             icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              print(
-                                  'Deleted question: ${questionData['question']}');
-                            },
+                            onPressed: () {},
                           ),
                         ),
                       ],
@@ -156,7 +154,11 @@ class CreateSubjectQuestionsView extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed: () {
-                print('Downloading data...');
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  HomeView.id,
+                  (route) => false,
+                );
               },
               icon: const Icon(Icons.save),
               label: const Text('حفظ'),
