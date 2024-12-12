@@ -10,10 +10,12 @@ class AuthTextField extends StatelessWidget {
     required this.hintText,
     required this.iconData,
     this.obscureText = false,
+    this.keyboardType = false,
   });
   final String hintText;
   final IconData iconData;
   final bool? obscureText;
+  final bool? keyboardType;
   @override
   Widget build(BuildContext context) {
     ValueNotifier<bool> obsc = ValueNotifier(true);
@@ -22,6 +24,7 @@ class AuthTextField extends StatelessWidget {
       child: TextFieldIconS(iconData: iconData),
       builder: (context, value, child) {
         return TextField(
+          keyboardType: keyboardType! ? TextInputType.number : null,
           obscureText: obscureText! ? value : obscureText!,
           style: const TextStyle(fontWeight: FontWeight.bold),
           decoration: InputDecoration(
