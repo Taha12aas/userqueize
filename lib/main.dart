@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/views/change_password_view.dart';
 import 'package:userqueize/Mobile/views/generated_questions_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
@@ -23,7 +24,8 @@ class QuizApp extends StatelessWidget {
         SubjectsView.id: (context) => const SubjectsView(),
         TeacherSubjects.id: (context) => const TeacherSubjects(),
         GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),
-        TeacherProfileView.id : (context) => const TeacherProfileView(),
+        TeacherProfileView.id: (context) => const TeacherProfileView(),
+        ChangePasswordView.id: (context) => const ChangePasswordView(),
       },
       theme:
           ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),

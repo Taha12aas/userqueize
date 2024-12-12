@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:userqueize/Mobile/views/change_password_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/column_teacher_info.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subjects_display.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
@@ -31,8 +32,8 @@ class TeacherProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('ملف الأستاذ',context),
-      body:  Padding(
+      appBar: customAppBar('ملف الأستاذ', context),
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Center(
           child: SingleChildScrollView(
@@ -66,16 +67,23 @@ class TeacherProfileView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const CustomButton(title: 'تغير كلمة المرور'),
+                CustomButton(
+                  title: 'تغير كلمة المرور',
+                  onPressed: () {
+                    Navigator.pushNamed(context, ChangePasswordView.id);
+                  },
+                ),
                 const SizedBox(
                   height: 25,
                 ),
                 const ContainerTeacherSubjectsDisplay(),
                 SizedBox(
-                  height: MediaQuery.sizeOf(context).height*0.2,
+                  height: MediaQuery.sizeOf(context).height * 0.2,
                 ),
-
-                const CustomButton(title: 'حفظ')
+                CustomButton(
+                  title: 'حفظ',
+                  onPressed: () {},
+                )
               ],
             ),
           ),
