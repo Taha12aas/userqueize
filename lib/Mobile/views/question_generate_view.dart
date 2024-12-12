@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
+import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 
 class QuestionGenerateView extends StatelessWidget {
@@ -16,6 +17,11 @@ class QuestionGenerateView extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              const SizedBox(
+                height: 16,
+              ),
+              const ContainerFileUpload(),
+              SizedBox(height: MediaQuery.sizeOf(context).height*0.15,),
               CustomButton(
                   onPressed: () {
                     Navigator.pushNamed(context, CreateSubjectQuestionsView.id);

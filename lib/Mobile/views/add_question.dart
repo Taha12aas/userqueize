@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/info_text_field.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
@@ -9,6 +10,7 @@ class AddQuestion extends StatelessWidget {
   static String id = 'AddQuestion';
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: customAppBar('اضافة سؤال', context),
       body: SingleChildScrollView(
@@ -27,43 +29,68 @@ class AddQuestion extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const InfoTextField(hintText: 'سؤال', iconData: Icons.abc),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                ': السؤال',
-                style: FontStyleApp.textStyleOrange18,
-              ),
               const InfoTextField(
-                  hintText: 'الخيار الاول', iconData: Icons.abc),
+                  hintText: 'سؤال', iconData: FontAwesomeIcons.circlePlus),
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
-                ': السؤال',
+                ': الخيار الاول',
                 style: FontStyleApp.textStyleOrange18,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               const InfoTextField(
-                  hintText: 'الخيار الثاني', iconData: Icons.abc),
-              const Text(
-                ': السؤال',
-                style: FontStyleApp.textStyleOrange18,
-              ),
-              const InfoTextField(
-                  hintText: 'الخيار الثالث', iconData: Icons.abc),
-              const Text(
-                ': السؤال',
-                style: FontStyleApp.textStyleOrange18,
-              ),
-              const InfoTextField(
-                  hintText: 'الخيار الرابع', iconData: Icons.abc),
+                  hintText: 'الخيار الاول',
+                  iconData: FontAwesomeIcons.commentMedical),
               const SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              const Text(
+                ': الخيار الثاني',
+                style: FontStyleApp.textStyleOrange18,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const InfoTextField(
+                  hintText: 'الخيار الثاني',
+                  iconData: FontAwesomeIcons.commentMedical),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                ': الخيار الثالث',
+                style: FontStyleApp.textStyleOrange18,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const InfoTextField(
+                  hintText: 'الخيار الثالث',
+                  iconData: FontAwesomeIcons.commentMedical),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                ': الخيار الرابع',
+                style: FontStyleApp.textStyleOrange18,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const InfoTextField(
+                  hintText: 'الخيار الرابع',
+                  iconData: FontAwesomeIcons.commentMedical),
+              SizedBox(
+                height: height * 0.04,
               ),
               CustomButton(
                 title: 'اضافة سؤال',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               )
             ],
           ),
