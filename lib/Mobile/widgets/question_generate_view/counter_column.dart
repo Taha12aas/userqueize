@@ -8,7 +8,7 @@ class CounterColumn extends StatefulWidget {
 }
 
 class _CounterColumnState extends State<CounterColumn> {
-   int _currentValue = 1;
+   int _currentValue = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _CounterColumnState extends State<CounterColumn> {
               icon: const Icon(Icons.arrow_drop_up, color: Colors.orange),
               onPressed: () {
                 setState(() {
-                  if (_currentValue < 50) _currentValue++;
+                  if (_currentValue < 50) _currentValue+=5;
                 });
               },
             ),
@@ -45,7 +45,7 @@ class _CounterColumnState extends State<CounterColumn> {
               icon: const Icon(Icons.arrow_drop_down, color: Colors.orange),
               onPressed: () {
                 setState(() {
-                  if (_currentValue > 1) _currentValue--;
+                  if (_currentValue > 1) _currentValue-=5;
                 });
               },
             ),
