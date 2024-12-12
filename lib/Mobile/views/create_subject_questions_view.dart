@@ -311,6 +311,10 @@ class CreateSubjectQuestionsView extends StatelessWidget {
     ];
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
       appBar: customAppBar('الأسئلة المولدة', context),
       body: SingleChildScrollView(
         child: Column(
