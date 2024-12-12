@@ -27,7 +27,6 @@ AppBar mainAppBar(String title, BuildContext context) {
         Text(
           title,
           style: FontStyleApp.textStylewite15
-              .copyWith(fontWeight: FontWeight.w800),
         ),
         IconButton(
           padding: const EdgeInsets.only(left: 25),
