@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
 import 'package:userqueize/Mobile/views/generated_questions_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
-import 'package:userqueize/Mobile/views/create_questions_view.dart';
 import 'package:userqueize/utils/constants.dart';
 
 void main(List<String> args) {
-  runApp(const UserQueize());
+  runApp(const QuizApp());
 }
 
-class UserQueize extends StatelessWidget {
-  const UserQueize({super.key});
+class QuizApp extends StatelessWidget {
+  const QuizApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +22,8 @@ class UserQueize extends StatelessWidget {
         LogInView.id: (context) => const LogInView(),
         SubjectsView.id: (context) => const SubjectsView(),
         TeacherSubjects.id: (context) => const TeacherSubjects(),
-        TeachersView.id: (context) => const TeachersView(),
         GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),
-        CreateSubjectQuestions.id: (context) => const CreateSubjectQuestions()
+        TeacherProfileView.id : (context) => const TeacherProfileView(),
       },
       theme:
           ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
