@@ -6,7 +6,6 @@ import 'package:userqueize/utils/font_style.dart';
 
 AppBar mainAppBar(String title, BuildContext context) {
   return AppBar(
-    centerTitle: true,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
@@ -32,15 +31,15 @@ AppBar mainAppBar(String title, BuildContext context) {
         ),
         IconButton(
           tooltip: 'search',
-          icon: const Icon(Icons.search, color: Colors.white),
+          icon: const Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
           onPressed: () {
             showCustomDropDownSearch(context);
           },
         ),
       ],
-    ),
-    iconTheme: const IconThemeData(
-      color: Colors.white,
     ),
   );
 }
