@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/widgets/home_view/main_sections.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_view_card_subjects.dart';
-import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/main_app_bar.dart';
 
