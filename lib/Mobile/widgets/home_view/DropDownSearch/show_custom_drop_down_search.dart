@@ -4,6 +4,7 @@ import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/home_view/DropDownSearch/teacher_card_drop_down_search_item.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 void showCustomDropDownSearch(BuildContext context) {
   showModalBottomSheet(
@@ -23,11 +24,12 @@ void showCustomDropDownSearch(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 'ابحث عن مادة',
-                style: FontStyleApp.textStyleOrange18,
+                style: FontStyleApp.textStyleOrange18
+                    .copyWith(fontSize: getResponsiveText(context, 18)),
               ),
             ),
             const Padding(

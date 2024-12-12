@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 class ButtonClass extends StatelessWidget {
   const ButtonClass({
@@ -30,7 +31,8 @@ class ButtonClass extends StatelessWidget {
           child: Center(
               child: Text(
             text,
-            style: FontStyleApp.textStyleOrange15,
+            style: FontStyleApp.textStyleOrange15
+                .copyWith(fontSize: getResponsiveText(context, 15)),
           )),
         ),
       ),
