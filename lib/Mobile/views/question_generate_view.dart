@@ -4,6 +4,7 @@ import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subje
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/counter_column.dart';
+import 'package:userqueize/Mobile/widgets/question_generate_view/switch_true_false.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 
 class QuestionGenerateView extends StatelessWidget {
@@ -27,12 +28,15 @@ class QuestionGenerateView extends StatelessWidget {
               const SizedBox(
                 height: 25,
               ),
-               FittedBox(
+              FittedBox(
                 child: Row(
                   children: [
                     const CounterColumn(
                       title: ': عدد الخيارات',
-                    ),SizedBox(width: MediaQuery.sizeOf(context).width*0.15,),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width * 0.15,
+                    ),
                     const CounterColumn(
                       title: ': عدد الاسئلة',
                     ),
@@ -42,10 +46,11 @@ class QuestionGenerateView extends StatelessWidget {
               const SizedBox(
                 height: 17,
               ),
-               FittedBox(
+              FittedBox(
                 child: Row(
                   children: [
-                    const Column(crossAxisAlignment: CrossAxisAlignment.end,
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
@@ -60,20 +65,43 @@ class QuestionGenerateView extends StatelessWidget {
                             child: DropdownCheckSubject(items: years)),
                       ],
                     ),
-                    SizedBox(width: MediaQuery.sizeOf(context).width*0.15,),
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width * 0.15,
+                    ),
                     const CounterColumn(title: ': عدد الاسئلة المكررة')
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SwitchTrueFalse(),
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width * 0.2,
+                    ),
+                    const Text(
+                      ": هل تريد اسئلة صح أو خطأ",
+                      style: TextStyle(
+                        color: Colors.orange,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.15,
+                height: MediaQuery.sizeOf(context).height * 0.07,
               ),
               CustomButton(
                   onPressed: () {
                     Navigator.pushNamed(context, CreateSubjectQuestionsView.id);
                   },
                   label: 'انشاء اسئلة',
-                  iconData: Icons.generating_tokens_outlined)
+                  iconData: Icons.generating_tokens_outlined),
             ],
           ),
         ),
