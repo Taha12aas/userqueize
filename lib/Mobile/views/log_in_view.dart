@@ -57,6 +57,13 @@ class LogInView extends StatelessWidget {
                     iconData: FontAwesomeIcons.lock,
                     obscureText: true,
                   ),
+                  const SizedBox(height: 18),
+                  const AuthTextField(
+                    hintText: 'تأكيد كلمة المرور',
+                    iconData: FontAwesomeIcons.lock,
+                    obscureText: true,
+                  )
+                  ,
                   const Spacer(),
                   CustomButton(
                     iconData: Icons.login,
