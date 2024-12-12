@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
+import 'package:userqueize/Mobile/widgets/question_generate_view/counter_column.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 
 class QuestionGenerateView extends StatelessWidget {
@@ -21,6 +22,14 @@ class QuestionGenerateView extends StatelessWidget {
                 height: 16,
               ),
               const ContainerFileUpload(),
+              const SizedBox(height: 25,),
+              const Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CounterColumn(title: ': عدد الخيارات',),
+
+                  CounterColumn(title: ': عدد الاسئلة',),
+                ],
+              ),
               SizedBox(height: MediaQuery.sizeOf(context).height*0.15,),
               CustomButton(
                   onPressed: () {
