@@ -31,7 +31,7 @@ class LogInView extends StatelessWidget {
                   Text(
                     'Quiz App',
                     textAlign: TextAlign.center,
-                    style: FontStyleApp.appName
+                    style: FontStyleApp.textStyleOrangeBold30
                         .copyWith(fontSize: getResponsiveText(context, 30)),
                   ),
                   const SizedBox(height: 40),
@@ -41,7 +41,7 @@ class LogInView extends StatelessWidget {
                       Text(
                         'تسجيل الدخول',
                         textAlign: TextAlign.end,
-                        style: FontStyleApp.labels
+                        style: FontStyleApp.textStyleWhiteBold18
                             .copyWith(fontSize: getResponsiveText(context, 18)),
                       ),
                     ],

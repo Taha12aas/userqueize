@@ -12,8 +12,8 @@ class ContainerFileUpload extends StatelessWidget {
     double screenHeight = MediaQuery.sizeOf(context).height;
 
     return Container(
-      width: screenWidth*0.9,
-      height: screenHeight*0.27,
+      width: screenWidth * 0.9,
+      height: screenHeight * 0.27,
       decoration: BoxDecoration(
         color: Colors.orange,
         borderRadius: BorderRadius.circular(10),
@@ -27,8 +27,7 @@ class ContainerFileUpload extends StatelessWidget {
             color: Colors.black,
           ),
           const SizedBox(height: 10),
-          const Text('اسحب او اختر ملف',
-              style: FontStyleApp.textContainerFileUpload),
+          const Text('اسحب او اختر ملف', style: FontStyleApp.textStyleBold16),
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {},

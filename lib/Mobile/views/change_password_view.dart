@@ -28,7 +28,7 @@ class ChangePasswordView extends StatelessWidget {
                 children: [
                   Text(
                     'تغيير كلمة المرور',
-                    style: FontStyleApp.labels.copyWith(
+                    style: FontStyleApp.textStyleWhiteBold18.copyWith(
                       fontSize: getResponsiveText(context, 24),
                     ),
                   ),
@@ -39,7 +39,7 @@ class ChangePasswordView extends StatelessWidget {
               ),
               Text(
                 'كلمة المرور القديمة',
-                style: FontStyleApp.labels.copyWith(
+                style: FontStyleApp.textStyleWhiteBold18.copyWith(
                   fontSize: getResponsiveText(context, 16),
                 ),
               ),
@@ -52,7 +52,7 @@ class ChangePasswordView extends StatelessWidget {
               ),
               Text(
                 'كلمة المرور الجديدة',
-                style: FontStyleApp.labels.copyWith(
+                style: FontStyleApp.textStyleWhiteBold18.copyWith(
                   fontSize: getResponsiveText(context, 16),
                 ),
               ),
@@ -65,7 +65,7 @@ class ChangePasswordView extends StatelessWidget {
               ),
               Text(
                 'تأكيد كلمة المرور',
-                style: FontStyleApp.labels.copyWith(
+                style: FontStyleApp.textStyleWhiteBold18.copyWith(
                   fontSize: getResponsiveText(context, 16),
                 ),
               ),

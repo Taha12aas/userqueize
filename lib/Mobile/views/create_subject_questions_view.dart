@@ -30,11 +30,21 @@ class CreateSubjectQuestionsView extends StatelessWidget {
         'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
         'correctAnswer': 'حاسوب مكتبي'
       },
+      {
+        'question':
+            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
+        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
+        'correctAnswer': 'حاسوب مكتبي'
+      },
     ];
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        backgroundColor: kOrangeBlackColor,
+        child: const Icon(
+          Icons.add,
+          color: kOrangeColor,
+        ),
         onPressed: () {
           Navigator.pushNamed(context, AddQuestion.id);
         },

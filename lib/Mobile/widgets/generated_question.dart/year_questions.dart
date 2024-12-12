@@ -43,7 +43,7 @@ class YearQuestions extends StatelessWidget {
           const Spacer(),
           Text(
             year,
-            style: FontStyleApp.snakBarLabel.copyWith(
+            style: FontStyleApp.textStyleWhiteBold18.copyWith(
               fontSize: getResponsiveText(context, 18),
             ),
           ),

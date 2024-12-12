@@ -3,7 +3,7 @@ import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
-SnackBar showSnackBar(BuildContext context,String content) {
+SnackBar showSnackBar(BuildContext context, String content) {
   return SnackBar(
     padding: const EdgeInsets.symmetric(vertical: 6),
     duration: const Duration(seconds: 2),
@@ -29,7 +29,7 @@ SnackBar showSnackBar(BuildContext context,String content) {
         const Spacer(),
         Text(
           content,
-          style: FontStyleApp.snakBarLabel.copyWith(
+          style: FontStyleApp.textStyleWhiteBold18.copyWith(
             fontSize: getResponsiveText(context, 15),
           ),
         ),

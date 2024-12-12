@@ -29,7 +29,7 @@ class ColumnTeacherInfo extends StatelessWidget {
             Text(
               labelText,
               textAlign: TextAlign.end,
-              style: FontStyleApp.labels
+              style: FontStyleApp.textStyleWhiteBold18
                   .copyWith(fontSize: getResponsiveText(context, 18)),
             ),
             HorizontalDivider(

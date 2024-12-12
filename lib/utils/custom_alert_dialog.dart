@@ -35,7 +35,7 @@ class CustomAlertDialog extends StatelessWidget {
       title: Text(
         'أدخل رمز التحقق',
         textAlign: TextAlign.center,
-        style: FontStyleApp.snakBarLabel.copyWith(
+        style: FontStyleApp.textStyleWhiteBold18.copyWith(
           fontSize: getResponsiveText(context, 18),
         ),
       ),
