@@ -7,7 +7,7 @@ import 'package:userqueize/utils/font_style.dart';
 
 class CreateQuestionsView extends StatelessWidget {
   const CreateQuestionsView({super.key});
-  static String id = 'TeachersView';
+  static String id = 'CreateQuestionsView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
