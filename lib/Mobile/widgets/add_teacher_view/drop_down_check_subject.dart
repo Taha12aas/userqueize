@@ -17,17 +17,16 @@ class _DropdownCheckSubjectState extends State<DropdownCheckSubject> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-      isExpanded: true, // يجعل القائمة ممتدة أفقياً
+      isExpanded: true, 
       decoration: InputDecoration(
-        filled: true, // تفعيل الخلفية
-        fillColor: Colors.white, // لون الخلفية
-        hintStyle: const TextStyle(color: Colors.black),
+        filled: true, 
+        fillColor: Colors.transparent, 
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 25.0),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0), // حدود دائرية
+          borderRadius: BorderRadius.circular(20.0), 
           borderSide:
-              const BorderSide(color: Colors.orange, width: 2.0), // لون الإطار
+              const BorderSide(color: Colors.orange, width: 2.0), 
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
@@ -38,17 +37,18 @@ class _DropdownCheckSubjectState extends State<DropdownCheckSubject> {
       onChanged: (String? newValue) {
         setState(() {
           selectedValue = newValue;
+
         });
       },
       items: widget.items.map((String item) {
         return DropdownMenuItem<String>(
           value: item,
           child: Align(
-            alignment: Alignment.centerRight, // محاذاة العنصر لليمين
+            alignment: Alignment.centerRight, 
             child: Text(
               item,
               textAlign: TextAlign.right,
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.orange),
             ),
           ),
         );
