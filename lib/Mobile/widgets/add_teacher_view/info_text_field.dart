@@ -8,12 +8,15 @@ class InfoTextField extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.iconData,
+    this.keyboardType = false,
   });
   final String hintText;
   final IconData iconData;
+  final bool? keyboardType;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      keyboardType: keyboardType! ? TextInputType.number : null,
       textDirection: TextDirection.rtl,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 1),

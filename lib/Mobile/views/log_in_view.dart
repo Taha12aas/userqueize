@@ -50,6 +50,7 @@ class LogInView extends StatelessWidget {
                   const AuthTextField(
                     hintText: 'رقم الهاتف',
                     iconData: FontAwesomeIcons.phone,
+                    keyboardType: true,
                   ),
                   const SizedBox(height: 18),
                   const AuthTextField(
