@@ -43,6 +43,9 @@ class ChangePasswordView extends StatelessWidget {
                   fontSize: getResponsiveText(context, 16),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               const AuthTextField(
                 hintText: 'كلمة المرور القديمة',
                 iconData: FontAwesomeIcons.lock,
@@ -56,6 +59,9 @@ class ChangePasswordView extends StatelessWidget {
                   fontSize: getResponsiveText(context, 16),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               const AuthTextField(
                 hintText: 'كلمة المرور الجديدة',
                 iconData: FontAwesomeIcons.lock,
@@ -68,6 +74,9 @@ class ChangePasswordView extends StatelessWidget {
                 style: FontStyleApp.textStyleWhiteBold18.copyWith(
                   fontSize: getResponsiveText(context, 16),
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               const AuthTextField(
                 hintText: 'تأكيد كلمة المرور',
