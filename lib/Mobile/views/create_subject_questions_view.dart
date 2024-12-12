@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/views/add_question.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -312,8 +313,10 @@ class CreateSubjectQuestionsView extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, AddQuestion.id);
+        },
       ),
       appBar: customAppBar('الأسئلة المولدة', context),
       body: SingleChildScrollView(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/views/add_question.dart';
 import 'package:userqueize/Mobile/views/change_password_view.dart';
 import 'package:userqueize/Mobile/views/create_questions_view.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
@@ -33,6 +34,7 @@ class QuizApp extends StatelessWidget {
         CreateSubjectQuestionsView.id: (context) =>
             const CreateSubjectQuestionsView(),
         QuestionGenerateView.id: (context) => const QuestionGenerateView(),
+        AddQuestion.id: (context) => const AddQuestion(),
       },
       theme:
           ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
