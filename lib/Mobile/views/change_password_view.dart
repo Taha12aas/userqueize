@@ -12,33 +12,46 @@ class ChangePasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar('تغيير كلمة المرور', context),
-      body: Column(
-        children: [
-          Text(
-            'تغيير كلمة المرور',
-            style: FontStyleApp.labels.copyWith(
-              fontSize: getResponsiveText(context, 18),
-            ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'تغيير كلمة المرور',
+                    style: FontStyleApp.labels.copyWith(
+                      fontSize: getResponsiveText(context, 18),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              const AuthTextField(
+                hintText: 'كلمة المرور القديمة',
+                iconData: FontAwesomeIcons.lock,
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              const AuthTextField(
+                hintText: 'كلمة المرور الجديدة',
+                iconData: FontAwesomeIcons.lock,
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              const AuthTextField(
+                hintText: 'تأكيد كلمة المرور',
+                iconData: FontAwesomeIcons.lock,
+              ),
+            ],
           ),
-          const AuthTextField(
-            hintText: 'كلمة المرور القديمة',
-            iconData: FontAwesomeIcons.lock,
-          ),
-          const SizedBox(
-            height: 18,
-          ),
-          const AuthTextField(
-            hintText: 'كلمة المرور الجديدة',
-            iconData: FontAwesomeIcons.lock,
-          ),
-          const SizedBox(
-            height: 18,
-          ),
-          const AuthTextField(
-            hintText: 'تأكيد كلمة المرور',
-            iconData: FontAwesomeIcons.lock,
-          ),
-        ],
+        ),
       ),
     );
   }
