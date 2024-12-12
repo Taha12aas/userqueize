@@ -6,13 +6,13 @@ import 'package:userqueize/utils/font_style.dart';
 
 AppBar mainAppBar(String title, BuildContext context) {
   return AppBar(
-    centerTitle: true,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
     ),
     backgroundColor: kAshenColor,
     title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
           borderRadius: BorderRadius.circular(16),
@@ -24,27 +24,22 @@ AppBar mainAppBar(String title, BuildContext context) {
             backgroundImage: AssetImage('assets/images/TeachersTaha.jpg'),
           ),
         ),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width * .26,
-        ),
         Text(
           title,
           style: FontStyleApp.textStylewite15
-              .copyWith(fontWeight: FontWeight.w800),
+        ),
+        IconButton(
+          padding: const EdgeInsets.only(left: 25),
+          tooltip: 'search',
+          icon: const Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            showCustomDropDownSearch(context);
+          },
         ),
       ],
     ),
-    iconTheme: const IconThemeData(
-      color: Colors.white,
-    ),
-    actions: [
-      IconButton(
-        tooltip: 'search',
-        icon: const Icon(Icons.search, color: Colors.white),
-        onPressed: () {
-          showCustomDropDownSearch(context);
-        },
-      ),
-    ],
   );
 }

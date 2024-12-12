@@ -32,7 +32,7 @@ class TeacherProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('ملف الأستاذ', context),
+      appBar: customAppBar('ملف المدرس', context),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Center(
@@ -83,7 +83,9 @@ class TeacherProfileView extends StatelessWidget {
                 ),
                 CustomButton(
                   title: 'حفظ',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 )
               ],
             ),
