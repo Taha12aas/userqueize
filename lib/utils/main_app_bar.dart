@@ -15,6 +15,7 @@ AppBar mainAppBar(String title, BuildContext context) {
     title: Row(
       children: [
         InkWell(
+          borderRadius: BorderRadius.circular(16),
           onTap: () {
             Navigator.pushNamed(context, TeacherProfileView.id);
           },
@@ -23,7 +24,9 @@ AppBar mainAppBar(String title, BuildContext context) {
             backgroundImage: AssetImage('assets/images/TeachersTaha.jpg'),
           ),
         ),
-        SizedBox(width: MediaQuery.sizeOf(context).width*.26,),
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width * .26,
+        ),
         Text(
           title,
           style: FontStyleApp.textStylewite15

@@ -19,7 +19,7 @@ class TeacherProfileCard extends StatelessWidget {
         Navigator.pushNamed(context, TeacherProfileView.id);
       },
       child: Container(
-        width: screenWidth * 0.75,
+        width: screenWidth * 0.65,
         padding: EdgeInsets.symmetric(vertical: screenWidth * 0.001),
         decoration: BoxDecoration(
           color: kAshenColor,

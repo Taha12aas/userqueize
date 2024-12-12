@@ -4,6 +4,7 @@ import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_v
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/teacher_profile_card.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 class SubjectsView extends StatelessWidget {
   const SubjectsView({super.key});
@@ -11,25 +12,26 @@ class SubjectsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('المواد',context),
-      body: const Padding(
-        padding: EdgeInsets.all(18),
+      appBar: customAppBar('المواد', context),
+      body: Padding(
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Align(alignment: Alignment.center, child: TeacherProfileCard()),
-            SizedBox(
-              height: 10,
+            const Align(alignment: Alignment.center, child: TeacherProfileCard()),
+            const SizedBox(
+              height: 20,
             ),
             Text(
               ' : تصنيف حسب الصفوف ',
-              style: FontStyleApp.textStyleOrangeBold25,
+              style: FontStyleApp.textStyleOrangeBold20
+                  .copyWith(fontSize: getResponsiveText(context, 20)),
             ),
-            ListViewButtonClass(),
-            SizedBox(
+            const ListViewButtonClass(),
+            const SizedBox(
               height: 20,
             ),
-            Expanded(child: ListViewCardSubjects())
+            const Expanded(child: ListViewCardSubjects())
           ],
         ),
       ),
