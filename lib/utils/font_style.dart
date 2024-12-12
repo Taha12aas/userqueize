@@ -6,7 +6,7 @@ class FontStyleApp {
       TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white);
   static const textStyleOrange15 = TextStyle(
       fontWeight: FontWeight.normal, fontSize: 15, color: kOrangeColor);
-      static const textStyleOrange18 = TextStyle(
+  static const textStyleOrange18 = TextStyle(
       fontWeight: FontWeight.normal, fontSize: 18, color: kOrangeColor);
   static const textStyleOrangeBold25 =
       TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: kOrangeColor);
@@ -28,5 +28,10 @@ class FontStyleApp {
     color: Colors.white,
     fontWeight: FontWeight.bold,
     fontSize: 18,
+  );
+  static const textContainerFileUpload = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
   );
 }
