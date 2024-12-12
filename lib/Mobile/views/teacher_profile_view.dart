@@ -61,6 +61,7 @@ class TeacherProfileView extends StatelessWidget {
                       hintText: '0962449054',
                       iconData: FontAwesomeIcons.phone,
                       horizntalSize: 89,
+                      keyboardType: true,
                     ),
                   ],
                 ),

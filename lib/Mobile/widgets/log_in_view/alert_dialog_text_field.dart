@@ -13,6 +13,7 @@ class AlertDialogTextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.09),
       child: TextField(
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
           hintText: '####',
           fillColor: Colors.white,
