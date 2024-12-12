@@ -20,7 +20,7 @@ SnackBar showSnackBar(BuildContext context,String content) {
           width: 10,
         ),
         const CircleAvatar(
-          backgroundColor: Color.fromARGB(255, 166, 164, 164),
+          backgroundColor: Colors.white,
           child: Icon(
             Icons.check,
             color: kOrangeColor,

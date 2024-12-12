@@ -4,6 +4,7 @@ import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_s
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_view_buttin_class.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 class CreateQuestionsView extends StatelessWidget {
   const CreateQuestionsView({super.key});
@@ -11,15 +12,16 @@ class CreateQuestionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('أنشاء اسئلة',context),
+      appBar: customAppBar('أختيار مادة', context),
       body: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Text(
+            Text(
               ' : تصنيف حسب الصفوف ',
-              style: FontStyleApp.textStyleOrangeBold25,
+              style: FontStyleApp.textStyleOrangeBold20
+                  .copyWith(fontSize: getResponsiveText(context, 20)),
             ),
             const ListViewButtonClass(),
             const SizedBox(
