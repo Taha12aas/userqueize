@@ -13,6 +13,7 @@ AppBar mainAppBar(String title, BuildContext context) {
     ),
     backgroundColor: kAshenColor,
     title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
           borderRadius: BorderRadius.circular(16),
@@ -24,27 +25,22 @@ AppBar mainAppBar(String title, BuildContext context) {
             backgroundImage: AssetImage('assets/images/TeachersTaha.jpg'),
           ),
         ),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width * .26,
-        ),
         Text(
           title,
           style: FontStyleApp.textStylewite15
               .copyWith(fontWeight: FontWeight.w800),
+        ),
+        IconButton(
+          tooltip: 'search',
+          icon: const Icon(Icons.search, color: Colors.white),
+          onPressed: () {
+            showCustomDropDownSearch(context);
+          },
         ),
       ],
     ),
     iconTheme: const IconThemeData(
       color: Colors.white,
     ),
-    actions: [
-      IconButton(
-        tooltip: 'search',
-        icon: const Icon(Icons.search, color: Colors.white),
-        onPressed: () {
-          showCustomDropDownSearch(context);
-        },
-      ),
-    ],
   );
 }
