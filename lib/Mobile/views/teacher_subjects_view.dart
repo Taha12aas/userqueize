@@ -9,9 +9,7 @@ class TeacherSubjects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
-        'مواد المدرس',
-      ),
+      appBar: customAppBar('مواد المدرس', context),
       body: const Padding(
         padding: EdgeInsets.all(18),
         child: Column(

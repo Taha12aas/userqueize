@@ -84,7 +84,8 @@ class LogInView extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
             );
-            Navigator.pushNamed(context, HomeView.id);
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeView.id, (route) => false);
           },
         );
       },
