@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/generated_questions_view.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_subjects.dart';
+import 'package:userqueize/Service/teacher_service.dart';
 
 class ListViewCardSubjects extends StatelessWidget {
   const ListViewCardSubjects({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -17,7 +17,10 @@ class ListViewCardSubjects extends StatelessWidget {
           child: CardSubjects(
             subject: 'رياضات',
             teacherImag: 'assets/images/Teachers.png',
-            onTap: () {
+            onTap: () async {
+              final teacherService = TeacherService();
+              await teacherService.fetchTeacher(1); // ////
+
               Navigator.pushNamed(context, GeneratedQuestionsView.id);
             },
           ),
