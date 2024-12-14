@@ -21,7 +21,7 @@ class ListViewCardSubjects extends StatelessWidget {
             onTap: () async {
               final teacherService = TeacherService();
 
-              await teacherService.fetchTeacher(1);
+              await teacherService.fetchTeacher('taha');
 
               // ignore: use_build_context_synchronously
               Navigator.pushNamed(context, GeneratedQuestionsView.id);
