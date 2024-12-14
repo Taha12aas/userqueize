@@ -86,7 +86,7 @@ class CardSubjects extends StatelessWidget {
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(width: 34),
+                      const SizedBox(width: 34),
                     ],
                   ),
                 ],

@@ -4,18 +4,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:userqueize/models/teacher.dart';
 
 class TeacherService {
-  final SupabaseClient supabase = Supabase.instance.client;
+  static final SupabaseClient supabase = Supabase.instance.client;
 
-  Future<Teacher?> fetchTeacher(String teacherName) async {
-    try {
-      final response =
-          await supabase.from('teachers').select().eq('name', teacherName);
+  static Future<dynamic> fetchTeacher(String teacherName) async {
+    final response =
+        await supabase.from('teachers').select().eq('name', teacherName);
 
-      log('Response: $response');
-    } catch (e) {
-      log('Error loading products: $e');
-    }
-    return null;
+    log('Response: $response');
+    return response;
   }
 
 //انشاء مدرس غير لازم الان
@@ -27,5 +23,13 @@ class TeacherService {
       log('حدث خطأ: $e');
       rethrow;
     }
+  }
+
+  static Future<void> updateTeacher(
+      String columnName, String teacherName, dynamic value) async {
+    final data = await supabase
+        .from('teachers')
+        .update({columnName: value}).eq('name', teacherName);
+    log('تمت تعديل البيانات: $data');
   }
 }
