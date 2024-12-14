@@ -51,12 +51,13 @@ void showCustomDropDownSearch(BuildContext context) {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TeacherCardDropDownSearchItem(
-                          teacherImge: 'assets/images/subject.png',
+                          subject: 'علوم',
+                          teacherImag: 'assets/images/subject.png',
                           onTap: () {
                             Navigator.pushNamed(
                                 context, GeneratedQuestionsView.id);
                           },
-                          teacherName: 'علوم',
+                          classTeacher: 'صف اول',
                         ),
                       ),
                     );

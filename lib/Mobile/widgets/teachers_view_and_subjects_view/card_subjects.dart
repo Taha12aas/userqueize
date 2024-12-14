@@ -4,15 +4,21 @@ import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
 class CardSubjects extends StatelessWidget {
-  const CardSubjects({super.key, required this.onTap, required this.subject, required this.teacherImag});
+  const CardSubjects(
+      {super.key,
+      required this.onTap,
+      required this.subject,
+      required this.teacherImag,
+      required this.classTeacher});
   final void Function() onTap;
-    
-  final String subject;
+
+    final String subject;
+  final String classTeacher;
   final String teacherImag;
   @override
-  Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
-    final double screenWidth = MediaQuery.of(context).size.width;
+    Widget build(BuildContext context) {
+      final double screenHeight = MediaQuery.of(context).size.height;
+      final double screenWidth = MediaQuery.of(context).size.width;
 
     return InkWell(
       onTap: onTap,
@@ -30,34 +36,59 @@ class CardSubjects extends StatelessWidget {
             SizedBox(width: screenWidth * 0.02),
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.asset(teacherImag
-                ,
+              child: Image.asset(
+                teacherImag,
                 height: screenHeight * 0.074,
                 width: screenHeight * 0.074,
                 fit: BoxFit.cover,
               ),
             ),
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    subject,
-                    style: FontStyleApp.textStyleOrange15.copyWith(
-                      fontSize: getResponsiveText(context, 15),
-                    ),
-                    overflow: TextOverflow.ellipsis,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        subject,
+                        style: FontStyleApp.textStyleOrange15.copyWith(
+                          fontSize: getResponsiveText(context, 15),
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(width: screenWidth * 0.01),
+                      Text(
+                        ' : اسم المادة',
+                        style: FontStyleApp.textStylewite15.copyWith(
+                          fontSize: getResponsiveText(context, 15),
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
-                  SizedBox(width: screenWidth * 0.01),
-                  Text(
-                    ' : اسم المادة',
-                    style: FontStyleApp.textStylewite15.copyWith(
-                      fontSize: getResponsiveText(context, 15),
-                    ),
-                    overflow: TextOverflow.ellipsis,
+                  SizedBox(height: screenHeight * 0.01),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        classTeacher,
+                        style: FontStyleApp.textStyleOrange15.copyWith(
+                          fontSize: getResponsiveText(context, 15),
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(width: screenWidth * 0.01),
+                      Text(
+                        ' : صف',
+                        style: FontStyleApp.textStylewite15.copyWith(
+                          fontSize: getResponsiveText(context, 15),
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(width: 34),
+                    ],
                   ),
-                  SizedBox(width: screenWidth * 0.03),
                 ],
               ),
             ),

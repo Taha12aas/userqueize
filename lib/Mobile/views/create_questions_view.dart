@@ -28,6 +28,7 @@ class CreateQuestionsView extends StatelessWidget {
               height: 15,
             ),
             CardSubjects(
+              classTeacher: 'صف الاول',
               subject: 'رياضات',
               teacherImag: 'assets/images/Teachers.png',
               onTap: () {
