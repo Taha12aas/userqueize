@@ -6,8 +6,7 @@ class Teacher {
   final String address;
   final String password;
   final String verificationCode;
-  final DateTime createdAt;
-
+  final List<Map<String, String>> classesSubjects;
   Teacher({
     this.id,
     required this.name,
@@ -16,7 +15,7 @@ class Teacher {
     required this.address,
     required this.password,
     required this.verificationCode,
-    required this.createdAt,
+    required this.classesSubjects,
   });
 
   factory Teacher.fromJson(Map<String, dynamic> json) {
@@ -26,8 +25,8 @@ class Teacher {
       phone: json['phone'],
       address: json['address'],
       password: json['password'],
-      verificationCode: json['verification_code'],
-      createdAt: DateTime.parse(json['created_at']),
+      verificationCode: json['verificationCode'],
+      classesSubjects: json['classes_subjects'],
     );
   }
 
@@ -38,8 +37,9 @@ class Teacher {
       'phone': phone,
       'address': address,
       'password': password,
-      'verification_code': verificationCode,
-      'created_at': createdAt.toIso8601String(),
+      'verificationCode': verificationCode,
+      'classes_subjects':classesSubjects
+
     };
   }
 }

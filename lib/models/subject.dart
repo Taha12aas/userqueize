@@ -1,35 +1,35 @@
-class Subject {
-  final int id;
-  final String name;
-  final DateTime courseDate;
-  final String courseContents;
-  final DateTime createdAt;
+class SubjectsGenerated {
+  int? id;
+  final String nameSubject;
+  final String coursesDate;
+  final String courses;
+  final String nameTeacher;
+  final String classSabject;
 
-  Subject({
-    required this.id,
-    required this.name,
-    required this.courseDate,
-    required this.courseContents,
-    required this.createdAt,
-  });
+  SubjectsGenerated(
+      {this.id,
+      required this.nameSubject,
+      required this.coursesDate,
+      required this.courses,
+      required this.nameTeacher,
+      required this.classSabject});
 
-  factory Subject.fromJson(Map<String, dynamic> json) {
-    return Subject(
-      id: json['id'],
-      name: json['name'],
-      courseDate: DateTime.parse(json['course_date']),
-      courseContents: json['course_contents'],
-      createdAt: DateTime.parse(json['created_at']),
-    );
+  factory SubjectsGenerated.fromJson(Map<String, dynamic> json) {
+    return SubjectsGenerated(
+        nameSubject: json['name_sabject'],
+        coursesDate: json['courses_date'],
+        courses: json['courses'],
+        nameTeacher: json['name_teacher'],
+        classSabject: json['class']);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'name': name,
-      'course_date': courseDate.toIso8601String(),
-      'course_contents': courseContents,
-      'created_at': createdAt.toIso8601String(),
+      'name_sabject': nameSubject,
+      'course_date': coursesDate,
+      'courses': courses,
+      'name_teacher': nameTeacher,
+      'class': classSabject,
     };
   }
 }
