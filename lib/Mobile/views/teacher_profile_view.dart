@@ -11,23 +11,6 @@ import 'package:userqueize/utils/custom_app_bar.dart';
 class TeacherProfileView extends StatelessWidget {
   const TeacherProfileView({super.key});
   static String id = 'TeacherProfile';
-  static const List<String> itemsClass = [
-    'صف أول',
-    'صف ثاني',
-    'صف ثالث',
-    'صف رابع',
-    'صف خامس',
-    'صف سادس'
-  ];
-  static const List<String> itemsSubject = [
-    'علوم',
-    'رياضيات',
-    'انكليزي',
-    'عربي',
-    'فرنسي',
-    'تاريخ',
-    'جغرافيا'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +35,7 @@ class TeacherProfileView extends StatelessWidget {
                   children: [
                     ColumnTeacherInfo(
                       labelText: ': العنوان',
-                      hintText: 'جنوب الملعب',
+                      hintText: 'عنوانه',
                       iconData: FontAwesomeIcons.locationDot,
                       horizntalSize: 64,
                     ),

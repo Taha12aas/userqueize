@@ -6,9 +6,10 @@ import 'package:userqueize/models/teacher.dart';
 class TeacherService {
   final SupabaseClient supabase = Supabase.instance.client;
 
-  Future<Teacher?> fetchTeacher() async {
+  Future<Teacher?> fetchTeacher(int teacherId) async {
     try {
-      final response = await supabase.from('teachers').select();
+      final response =
+          await supabase.from('teachers').select().eq('id', teacherId);
 
       log('Response: $response');
     } catch (e) {
