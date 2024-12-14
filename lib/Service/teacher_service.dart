@@ -9,8 +9,7 @@ class TeacherService {
   // دالة لاسترجاع بيانات المعلم
   Future<Teacher?> fetchTeacher(int teacherId) async {
     try {
-      final response =
-          await supabase.from('teachers').select().eq('id', 1).single();
+      final response = await supabase.from('teachers').select();
 
       log('Response: $response');
     } catch (e) {

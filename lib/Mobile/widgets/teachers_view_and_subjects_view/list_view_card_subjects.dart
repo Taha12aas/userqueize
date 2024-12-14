@@ -19,8 +19,8 @@ class ListViewCardSubjects extends StatelessWidget {
             teacherImag: 'assets/images/Teachers.png',
             onTap: () async {
               final teacherService = TeacherService();
-              await teacherService.fetchTeacher(1); // ////
-
+              await teacherService.fetchTeacher(1); /////
+              // ignore: use_build_context_synchronously
               Navigator.pushNamed(context, GeneratedQuestionsView.id);
             },
           ),

@@ -19,7 +19,7 @@ class TeacherSubjectClass {
     required this.createdAt,
   });
 
-  // تحويل من JSON إلى كائن Dart
+  
   factory TeacherSubjectClass.fromJson(Map<String, dynamic> json) {
     return TeacherSubjectClass(
       id: json['id'],
@@ -33,7 +33,7 @@ class TeacherSubjectClass {
     );
   }
 
-  // تحويل من كائن Dart إلى JSON
+  
   Map<String, dynamic> toJson() {
     return {
       'id': id,
