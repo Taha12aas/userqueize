@@ -22,9 +22,9 @@ class TeacherService {
   Future<void> createTeacher(Teacher teacher) async {
     try {
       final data = await supabase.from('teachers').insert([teacher.toJson()]);
-      print('تمت إضافة البيانات: $data');
+      log('تمت إضافة البيانات: $data');
     } catch (e) {
-      print('حدث خطأ: $e');
+      log('حدث خطأ: $e');
       rethrow;
     }
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:userqueize/Mobile/views/add_question.dart';
@@ -11,9 +13,28 @@ import 'package:userqueize/Mobile/views/question_generate_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
+import 'package:userqueize/models/Question.dart';
 import 'package:userqueize/utils/constants.dart';
 
 void main() async {
+   String fullQuestionText = '''
+8. ما هي أحد التحديات التي يواجهها مجال الذكاء الصناعي؟
+
+A) تحسين جودة الحياة
+B) توفير فرص عمل جديدة
+C) قضايا الخصوصية والأمان
+D) زيادة الاستهلاك الطاقة
+''';
+
+
+  Question question = Question.parseFromText(fullQuestionText);
+
+
+  log("السؤال: ${question.questionText}");
+  log("الخيارات:");
+  for (var option in question.options) {
+    log(option);
+  }
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     url: 'https://gewushokramjbiqcbpng.supabase.co', // URL الخاص بك
