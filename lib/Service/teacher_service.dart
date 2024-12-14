@@ -17,10 +17,14 @@ class TeacherService {
     return null;
   }
 
+//انشاء مدرس غير لازم الان
   Future<void> createTeacher(Teacher teacher) async {
-    final response = await supabase.from('teachers').insert([teacher.toJson()]);
-    if (response.error != null) {
-      throw Exception('فشل في إنشاء المعلم: ${response.error?.message}');
+    try {
+      final data = await supabase.from('teachers').insert([teacher.toJson()]);
+      print('تمت إضافة البيانات: $data');
+    } catch (e) {
+      print('حدث خطأ: $e');
+      rethrow;
     }
   }
 }

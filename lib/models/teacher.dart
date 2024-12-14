@@ -1,5 +1,5 @@
 class Teacher {
-  final int id;
+  int? id;
   final String name;
   final String photo;
   final String phone;
@@ -9,7 +9,7 @@ class Teacher {
   final DateTime createdAt;
 
   Teacher({
-    required this.id,
+    this.id,
     required this.name,
     required this.photo,
     required this.phone,
@@ -19,10 +19,8 @@ class Teacher {
     required this.createdAt,
   });
 
-  
   factory Teacher.fromJson(Map<String, dynamic> json) {
     return Teacher(
-      id: json['id'],
       name: json['name'],
       photo: json['photo'],
       phone: json['phone'],
@@ -33,10 +31,8 @@ class Teacher {
     );
   }
 
-
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'name': name,
       'photo': photo,
       'phone': phone,
