@@ -38,7 +38,7 @@ D) زيادة الاستهلاك الطاقة
   }
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
-    url: 'https://gewushokramjbiqcbpng.supabase.co', // URL الخاص بك
+    url: 'https://gewushokramjbiqcbpng.supabase.co', // URL الخاص بكs
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdld3VzaG9rcmFtamJpcWNicG5nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwNjQ1MjksImV4cCI6MjA0OTY0MDUyOX0.9v7QMV8NgGhSgBnGRqZKxr2GNSLY1dZcgvm-ioIkdXg', // مفتاح الوصول العام (مفتاح API)
   );
