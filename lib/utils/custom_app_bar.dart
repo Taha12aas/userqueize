@@ -8,7 +8,9 @@ AppBar customAppBar(String title, BuildContext context) {
     centerTitle: true,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
+        bottomLeft: Radius.circular(16),
+        bottomRight: Radius.circular(16),
+      ),
     ),
     backgroundColor: kAshenColor,
     title: Text(

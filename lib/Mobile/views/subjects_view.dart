@@ -18,7 +18,10 @@ class SubjectsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Align(alignment: Alignment.center, child: TeacherProfileCard()),
+            const Align(
+              alignment: Alignment.center,
+              child: TeacherProfileCard(),
+            ),
             const SizedBox(
               height: 20,
             ),

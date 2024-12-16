@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 //Container الموجود في الصفحة الرئيسة
 class MainCategoriesSection extends StatelessWidget {
@@ -34,9 +35,12 @@ class MainCategoriesSection extends StatelessWidget {
             children: [
               Image.asset(image, height: screenHeight * 0.08),
               const SizedBox(height: 10),
-              Text(label,
-                  style: FontStyleApp.textStyleOrangeBold25
-                      .copyWith(fontSize: 25)),
+              Text(
+                label,
+                style: FontStyleApp.textStyleOrangeBold25.copyWith(
+                  fontSize: getResponsiveText(context, 23),
+                ),
+              ),
             ],
           ),
         ),

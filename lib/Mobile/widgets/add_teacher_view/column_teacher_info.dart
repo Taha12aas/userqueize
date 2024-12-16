@@ -20,31 +20,29 @@ class ColumnTeacherInfo extends StatelessWidget {
   final bool? keyboardType;
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              labelText,
-              textAlign: TextAlign.end,
-              style: FontStyleApp.textStyleWhiteBold18
-                  .copyWith(fontSize: getResponsiveText(context, 18)),
-            ),
-            HorizontalDivider(
-              size: horizntalSize,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            InfoTextField(
-              hintText: hintText,
-              iconData: iconData,
-              keyboardType: keyboardType,
-            )
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            labelText,
+            textAlign: TextAlign.end,
+            style: FontStyleApp.textStyleWhiteBold18
+                .copyWith(fontSize: getResponsiveText(context, 18)),
+          ),
+          HorizontalDivider(
+            size: horizntalSize,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          InfoTextField(
+            hintText: hintText,
+            iconData: iconData,
+            keyboardType: keyboardType,
+          )
+        ],
       ),
     );
   }

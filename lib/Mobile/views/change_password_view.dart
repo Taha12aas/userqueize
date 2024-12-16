@@ -26,10 +26,12 @@ class ChangePasswordView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'تغيير كلمة المرور',
-                    style: FontStyleApp.textStyleWhiteBold18.copyWith(
-                      fontSize: getResponsiveText(context, 24),
+                  Flexible(
+                    child: Text(
+                      ': تغيير كلمة المرور',
+                      style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                        fontSize: getResponsiveText(context, 22),
+                      ),
                     ),
                   ),
                 ],

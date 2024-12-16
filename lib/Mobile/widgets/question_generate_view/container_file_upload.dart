@@ -30,20 +30,25 @@ class ContainerFileUpload extends StatelessWidget {
               color: Colors.black,
             ),
             const SizedBox(height: 10),
-            const Text('اسحب او اختر ملف', style: FontStyleApp.textStyleBold16),
+            const Text(
+              'اسحب او اختر ملف',
+              style: FontStyleApp.textStyleBold16,
+            ),
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              ),
-              child: const Text(
-                'Browse files',
-                style: TextStyle(
-                  color: Colors.orange, // لون النص
-                  fontSize: 16,
+            Flexible(
+              child: TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                ),
+                child: const Text(
+                  'Browse files',
+                  style: TextStyle(
+                    color: Colors.orange, // لون النص
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),

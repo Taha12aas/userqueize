@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_class_and_subject.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/responsive_text.dart';
@@ -14,7 +13,7 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
     return Container(
       margin: EdgeInsets.zero,
       width: MediaQuery.of(context).size.width * 0.99,
-      height: MediaQuery.of(context).size.height * 0.18,
+      height: MediaQuery.of(context).size.height * 0.24,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
@@ -47,13 +46,7 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
                   const Spacer(
                     flex: 1,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      FontAwesomeIcons.circleMinus,
-                      size: getResponsiveText(context, 18),
-                    ),
-                  ),
+                  
                 ],
               ),
             ),

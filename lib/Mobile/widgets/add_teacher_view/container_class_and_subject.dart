@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
 class ContainerClassAndSubject extends StatelessWidget {
@@ -23,10 +22,13 @@ class ContainerClassAndSubject extends StatelessWidget {
           const Spacer(
             flex: 4,
           ),
-          Text(
-            subject,
-            style: TextStyle(
-                fontSize: getResponsiveText(context, 15), color: Colors.black),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Text(
+              subject,
+              style: TextStyle(
+                  fontSize: getResponsiveText(context, 15), color: Colors.black),
+            ),
           ),
           const Spacer(),
           Text(
@@ -35,13 +37,7 @@ class ContainerClassAndSubject extends StatelessWidget {
                 fontSize: getResponsiveText(context, 15), color: Colors.black),
           ),
           const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              FontAwesomeIcons.circleMinus,
-              size: getResponsiveText(context, 18),
-            ),
-          ),
+
         ],
       ),
     );

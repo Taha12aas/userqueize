@@ -40,14 +40,15 @@ class YearQuestions extends StatelessWidget {
                     color: Colors.white,
                   ),
           ),
-          const Spacer(),
-          Text(
-            year,
-            style: FontStyleApp.textStyleWhiteBold18.copyWith(
-              fontSize: getResponsiveText(context, 18),
+          const Spacer(flex: 2),
+          Flexible(
+            child: Text(
+              year,
+              style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                fontSize: getResponsiveText(context, 18),
+              ),
             ),
           ),
-          const SizedBox(width: 20),
         ],
       ),
     );

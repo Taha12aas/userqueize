@@ -31,19 +31,23 @@ class TeacherProfileCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'ريم سواس',
-                    style: FontStyleApp.textStylewite15.copyWith(
-                      fontSize: getResponsiveText(context, 15),
+                  Flexible(
+                    child: Text(
+                      'ريم سواس',
+                      style: FontStyleApp.textStylewite15.copyWith(
+                        fontSize: getResponsiveText(context, 15),
+                      ),
                     ),
                   ),
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    ' : الاسم',
-                    style: FontStyleApp.textStyleOrange15.copyWith(
-                      fontSize: getResponsiveText(context, 15),
+                  Flexible(
+                    child: Text(
+                      ' : الاسم',
+                      style: FontStyleApp.textStyleOrange15.copyWith(
+                        fontSize: getResponsiveText(context, 15),
+                      ),
                     ),
                   ),
                 ],
