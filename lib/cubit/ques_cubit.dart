@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Service/teacher_service.dart';
@@ -7,12 +8,14 @@ import 'package:userqueize/models/teacher.dart';
 class QuesCubit extends Cubit<QuesAppStatus> {
   QuesCubit() : super(LoadingState());
 
-  void fetchUsers(String teacherName) async {
+  void fetchUsers(int teacherNumber) async {
     try {
-      dynamic result = await TeacherService.fetchTeacher(teacherName);
-      Teacher user = Teacher.fromJson(result);
+      List<Map<String, dynamic>> result = await TeacherService.fetchTeacher(teacherNumber);
+      Teacher user = Teacher.fromJson(result[0]);
+      log('-----------------------------');
       emit(SuccessState(user: user));
     } catch (e) {
+      log(e.toString());
       emit(FaliureState());
     }
   }
@@ -25,5 +28,4 @@ class QuesCubit extends Cubit<QuesAppStatus> {
       emit(FaliureState());
     }
   }
-  
 }

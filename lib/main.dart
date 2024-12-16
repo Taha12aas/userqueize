@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:userqueize/Mobile/views/add_question.dart';
 import 'package:userqueize/Mobile/views/change_password_view.dart';
@@ -13,11 +14,12 @@ import 'package:userqueize/Mobile/views/question_generate_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
+import 'package:userqueize/cubit/ques_cubit.dart';
 import 'package:userqueize/models/Question.dart';
 import 'package:userqueize/utils/constants.dart';
 
 void main() async {
-   String fullQuestionText = '''
+  String fullQuestionText = '''
 8. ما هي أحد التحديات التي يواجهها مجال الذكاء الصناعي؟
 
 A) تحسين جودة الحياة
@@ -26,9 +28,7 @@ C) قضايا الخصوصية والأمان
 D) زيادة الاستهلاك الطاقة
 ''';
 
-
   Question question = Question.parseFromText(fullQuestionText);
-
 
   log("السؤال: ${question.questionText}");
   log("الخيارات:");
@@ -49,25 +49,29 @@ class QuizApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        HomeView.id: (context) => const HomeView(),
-        LogInView.id: (context) => const LogInView(),
-        SubjectsView.id: (context) => const SubjectsView(),
-        TeacherSubjects.id: (context) => const TeacherSubjects(),
-        GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),
-        TeacherProfileView.id: (context) => const TeacherProfileView(),
-        ChangePasswordView.id: (context) => const ChangePasswordView(),
-        CreateQuestionsView.id: (context) => const CreateQuestionsView(),
-        CreateSubjectQuestionsView.id: (context) =>
-            const CreateSubjectQuestionsView(),
-        QuestionGenerateView.id: (context) => const QuestionGenerateView(),
-        AddQuestion.id: (context) => const AddQuestion(),
-      },
-      theme:
-          ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
-      debugShowCheckedModeBanner: false,
-      initialRoute: LogInView.id,
+    return BlocProvider(
+      create: (context) => QuesCubit(),
+      child: MaterialApp(
+        routes: {
+          HomeView.id: (context) => const HomeView(),
+          LogInView.id: (context) => const LogInView(),
+          SubjectsView.id: (context) => const SubjectsView(),
+          TeacherSubjects.id: (context) => const TeacherSubjects(),
+          GeneratedQuestionsView.id: (context) =>
+              const GeneratedQuestionsView(),
+          TeacherProfileView.id: (context) => const TeacherProfileView(),
+          ChangePasswordView.id: (context) => const ChangePasswordView(),
+          CreateQuestionsView.id: (context) => const CreateQuestionsView(),
+          CreateSubjectQuestionsView.id: (context) =>
+              const CreateSubjectQuestionsView(),
+          QuestionGenerateView.id: (context) => const QuestionGenerateView(),
+          AddQuestion.id: (context) => const AddQuestion(),
+        },
+        theme:
+            ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
+        debugShowCheckedModeBanner: false,
+        initialRoute: LogInView.id,
+      ),
     );
   }
 }

@@ -12,7 +12,6 @@ import 'package:userqueize/utils/show_snack_bar.dart';
 class LogInView extends StatelessWidget {
   const LogInView({super.key});
   static String id = 'LogInView';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +85,10 @@ class LogInView extends StatelessWidget {
               showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
             );
             Navigator.pushNamedAndRemoveUntil(
-                context, HomeView.id, (route) => false);
+              context,
+              HomeView.id,
+              (route) => false,
+            );
           },
         );
       },
