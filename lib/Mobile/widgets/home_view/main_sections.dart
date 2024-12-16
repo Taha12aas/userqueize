@@ -13,12 +13,14 @@ class MainSections extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        MainCategoriesSection(
-          onTap: () {
-            Navigator.pushNamed(context, CreateQuestionsView.id);
-          },
-          image: 'assets/images/subjects.png',
-          label: 'انشاء اسئلة',
+        Flexible(
+          child: MainCategoriesSection(
+            onTap: () {
+              Navigator.pushNamed(context, CreateQuestionsView.id);
+            },
+            image: 'assets/images/subjects.png',
+            label: 'انشاء اسئلة',
+          ),
         ),
         MainCategoriesSection(
           image: 'assets/images/Teachers.png',

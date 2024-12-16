@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
-import 'package:userqueize/utils/custom_alert_dialog.dart';
+import 'package:userqueize/Mobile/widgets/log_in_view/show_alert_dialog_and_navigator.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
-import 'package:userqueize/utils/show_snack_bar.dart';
 
 class LogInView extends StatelessWidget {
   const LogInView({super.key});
@@ -37,11 +35,13 @@ class LogInView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        'تسجيل الدخول',
-                        textAlign: TextAlign.end,
-                        style: FontStyleApp.textStyleWhiteBold18
-                            .copyWith(fontSize: getResponsiveText(context, 18)),
+                      Flexible(
+                        child: Text(
+                          'تسجيل الدخول',
+                          textAlign: TextAlign.end,
+                          style: FontStyleApp.textStyleWhiteBold18
+                              .copyWith(fontSize: getResponsiveText(context, 18)),
+                        ),
                       ),
                     ],
                   ),
@@ -85,10 +85,7 @@ class LogInView extends StatelessWidget {
               showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
             );
             Navigator.pushNamedAndRemoveUntil(
-              context,
-              HomeView.id,
-              (route) => false,
-            );
+                context, HomeView.id, (route) => false);
           },
         );
       },

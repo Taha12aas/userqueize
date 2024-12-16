@@ -20,10 +20,12 @@ class TeacherName extends StatelessWidget {
               Icons.app_registration_rounded,
               color: kOrangeColor,
             )),
-        Text(
-          'طه الفاخوري',
-          style: FontStyleApp.textStyleWhiteBold18.copyWith(
-            fontSize: getResponsiveText(context, 16),
+        Flexible(
+          child: Text(
+            'طه الفاخوري',
+            style: FontStyleApp.textStyleWhiteBold18.copyWith(
+              fontSize: getResponsiveText(context, 16),
+            ),
           ),
         ),
         const SizedBox(

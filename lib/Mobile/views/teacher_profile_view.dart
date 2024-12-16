@@ -33,18 +33,22 @@ class TeacherProfileView extends StatelessWidget {
                 ),
                 const Row(
                   children: [
-                    ColumnTeacherInfo(
-                      labelText: ': العنوان',
-                      hintText: 'عنوانه',
-                      iconData: FontAwesomeIcons.locationDot,
-                      horizntalSize: 64,
+                    Expanded(
+                      child: ColumnTeacherInfo(
+                        labelText: ': العنوان',
+                        hintText: 'عنوانه',
+                        iconData: FontAwesomeIcons.locationDot,
+                        horizntalSize: 64,
+                      ),
                     ),
-                    ColumnTeacherInfo(
-                      labelText: ': رقم الهاتف',
-                      hintText: '0962449054',
-                      iconData: FontAwesomeIcons.phone,
-                      horizntalSize: 89,
-                      keyboardType: true,
+                    Expanded(
+                      child: ColumnTeacherInfo(
+                        labelText: ': رقم الهاتف',
+                        hintText: '0962449054',
+                        iconData: FontAwesomeIcons.phone,
+                        horizntalSize: 89,
+                        keyboardType: true,
+                      ),
                     ),
                   ],
                 ),
@@ -62,7 +66,7 @@ class TeacherProfileView extends StatelessWidget {
                 ),
                 const ContainerTeacherSubjectsDisplay(),
                 SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.2,
+                  height: MediaQuery.sizeOf(context).height * 0.1,
                 ),
                 CustomButton(
                   title: 'حفظ',

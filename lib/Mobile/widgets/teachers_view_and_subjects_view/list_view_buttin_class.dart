@@ -18,9 +18,7 @@ class ListViewButtonClass extends StatelessWidget {
         itemBuilder: (context, index) {
           return ButtonClass(
             text: 'صف اول',
-            onTap: () {
-              
-            },
+            onTap: () {},
           );
         },
       ),

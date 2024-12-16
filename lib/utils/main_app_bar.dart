@@ -6,6 +6,7 @@ import 'package:userqueize/cubit/ques_app_status.dart';
 import 'package:userqueize/cubit/ques_cubit.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 AppBar mainAppBar(String title, BuildContext context) {
   return AppBar(
@@ -38,7 +39,10 @@ AppBar mainAppBar(String title, BuildContext context) {
             },
           ),
         ),
-        Text(title, style: FontStyleApp.textStylewite15),
+        Text(
+          title,
+          style: FontStyleApp.textStylewite15
+        ),
         IconButton(
           padding: const EdgeInsets.only(left: 25),
           tooltip: 'search',

@@ -16,7 +16,6 @@ class TextFieldIconS extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-       
         Container(
           color: Colors.black,
           height: 18,
@@ -24,9 +23,13 @@ class TextFieldIconS extends StatelessWidget {
         ),
         const SizedBox(
           width: 8,
-        ) ,Icon(size: 18,
-          iconData,
-          color: Colors.black,
+        ),
+        Flexible(
+          child: Icon(
+            size: 18,
+            iconData,
+            color: Colors.black,
+          ),
         ),
         const SizedBox(
           width: 10,

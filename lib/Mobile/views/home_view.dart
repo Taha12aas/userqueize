@@ -5,6 +5,7 @@ import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_v
 import 'package:userqueize/cubit/ques_cubit.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/main_app_bar.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -25,17 +26,21 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: mainAppBar('الصفحة الرئيسية', context),
-      body: const Padding(
-        padding: EdgeInsets.all(18),
+      body: Padding(
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            MainSections(),
-            SizedBox(height: 20),
-            Text(' :  أحدث النشاطات',
-                style: FontStyleApp.textStyleOrangeBold25),
-            SizedBox(height: 10),
-            Expanded(child: ListViewCardSubjects())
+            const MainSections(),
+            const SizedBox(height: 20),
+            Text(
+              ' :  أحدث النشاطات',
+              style: FontStyleApp.textStyleOrangeBold25.copyWith(
+                fontSize: getResponsiveText(context, 25),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Expanded(child: ListViewCardSubjects())
           ],
         ),
       ),

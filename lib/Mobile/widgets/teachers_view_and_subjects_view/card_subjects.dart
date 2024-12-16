@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/row_home_view.dart';
 import 'package:userqueize/utils/constants.dart';
-import 'package:userqueize/utils/font_style.dart';
-import 'package:userqueize/utils/responsive_text.dart';
-
 class CardSubjects extends StatelessWidget {
   const CardSubjects(
       {super.key,
@@ -12,13 +10,13 @@ class CardSubjects extends StatelessWidget {
       required this.classTeacher});
   final void Function() onTap;
 
-    final String subject;
+  final String subject;
   final String classTeacher;
   final String teacherImag;
   @override
-    Widget build(BuildContext context) {
-      final double screenHeight = MediaQuery.of(context).size.height;
-      final double screenWidth = MediaQuery.of(context).size.width;
+  Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
 
     return InkWell(
       onTap: onTap,
@@ -47,48 +45,16 @@ class CardSubjects extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        subject,
-                        style: FontStyleApp.textStyleOrange15.copyWith(
-                          fontSize: getResponsiveText(context, 15),
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(width: screenWidth * 0.01),
-                      Text(
-                        ' : اسم المادة',
-                        style: FontStyleApp.textStylewite15.copyWith(
-                          fontSize: getResponsiveText(context, 15),
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                  RowHomeView(
+                    classAndSubject: subject,
+                    screenWidth: screenWidth,
+                    subjectName: ' : اسم المادة',
                   ),
                   SizedBox(height: screenHeight * 0.01),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        classTeacher,
-                        style: FontStyleApp.textStyleOrange15.copyWith(
-                          fontSize: getResponsiveText(context, 15),
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(width: screenWidth * 0.01),
-                      Text(
-                        ' : صف',
-                        style: FontStyleApp.textStylewite15.copyWith(
-                          fontSize: getResponsiveText(context, 15),
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(width: 34),
-                    ],
-                  ),
+                  RowHomeView(
+                      classAndSubject: classTeacher,
+                      screenWidth: screenWidth,
+                      subjectName: ': صف')
                 ],
               ),
             ),

@@ -15,6 +15,7 @@ class ListViewCardSubjects extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10),
           child: CardSubjects(
             classTeacher: 'صف الاول',
+            subject: 'رياضات',
             teacherImag: 'assets/images/Teachers.png',
             subject: 'رياضات',
             onTap: () {
