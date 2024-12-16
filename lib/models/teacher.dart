@@ -2,11 +2,11 @@ class Teacher {
   int? id;
   final String name;
   final String photo;
-  final String phone;
+  final int phone;
   final String address;
   final String password;
-  final String verificationCode;
-  final List<Map<String, String>> classesSubjects;
+  final int verificationCode;
+  final Map<String, dynamic> classesSubjects;
   Teacher({
     this.id,
     required this.name,

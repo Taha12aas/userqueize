@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/widgets/home_view/DropDownSearch/show_custom_drop_down_search.dart';
+import 'package:userqueize/cubit/ques_app_status.dart';
+import 'package:userqueize/cubit/ques_cubit.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
-import 'package:userqueize/utils/responsive_text.dart';
 
 AppBar mainAppBar(String title, BuildContext context) {
   return AppBar(
@@ -20,31 +22,33 @@ AppBar mainAppBar(String title, BuildContext context) {
           onTap: () {
             Navigator.pushNamed(context, TeacherProfileView.id);
           },
-          child: const CircleAvatar(
-            radius: 18.0,
-            backgroundImage: AssetImage('assets/images/TeachersTaha.jpg'),
-          ),
-        ),
-        Flexible(
-          child: Text(
-            title,
-            style: FontStyleApp.textStylewite15.copyWith(
-              fontSize: getResponsiveText(context, 15)
-            )
-          ),
-        ),
-        Flexible(
-          child: IconButton(
-            padding: const EdgeInsets.only(left: 25),
-            tooltip: 'search',
-            icon: const Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              showCustomDropDownSearch(context);
+          child: BlocBuilder<QuesCubit, QuesAppStatus>(
+            builder: (context, state) {
+              if (state is SuccessState) {
+                return CircleAvatar(
+                  radius: 18.0,
+                  backgroundImage: NetworkImage(state.user!.photo),
+                );
+              } else {
+                return const CircleAvatar(
+                  radius: 18.0,
+                  backgroundImage: AssetImage('assets/images/Teachers.png'),
+                );
+              }
             },
           ),
+        ),
+        Text(title, style: FontStyleApp.textStylewite15),
+        IconButton(
+          padding: const EdgeInsets.only(left: 25),
+          tooltip: 'search',
+          icon: const Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            showCustomDropDownSearch(context);
+          },
         ),
       ],
     ),
