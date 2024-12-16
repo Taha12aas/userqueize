@@ -14,6 +14,7 @@ import 'package:userqueize/Mobile/views/question_generate_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
+import 'package:userqueize/Service/teacher_service.dart';
 import 'package:userqueize/cubit/ques_cubit.dart';
 import 'package:userqueize/models/Question.dart';
 import 'package:userqueize/utils/constants.dart';
@@ -43,7 +44,7 @@ D) زيادة الاستهلاك الطاقة
   );
   runApp(const QuizApp());
 
-  
+  TeacherService.sendVerificationCode(963962449054);
 }
 
 class QuizApp extends StatelessWidget {
