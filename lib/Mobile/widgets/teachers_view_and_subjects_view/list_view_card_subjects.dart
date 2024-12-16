@@ -17,7 +17,6 @@ class ListViewCardSubjects extends StatelessWidget {
             classTeacher: 'صف الاول',
             subject: 'رياضات',
             teacherImag: 'assets/images/Teachers.png',
-            subject: 'رياضات',
             onTap: () {
               // ignore: use_build_context_synchronously
               Navigator.pushNamed(context, GeneratedQuestionsView.id);
