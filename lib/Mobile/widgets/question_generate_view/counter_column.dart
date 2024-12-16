@@ -10,7 +10,7 @@ class CounterColumn extends StatefulWidget {
 }
 
 class _CounterColumnState extends State<CounterColumn> {
-  int _currentValue = 10;
+  int _currentValue = 1;
 
   @override
   Widget build(BuildContext context) {
