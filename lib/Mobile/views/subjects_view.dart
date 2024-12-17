@@ -30,7 +30,9 @@ class SubjectsView extends StatelessWidget {
               style: FontStyleApp.textStyleOrangeBold20
                   .copyWith(fontSize: getResponsiveText(context, 20)),
             ),
-            const ListViewButtonClass(),
+            const ListViewButtonClass(
+              listClass: ['ss'],
+            ),
             const SizedBox(
               height: 20,
             ),
