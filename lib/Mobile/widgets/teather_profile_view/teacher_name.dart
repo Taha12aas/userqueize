@@ -5,9 +5,9 @@ import 'package:userqueize/utils/responsive_text.dart';
 
 class TeacherName extends StatelessWidget {
   const TeacherName({
-    super.key,
+    super.key, required this.name,
   });
-
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,7 +22,7 @@ class TeacherName extends StatelessWidget {
             )),
         Flexible(
           child: Text(
-            'طه الفاخوري',
+            name,
             style: FontStyleApp.textStyleWhiteBold18.copyWith(
               fontSize: getResponsiveText(context, 16),
             ),

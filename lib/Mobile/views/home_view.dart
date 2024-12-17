@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Expanded(child: ListViewCardSubjects())
+            const Expanded(child: ListViewCardSubjects(listSubject: [], listClasses: [],))
           ],
         ),
       ),

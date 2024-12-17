@@ -1,24 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/utils/constants.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class TeacherPhoto extends StatelessWidget {
+class TeacherPhoto extends StatefulWidget {
   const TeacherPhoto({
     super.key,
+    required this.image,
   });
+
+  final String image;
+
+  @override
+  State<TeacherPhoto> createState() => _TeacherPhotoState();
+}
+
+class _TeacherPhotoState extends State<TeacherPhoto> {
+  File? _selectedImage; // لتخزين الصورة المختارة
+
+  // دالة لاختيار الصورة
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(
+      source: ImageSource
+          .gallery, // يمكن تغيير المصدر إلى الكاميرا باستخدام ImageSource.camera
+    );
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: MediaQuery.sizeOf(context).height * .07,
-      backgroundImage: const AssetImage('assets/images/TeachersTaha.jpg'),
+      backgroundImage: _selectedImage != null
+          ? FileImage(_selectedImage!) as ImageProvider
+          : NetworkImage(widget.image),
       child: Align(
         alignment: Alignment.bottomLeft,
         child: IconButton(
-            onPressed: () {
-              
-            },
-            icon: const Icon(Icons.add_a_photo),
-            color: kOrangeColor),
+          onPressed: _pickImage, // استدعاء دالة اختيار الصورة
+          icon: const Icon(Icons.add_a_photo),
+          color: Colors.orange,
+        ),
       ),
     );
   }

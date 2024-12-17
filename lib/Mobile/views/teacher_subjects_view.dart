@@ -20,7 +20,7 @@ class TeacherSubjects extends StatelessWidget {
               height: 20,
             ),
             Expanded(
-              child: ListViewCardSubjects(),
+              child: ListViewCardSubjects(listSubject: [], listClasses: [],),
             )
           ],
         ),

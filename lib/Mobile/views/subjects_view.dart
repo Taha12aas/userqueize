@@ -31,12 +31,12 @@ class SubjectsView extends StatelessWidget {
                   .copyWith(fontSize: getResponsiveText(context, 20)),
             ),
             const ListViewButtonClass(
-              listClass: ['ss'],
+              listClass: []
             ),
             const SizedBox(
               height: 20,
             ),
-            const Expanded(child: ListViewCardSubjects())
+            const Expanded(child: ListViewCardSubjects(listSubject: [], listClasses: [],))
           ],
         ),
       ),
