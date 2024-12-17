@@ -3,6 +3,7 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/statue_border.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/text_field_icons.dart';
 import 'package:userqueize/utils/constants.dart';
+import 'package:userqueize/utils/font_style.dart';
 
 class AuthTextField extends StatelessWidget {
   const AuthTextField({
@@ -11,11 +12,14 @@ class AuthTextField extends StatelessWidget {
     required this.iconData,
     this.obscureText = false,
     this.keyboardType = false,
+    required this.validator,
   });
   final String hintText;
   final IconData iconData;
   final bool? obscureText;
   final bool? keyboardType;
+  final String? Function(String?) validator;
+
   @override
   Widget build(BuildContext context) {
     ValueNotifier<bool> obsc = ValueNotifier(true);
@@ -23,7 +27,8 @@ class AuthTextField extends StatelessWidget {
       valueListenable: obsc,
       child: TextFieldIconS(iconData: iconData),
       builder: (context, value, child) {
-        return TextField(
+        return TextFormField(
+          validator: validator,
           keyboardType: keyboardType! ? TextInputType.number : null,
           obscureText: obscureText! ? value : obscureText!,
           style: const TextStyle(fontWeight: FontWeight.bold),
@@ -46,6 +51,9 @@ class AuthTextField extends StatelessWidget {
             enabledBorder: statueBorder(Colors.white),
             disabledBorder: statueBorder(Colors.white),
             focusedBorder: statueBorder(kOrangeColor),
+            errorBorder: statueBorder(Colors.red),
+            focusedErrorBorder: statueBorder(Colors.red),
+            errorStyle: FontStyleApp.textStyleOrange15,
           ),
         );
       },
