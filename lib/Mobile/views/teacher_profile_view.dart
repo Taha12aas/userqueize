@@ -7,8 +7,8 @@ import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subj
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/teather_profile_view/teacher_name.dart';
 import 'package:userqueize/Mobile/widgets/teather_profile_view/teacher_photor.dart';
-import 'package:userqueize/cubit/ques_app_status.dart';
-import 'package:userqueize/cubit/ques_cubit.dart';
+import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 
 class TeacherProfileView extends StatelessWidget {
@@ -23,7 +23,7 @@ class TeacherProfileView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Center(
           child: SingleChildScrollView(
-            child: BlocBuilder<QuesCubit, QuesAppStatus>(
+            child: BlocBuilder<CubitTeacher, QuesAppStatus>(
               builder: (context, state) {
                 if (state is SuccessState) {
                   List<dynamic> classes = state.user!.classesSubjects['صف'];

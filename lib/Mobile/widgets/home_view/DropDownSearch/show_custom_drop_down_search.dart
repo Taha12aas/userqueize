@@ -32,14 +32,10 @@ void showCustomDropDownSearch(BuildContext context) {
                     .copyWith(fontSize: getResponsiveText(context, 18)),
               ),
             ),
-             Padding(
+            Padding(
               padding: const EdgeInsets.all(12),
-              
               child: AuthTextField(
-                validator: (p0) {
-                  
-                },
-                hintText: 'ابحث', iconData: Icons.search),
+                  validator: (p0) {}, hintText: 'ابحث', iconData: Icons.search),
             ),
             const SizedBox(
               height: 20,

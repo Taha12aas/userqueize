@@ -15,7 +15,7 @@ import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
 import 'package:userqueize/Service/teacher_service.dart';
-import 'package:userqueize/cubit/ques_cubit.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/models/Question.dart';
 import 'package:userqueize/utils/constants.dart';
 
@@ -46,6 +46,7 @@ D) زيادة الاستهلاك الطاقة
 
   TeacherService.sendVerificationCode(963962449054);
 }
+
 ///////////
 class QuizApp extends StatelessWidget {
   const QuizApp({super.key});
@@ -53,7 +54,7 @@ class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QuesCubit(),
+      create: (context) => CubitTeacher(),
       child: MaterialApp(
         routes: {
           HomeView.id: (context) => const HomeView(),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_view_card_subjects.dart';
-import 'package:userqueize/cubit/ques_app_status.dart';
-import 'package:userqueize/cubit/ques_cubit.dart';
+import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 
 class CreateQuestionsView extends StatelessWidget {
@@ -15,7 +15,7 @@ class CreateQuestionsView extends StatelessWidget {
       appBar: customAppBar('أختيار مادة', context),
       body: Padding(
         padding: const EdgeInsets.all(18),
-        child: BlocBuilder<QuesCubit, QuesAppStatus>(
+        child: BlocBuilder<CubitTeacher, QuesAppStatus>(
           builder: (context, state) {
             if (state is SuccessState) {
               List<dynamic> classes = state.user!.classesSubjects['صف'];

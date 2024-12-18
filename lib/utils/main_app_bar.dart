@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/widgets/home_view/DropDownSearch/show_custom_drop_down_search.dart';
-import 'package:userqueize/cubit/ques_app_status.dart';
-import 'package:userqueize/cubit/ques_cubit.dart';
+import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 
@@ -22,7 +22,7 @@ AppBar mainAppBar(String title, BuildContext context) {
           onTap: () {
             Navigator.pushNamed(context, TeacherProfileView.id);
           },
-          child: BlocBuilder<QuesCubit, QuesAppStatus>(
+          child: BlocBuilder<CubitTeacher, QuesAppStatus>(
             builder: (context, state) {
               if (state is SuccessState) {
                 return CircleAvatar(

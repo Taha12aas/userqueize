@@ -6,8 +6,8 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
-import 'package:userqueize/cubit/ques_app_status.dart';
-import 'package:userqueize/cubit/ques_cubit.dart';
+import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 import 'package:userqueize/utils/show_alert_dialog_and_navigate.dart';
@@ -114,7 +114,7 @@ class _LogInViewState extends State<LogInView> {
                       obscureText: true,
                     ),
                     const Spacer(),
-                    BlocListener<QuesCubit, QuesAppStatus>(
+                    BlocListener<CubitTeacher, QuesAppStatus>(
                       listener: (context, state) {
                         if (state is SuccessState) {
                           if (state.user!.password == password) {
@@ -126,14 +126,14 @@ class _LogInViewState extends State<LogInView> {
                           }
                         }
                       },
-                      child: BlocBuilder<QuesCubit, QuesAppStatus>(
+                      child: BlocBuilder<CubitTeacher, QuesAppStatus>(
                         builder: (context, state) {
                           return CustomButton(
                             iconData: Icons.login,
                             label: 'تسجيل الدخول',
                             onPressed: () {
                               if (globalKey.currentState!.validate()) {
-                                BlocProvider.of<QuesCubit>(context)
+                                BlocProvider.of<CubitTeacher>(context)
                                     .fetchUsers(phoneNumber);
                               }
                             },
