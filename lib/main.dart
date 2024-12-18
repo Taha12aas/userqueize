@@ -15,6 +15,7 @@ import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
 import 'package:userqueize/Service/teacher_service.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_Subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/models/Question.dart';
 import 'package:userqueize/utils/constants.dart';
@@ -53,8 +54,15 @@ class QuizApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CubitTeacher(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CubitTeacher(),
+        ),
+        BlocProvider(
+          create: (context) => CubitSubject(),
+        )
+      ],
       child: MaterialApp(
         routes: {
           HomeView.id: (context) => const HomeView(),

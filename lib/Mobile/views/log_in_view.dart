@@ -6,6 +6,7 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_Subject.dart';
 import 'package:userqueize/cubits/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -120,6 +121,8 @@ class _LogInViewState extends State<LogInView> {
                           if (state.user!.password == password) {
                             log('message');
                             showAlertDialogAndNavigate(context);
+                            BlocProvider.of<CubitSubject>(context)
+                                .fetchSubject(state.user!.name);
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 showSnackBar(context, 'كلمة السر خاطئة'));

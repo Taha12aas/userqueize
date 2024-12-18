@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SubjectService {
@@ -10,8 +12,8 @@ class SubjectService {
         .select()
         .eq('name_teacher', teacherName);
 
-    print('Response: $response');
-    print(response.length.toString());
+    log('Response: $response');
+    log(response.length.toString());
     return response;
   }
 }

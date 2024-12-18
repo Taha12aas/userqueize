@@ -5,7 +5,7 @@ abstract class QuesAppStatus {}
 
 class SuccessState extends QuesAppStatus {
   final Teacher? user;
-  final SubjectsGenerated? subjects;
+  final List<SubjectsGenerated>? subjects;
 
   SuccessState({
     this.subjects,

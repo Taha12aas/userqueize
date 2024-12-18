@@ -39,7 +39,11 @@ class CustomAlertDialog extends StatelessWidget {
                               showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
                             );
                             Navigator.pushNamedAndRemoveUntil(
-                                context, HomeView.id, (route) => false);
+                              context,
+                              HomeView.id,
+                              (route) => false,
+                              arguments: state.user!.name,
+                            );
                           }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

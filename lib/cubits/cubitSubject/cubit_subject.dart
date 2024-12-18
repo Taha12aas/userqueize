@@ -11,9 +11,14 @@ class CubitSubject extends Cubit<QuesAppStatus> {
     try {
       List<Map<String, dynamic>> result =
           await SubjectService.fetchSubject(teacherName);
-      SubjectsGenerated subjects = SubjectsGenerated.fromJson(result[0]);
-      log('-----------------------------');
-      emit(SuccessState(subjects: subjects));
+
+      List<SubjectsGenerated> subjectsCount = [];
+
+      for (var i = 0; i < result.length; i++) {
+        subjectsCount.add(SubjectsGenerated.fromJson(result[i]));
+      }
+      log('--------------Subjects---------------');
+      emit(SuccessState(subjects: subjectsCount));
     } catch (e) {
       log(e.toString());
       emit(FaliureState());
