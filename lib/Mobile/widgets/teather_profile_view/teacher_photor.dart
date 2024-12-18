@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:userqueize/cubit/ques_app_status.dart';
 import 'dart:io';
+
+import 'package:userqueize/cubit/ques_cubit.dart';
 
 class TeacherPhoto extends StatefulWidget {
   const TeacherPhoto({
@@ -41,10 +45,18 @@ class _TeacherPhotoState extends State<TeacherPhoto> {
           : NetworkImage(widget.image),
       child: Align(
         alignment: Alignment.bottomLeft,
-        child: IconButton(
-          onPressed: _pickImage, // استدعاء دالة اختيار الصورة
-          icon: const Icon(Icons.add_a_photo),
-          color: Colors.orange,
+        child: BlocBuilder<QuesCubit, QuesAppStatus>(
+          builder: (context, state) {
+            return IconButton(
+              onPressed: () {
+                if (state is SuccessState) {
+                  _pickImage();
+                }
+              }, // استدعاء دالة اختيار الصورة
+              icon: const Icon(Icons.add_a_photo),
+              color: Colors.orange,
+            );
+          },
         ),
       ),
     );
