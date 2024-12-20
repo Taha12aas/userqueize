@@ -1,96 +1,157 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
-import 'package:userqueize/utils/custom_alert_dialog.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_Subject.dart';
+import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
+import 'package:userqueize/utils/show_alert_dialog_and_navigate.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
-class LogInView extends StatelessWidget {
+class LogInView extends StatefulWidget {
   const LogInView({super.key});
   static String id = 'LogInView';
+
+  @override
+  State<LogInView> createState() => _LogInViewState();
+}
+
+class _LogInViewState extends State<LogInView> {
+  int phoneNumber = 0;
+  String password = '';
+  GlobalKey<FormState> globalKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints:
-              BoxConstraints(minHeight: MediaQuery.sizeOf(context).height),
-          child: IntrinsicHeight(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Column(
-                children: [
-                  const SizedBox(height: 40),
-                  const LogoImage(),
-                  const SizedBox(height: 40),
-                  Text(
-                    'Quiz App',
-                    textAlign: TextAlign.center,
-                    style: FontStyleApp.textStyleOrangeBold30
-                        .copyWith(fontSize: getResponsiveText(context, 30)),
-                  ),
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          'تسجيل الدخول',
-                          textAlign: TextAlign.end,
-                          style: FontStyleApp.textStyleWhiteBold18
-                              .copyWith(fontSize: getResponsiveText(context, 18)),
+    return Form(
+      key: globalKey,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints:
+                BoxConstraints(minHeight: MediaQuery.sizeOf(context).height),
+            child: IntrinsicHeight(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 40),
+                    const LogoImage(),
+                    const SizedBox(height: 40),
+                    Text(
+                      'Quiz App',
+                      textAlign: TextAlign.center,
+                      style: FontStyleApp.textStyleOrangeBold30
+                          .copyWith(fontSize: getResponsiveText(context, 30)),
+                    ),
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            'تسجيل الدخول',
+                            textAlign: TextAlign.end,
+                            style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                                fontSize: getResponsiveText(context, 18)),
+                          ),
                         ),
+                      ],
+                    ),
+                    const SizedBox(height: 18),
+                    AuthTextField(
+                      validator: (p0) {
+                        if (p0!.length < 9) {
+                          return 'رقم الهاتف مطلوب';
+                        }
+                        phoneNumber = int.parse(p0);
+                        return null;
+                      },
+                      hintText: 'رقم الهاتف',
+                      iconData: FontAwesomeIcons.phone,
+                      keyboardType: true,
+                    ),
+                    const SizedBox(height: 18),
+                    AuthTextField(
+                      validator: (passwordd) {
+                        if (passwordd == null || passwordd.isEmpty) {
+                          return 'كلمة المرور مطلوبة';
+                        }
+                        if (passwordd.length < 8) {
+                          return 'كلمة المرور يجب أن تكون أطول من 8 محارف';
+                        }
+                        final hasUpperCase =
+                            passwordd.contains(RegExp(r'[A-Z]'));
+                        final hasLowerCase =
+                            passwordd.contains(RegExp(r'[a-z]'));
+                        final hasDigits = passwordd.contains(RegExp(r'[0-9]'));
+                        final hasSpecialCharacters =
+                            passwordd.contains(RegExp(r'[!@#\$&*~]'));
+
+                        if (!hasUpperCase) {
+                          return 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل';
+                        }
+                        if (!hasLowerCase) {
+                          return 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل';
+                        }
+                        if (!hasDigits) {
+                          return 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
+                        }
+                        if (!hasSpecialCharacters) {
+                          return 'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل';
+                        }
+
+                        password = passwordd;
+                        return null;
+                      },
+                      hintText: 'كلمة المرور',
+                      iconData: FontAwesomeIcons.lock,
+                      obscureText: true,
+                    ),
+                    const Spacer(),
+                    BlocListener<CubitTeacher, QuesAppStatus>(
+                      listener: (context, state) {
+                        if (state is SuccessState) {
+                          if (state.user!.password == password) {
+                            log('message');
+                            showAlertDialogAndNavigate(context);
+                            BlocProvider.of<CubitSubject>(context)
+                                .fetchSubject(state.user!.name);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                showSnackBar(context, 'كلمة السر خاطئة'));
+                          }
+                        }
+                      },
+                      child: BlocBuilder<CubitTeacher, QuesAppStatus>(
+                        builder: (context, state) {
+                          return CustomButton(
+                            iconData: Icons.login,
+                            label: 'تسجيل الدخول',
+                            onPressed: () {
+                              if (globalKey.currentState!.validate()) {
+                                BlocProvider.of<CubitTeacher>(context)
+                                    .fetchUsers(phoneNumber);
+                              }
+                            },
+                          );
+                        },
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 18),
-                  const AuthTextField(
-                    hintText: 'رقم الهاتف',
-                    iconData: FontAwesomeIcons.phone,
-                    keyboardType: true,
-                  ),
-                  const SizedBox(height: 18),
-                  const AuthTextField(
-                    hintText: 'كلمة المرور',
-                    iconData: FontAwesomeIcons.lock,
-                    obscureText: true,
-                  ),
-                  const Spacer(),
-                  CustomButton(
-                    iconData: Icons.login,
-                    label: 'تسجيل الدخول',
-                    onPressed: () {
-                      showAlertDialogAndNavigate(context);
-                    },
-                  ),
-                  const SizedBox(height: 65),
-                ],
+                    ),
+                    const SizedBox(height: 65),
+                  ],
+                ),
               ),
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Future<dynamic> showAlertDialogAndNavigate(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return CustomAlertDialog(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
-            );
-            Navigator.pushNamedAndRemoveUntil(
-                context, HomeView.id, (route) => false);
-          },
-        );
-      },
     );
   }
 }

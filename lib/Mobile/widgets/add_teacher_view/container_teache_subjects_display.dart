@@ -6,8 +6,11 @@ import 'package:userqueize/utils/responsive_text.dart';
 class ContainerTeacherSubjectsDisplay extends StatelessWidget {
   const ContainerTeacherSubjectsDisplay({
     super.key,
+    required this.classes,
+    required this.subjects,
   });
-
+  final List<dynamic> classes;
+  final List<dynamic> subjects;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,18 +49,17 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
                   const Spacer(
                     flex: 1,
                   ),
-                  
                 ],
               ),
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: classes.length,
                 itemBuilder: (context, index) {
                   final color =
                       index.isEven ? Colors.white : const Color(0xffE4E4E4);
                   return ContainerClassAndSubject(
-                      color: color, classs: 'الأول', subject: 'عربي');
+                      color: color, classs: classes[index], subject: subjects[index]);
                 },
               ),
             ),

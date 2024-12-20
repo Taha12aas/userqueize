@@ -5,24 +5,26 @@ import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_s
 class ListViewCardSubjects extends StatelessWidget {
   const ListViewCardSubjects({
     super.key,
+    required this.listSubject, required this.listClasses,
   });
+  final List<dynamic> listSubject;
+  final List<dynamic> listClasses;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 3,
+      itemCount: listSubject.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: CardSubjects(
-            classTeacher: 'صف الاول',
-            subject: 'رياضات',
-            teacherImag: 'assets/images/Teachers.png',
-            onTap: () {
-              // ignore: use_build_context_synchronously
-              Navigator.pushNamed(context, GeneratedQuestionsView.id);
-            },
-          ),
-        );
+            padding: const EdgeInsets.only(top: 10),
+            child: CardSubjects(
+              classTeacher: listClasses[index],
+              subject: listSubject[index],
+              teacherImag: 'assets/images/Teachers.png',
+              onTap: () {
+                // ignore: use_build_context_synchronously
+                Navigator.pushNamed(context, GeneratedQuestionsView.id);
+              },
+            ));
       },
     );
   }
