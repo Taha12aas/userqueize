@@ -38,7 +38,7 @@ AppBar mainAppBar(String title, BuildContext context) {
             },
           ),
         ),
-        Text(title, style: FontStyleApp.textStylewite15),
+        Flexible(child: Text(title, style: FontStyleApp.textStylewite15)),
         IconButton(
           padding: const EdgeInsets.only(left: 25),
           tooltip: 'search',
