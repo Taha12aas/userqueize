@@ -11,6 +11,7 @@ import 'package:userqueize/Mobile/views/generated_questions_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
 import 'package:userqueize/Mobile/views/question_generate_view.dart';
+import 'package:userqueize/Mobile/views/register_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
@@ -78,6 +79,7 @@ class QuizApp extends StatelessWidget {
               const CreateSubjectQuestionsView(),
           QuestionGenerateView.id: (context) => const QuestionGenerateView(),
           AddQuestion.id: (context) => const AddQuestion(),
+          RegisterView.id: (context) => const RegisterView()
         },
         theme:
             ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
