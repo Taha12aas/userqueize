@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
+import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_app.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/register_or_log_in.dart';
@@ -16,7 +17,6 @@ import 'package:userqueize/utils/responsive_text.dart';
 import 'package:userqueize/utils/show_alert_dialog_and_navigate.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
-import '../widgets/log_in_view/custom_button.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});

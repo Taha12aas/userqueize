@@ -71,49 +71,19 @@ class _LogInViewState extends State<LogInView> {
                     ),
                     const SizedBox(height: 18),
                     AuthTextField(
-                      validator: (passwordd) {
-                        if (passwordd == null || passwordd.isEmpty) {
-                          return 'كلمة المرور مطلوبة';
-                        }
-                        if (passwordd.length < 8) {
-                          return 'كلمة المرور يجب أن تكون أطول من 8 محارف';
-                        }
-                        final hasUpperCase =
-                            passwordd.contains(RegExp(r'[A-Z]'));
-                        final hasLowerCase =
-                            passwordd.contains(RegExp(r'[a-z]'));
-                        final hasDigits = passwordd.contains(RegExp(r'[0-9]'));
-                        final hasSpecialCharacters =
-                            passwordd.contains(RegExp(r'[!@#\$&*~]'));
-
-                        if (!hasUpperCase) {
-                          return 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل';
-                        }
-                        if (!hasLowerCase) {
-                          return 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل';
-                        }
-                        if (!hasDigits) {
-                          return 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
-                        }
-                        if (!hasSpecialCharacters) {
-                          return 'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل';
-                        }
-
-                        password = passwordd;
-                        return null;
-                      },
+                      validator: validateToPassword,
                       hintText: 'كلمة المرور',
                       iconData: FontAwesomeIcons.lock,
                       obscureText: true,
                     ),
                     const SizedBox(height: 10),
                     RegisterOrLogIn(
-                    label1: 'ليس لديك حساب ؟',
-                    label2: 'اضغط هنا لانشاء حساب',
-                    onPressed: () {
-                      Navigator.pushNamed(context, RegisterView.id);
-                    },
-                  ),
+                      label1: 'ليس لديك حساب ؟',
+                      label2: 'اضغط هنا لانشاء حساب',
+                      onPressed: () {
+                        Navigator.pushNamed(context, RegisterView.id);
+                      },
+                    ),
                     const Spacer(),
                     BlocListener<CubitTeacher, QuesAppStatus>(
                       listener: (context, state) {
@@ -121,8 +91,6 @@ class _LogInViewState extends State<LogInView> {
                           if (state.user!.password == password) {
                             log('message');
                             showAlertDialogAndNavigate(context);
-                            BlocProvider.of<CubitSubject>(context)
-                                .fetchSubject(state.user!.name);
                             BlocProvider.of<CubitSubject>(context)
                                 .fetchSubject(state.user!.name);
                           } else {

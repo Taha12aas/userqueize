@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_view_buttin_class.dart';
-import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/list_view_card_subjects.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_subjects.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/teacher_profile_card.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
+import 'package:userqueize/cubits/ques_app_status.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
-import 'package:userqueize/utils/responsive_text.dart';
-import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 
 class SubjectsView extends StatelessWidget {
   const SubjectsView({super.key});
@@ -26,18 +26,32 @@ class SubjectsView extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Text(
-              ' : تصنيف حسب الصفوف ',
-              style: FontStyleApp.textStyleOrangeBold20
-                  .copyWith(fontSize: getResponsiveText(context, 20)),
-            ),
-            const ListViewButtonClass(
-              listClass: []
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Expanded(child: ListViewCardSubjects(listSubject: [], listClasses: [],))
+            BlocBuilder<CubitSubject, QuesAppStatus>(
+              builder: (context, state) {
+                if (state is SuccessState) {
+                  return Expanded(
+                      child: ListView.builder(
+                    itemCount: state.subjects!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: CardSubjects(
+                          onTap: () {},
+                          subject: state.subjects![index].nameSubject,
+                          teacherImag: 'assets/images/subjects.png',
+                          classTeacher: state.subjects![index].classSabject,
+                        ),
+                      );
+                    },
+                  ));
+                } else {
+                  return const Text(
+                    'لا يوجد اسئلة',
+                    style: FontStyleApp.textStyleOrangeBold20,
+                  );
+                }
+              },
+            )
           ],
         ),
       ),
