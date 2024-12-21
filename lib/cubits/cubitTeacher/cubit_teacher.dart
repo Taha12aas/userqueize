@@ -13,7 +13,7 @@ class CubitTeacher extends Cubit<QuesAppStatus> {
       List<Map<String, dynamic>> result =
           await TeacherService.fetchTeacher(teacherNumber);
       Teacher user = Teacher.fromJson(result[0]);
-      log('-----------------------------');
+      log('------------Fetch User Data-----------------');
       emit(SuccessState(user: user));
     } catch (e) {
       log(e.toString());
