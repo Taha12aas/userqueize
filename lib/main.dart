@@ -43,18 +43,8 @@ D) زيادة الاستهلاك الطاقة
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdld3VzaG9rcmFtamJpcWNicG5nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwNjQ1MjksImV4cCI6MjA0OTY0MDUyOX0.9v7QMV8NgGhSgBnGRqZKxr2GNSLY1dZcgvm-ioIkdXg', // مفتاح الوصول العام (مفتاح API)
   );
-  runApp(const QuizApp());
-
-  TeacherService.sendVerificationCode(963962449054);
-}
-
-///////////
-class QuizApp extends StatelessWidget {
-  const QuizApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
+  runApp(
+    MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => CubitTeacher(),
@@ -63,27 +53,37 @@ class QuizApp extends StatelessWidget {
           create: (context) => CubitSubject(),
         )
       ],
-      child: MaterialApp(
-        routes: {
-          HomeView.id: (context) => const HomeView(),
-          LogInView.id: (context) => const LogInView(),
-          SubjectsView.id: (context) => const SubjectsView(),
-          TeacherSubjects.id: (context) => const TeacherSubjects(),
-          GeneratedQuestionsView.id: (context) =>
-              const GeneratedQuestionsView(),
-          TeacherProfileView.id: (context) => const TeacherProfileView(),
-          ChangePasswordView.id: (context) => const ChangePasswordView(),
-          CreateQuestionsView.id: (context) => const CreateQuestionsView(),
-          CreateSubjectQuestionsView.id: (context) =>
-              const CreateSubjectQuestionsView(),
-          QuestionGenerateView.id: (context) => const QuestionGenerateView(),
-          AddQuestion.id: (context) => const AddQuestion(),
-        },
-        theme:
-            ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
-        debugShowCheckedModeBanner: false,
-        initialRoute: LogInView.id,
-      ),
+      child: const QuizApp(),
+    ),
+  );
+
+  TeacherService.sendVerificationCode(963962449054);
+}
+
+class QuizApp extends StatelessWidget {
+  const QuizApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        HomeView.id: (context) => const HomeView(),
+        LogInView.id: (context) => const LogInView(),
+        SubjectsView.id: (context) => const SubjectsView(),
+        TeacherSubjects.id: (context) => const TeacherSubjects(),
+        GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),
+        TeacherProfileView.id: (context) => const TeacherProfileView(),
+        ChangePasswordView.id: (context) => const ChangePasswordView(),
+        CreateQuestionsView.id: (context) => const CreateQuestionsView(),
+        CreateSubjectQuestionsView.id: (context) =>
+            const CreateSubjectQuestionsView(),
+        QuestionGenerateView.id: (context) => const QuestionGenerateView(),
+        AddQuestion.id: (context) => const AddQuestion(),
+      },
+      theme:
+          ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
+      debugShowCheckedModeBanner: false,
+      initialRoute: LogInView.id,
     );
   }
 }

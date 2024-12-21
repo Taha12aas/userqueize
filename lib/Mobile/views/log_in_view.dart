@@ -106,7 +106,6 @@ class _LogInViewState extends State<LogInView> {
                         if (!hasSpecialCharacters) {
                           return 'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل';
                         }
-
                         password = passwordd;
                         return null;
                       },
@@ -121,6 +120,8 @@ class _LogInViewState extends State<LogInView> {
                           if (state.user!.password == password) {
                             log('message');
                             showAlertDialogAndNavigate(context);
+                            BlocProvider.of<CubitSubject>(context)
+                                .fetchSubject(state.user!.name);
                             BlocProvider.of<CubitSubject>(context)
                                 .fetchSubject(state.user!.name);
                           } else {

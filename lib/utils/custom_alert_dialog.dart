@@ -33,21 +33,20 @@ class CustomAlertDialog extends StatelessWidget {
                   return CustomButton(
                     onPressed: () {
                       if (globalKey.currentState!.validate()) {
-                        if (state is SuccessState) {
-                          if (state.user!.verificationCode == code) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
-                            );
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              HomeView.id,
-                              (route) => false,
-                              arguments: state.user!.name,
-                            );
-                          }
+                        if (state is SuccessState &&
+                            state.user!.verificationCode == code) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
+                          );
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            HomeView.id,
+                            (route) => false,
+                          );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              showSnackBar(context, 'رمز التحقق خاطئ'));
+                            showSnackBar(context, 'رمز التحقق خاطئ'),
+                          );
                         }
                       }
                     },

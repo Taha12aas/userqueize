@@ -13,6 +13,8 @@ class SuccessState extends QuesAppStatus {
   });
 }
 
-class FaliureState extends QuesAppStatus {}
+class FaliureState extends QuesAppStatus {
+
+}
 
 class LoadingState extends QuesAppStatus {}

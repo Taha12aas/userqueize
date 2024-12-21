@@ -47,7 +47,9 @@ class ChangePasswordView extends StatelessWidget {
                 height: 10,
               ),
               AuthTextField(
-                validator: (p0) {},
+                validator: (p0) {
+                  
+                },
                 hintText: 'كلمة المرور القديمة',
                 iconData: FontAwesomeIcons.lock,
               ),
