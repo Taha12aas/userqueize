@@ -20,14 +20,16 @@ class MainSections extends StatelessWidget {
             },
             image: 'assets/images/subjects.png',
             label: 'انشاء اسئلة',
-          ),  
+          ),
         ),
-        MainCategoriesSection(
-          image: 'assets/images/Teachers.png',
-          label: 'المواد',
-          onTap: () {
-            Navigator.pushNamed(context, SubjectsView.id);
-          },
+        Flexible(
+          child: MainCategoriesSection(
+            image: 'assets/images/Teachers.png',
+            label: 'المواد',
+            onTap: () {
+              Navigator.pushNamed(context, SubjectsView.id);
+            },
+          ),
         ),
       ],
     );

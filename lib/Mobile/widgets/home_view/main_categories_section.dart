@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
@@ -19,8 +20,7 @@ class MainCategoriesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
+    return Bounceable(
       onTap: onTap,
       child: Container(
         width: screenWidth * 0.40,

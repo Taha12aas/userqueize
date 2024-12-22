@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -49,12 +48,12 @@ D) زيادة الاستهلاك الطاقة
       ),
       BlocProvider(
         create: (context) => CubitSubject(),
-      )
+      ),
     ],
     child: MaterialApp(
       routes: {
-        HomeView.id: (context) => const HomeView(),
         LogInView.id: (context) => const LogInView(),
+        HomeView.id: (context) => const HomeView(),
         SubjectsView.id: (context) => const SubjectsView(),
         TeacherSubjects.id: (context) => const TeacherSubjects(),
         GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),

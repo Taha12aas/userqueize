@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/row_home_view.dart';
 import 'package:userqueize/utils/constants.dart';
+
 class CardSubjects extends StatelessWidget {
   const CardSubjects(
       {super.key,
@@ -18,9 +20,8 @@ class CardSubjects extends StatelessWidget {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
 
-    return InkWell(
+    return Bounceable(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(10),
       child: Container(
         width: double.infinity,
         height: screenHeight * 0.12,

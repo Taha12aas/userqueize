@@ -108,6 +108,8 @@ class _LogInViewState extends State<LogInView> {
                               if (globalKey.currentState!.validate()) {
                                 BlocProvider.of<CubitTeacher>(context)
                                     .fetchUsers(phoneNumber);
+                                BlocProvider.of<CubitSubject>(context)
+                                    .fetchSubject('taha');
                               }
                             },
                           );

@@ -10,6 +10,7 @@ import 'package:userqueize/utils/font_style.dart';
 class SubjectsView extends StatelessWidget {
   const SubjectsView({super.key});
   static String id = 'SubjectsView';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
