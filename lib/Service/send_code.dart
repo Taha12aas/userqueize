@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> sendWhatsAppMessage(String phoneNumber, String message) async {
-  String apiUrl = 'https://api.ultramsg.com/instance101876/messages/chat';  // استبدل your_instance_id برقم الحساب الخاص بك من Ultramsg
+  String apiUrl =
+      'https://api.ultramsg.com/instance101876/messages/chat'; // استبدل your_instance_id برقم الحساب الخاص بك من Ultramsg
   String apiToken = 'b3xtonezc1dsotpa'; // استبدل هذا بكود API الخاص بك
 
   Map<String, String> headers = {
@@ -22,8 +24,8 @@ Future<void> sendWhatsAppMessage(String phoneNumber, String message) async {
   );
 
   if (response.statusCode == 200) {
-    print('Message sent successfully');
+    debugPrint('Message sent successfully');
   } else {
-    print('Failed to send message: ${response.body}');
+    debugPrint('Failed to send message: ${response.body}');
   }
 }

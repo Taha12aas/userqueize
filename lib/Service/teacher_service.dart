@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:userqueize/Service/send_code.dart';
 import 'package:userqueize/models/teacher.dart';
 
 class TeacherService {
@@ -11,8 +13,8 @@ class TeacherService {
     final response =
         await supabase.from('teachers').select().eq('phone', teacherNumber);
 
-    print('Response: $response');
-    print(response.length.toString());
+    debugPrint('Response: $response');
+    debugPrint(response.length.toString());
     return response;
   }
 
@@ -20,9 +22,9 @@ class TeacherService {
   Future<void> createTeacher(Teacher teacher) async {
     try {
       final data = await supabase.from('teachers').insert([teacher.toJson()]);
-      print('تمت إضافة البيانات: $data');
+      debugPrint('تمت إضافة البيانات: $data');
     } catch (e) {
-      print('حدث خطأ: $e');
+      debugPrint('حدث خطأ: $e');
       rethrow;
     }
   }
@@ -32,25 +34,25 @@ class TeacherService {
     final data = await supabase
         .from('teachers')
         .update({columnName: value}).eq('name', teacherName);
-    print('تمت تعديل البيانات: $data');
+    debugPrint('تمت تعديل البيانات: $data');
   }
 
   static Future<void> sendVerificationCode(int phoneNumber) async {
     try {
       // توليد رمز تحقق عشوائي مكون من 6 أرقام
-      int verificationCode = Random().nextInt(900000) + 100000;
+      int verificationCode = Random().nextInt(9000) + 1000;
       await updateTeacherVerificationCode(phoneNumber, verificationCode);
       // إرسال رسالة عبر WhatsApp
       // ignore: unused_local_variable
       String message = 'Your verification code is: $verificationCode';
-      // await sendWhatsAppMessage(phoneNumber.toString(), message);
+      await sendWhatsAppMessage(phoneNumber.toString(), message);
 
       // تحقق من أن قيمة رمز التحقق صحيحة
-      print('تم إنشاء رمز التحقق: $verificationCode');
+      debugPrint('تم إنشاء رمز التحقق: $verificationCode');
 
       // تخزين رمز التحقق في قاعدة البيانات
     } catch (e) {
-      print('حدث خطأ أثناء إرسال رمز التحقق: $e');
+      debugPrint('حدث خطأ أثناء إرسال رمز التحقق: $e');
     }
   }
 
@@ -67,14 +69,13 @@ class TeacherService {
 
       // طباعة الاستجابة لمعرفة ما إذا تم التحديث بنجاح
       if (response.isNotEmpty) {
-        print('تم تحديث رمز التحقق في قاعدة البيانات: $response');
+        debugPrint('تم تحديث رمز التحقق في قاعدة البيانات: $response');
       } else {
-        print(
+        debugPrint(
             'لم تتم إضافة رمز التحقق في قاعدة البيانات. تحقق من الرقم المدخل.');
       }
-        } catch (e) {
-      print('حدث خطأ أثناء تحديث رمز التحقق في قاعدة البيانات: $e');
+    } catch (e) {
+      debugPrint('حدث خطأ أثناء تحديث رمز التحقق في قاعدة البيانات: $e');
     }
   }
-
 }

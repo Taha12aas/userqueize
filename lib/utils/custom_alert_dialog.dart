@@ -72,7 +72,7 @@ class CustomAlertDialog extends StatelessWidget {
         ),
         content: AlertDialogTextField(
           validator: (codee) {
-            if (codee!.length == 6) {
+            if (codee!.length == 4) {
               code = int.parse(codee);
               return null;
             } else {

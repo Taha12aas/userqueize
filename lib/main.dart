@@ -27,7 +27,6 @@ B) توفير فرص عمل جديدة
 C) قضايا الخصوصية والأمان
 D) زيادة الاستهلاك الطاقة
 ''';
-
   Question question = Question.parseFromText(fullQuestionText);
 
   log("السؤال: ${question.questionText}");
@@ -41,6 +40,8 @@ D) زيادة الاستهلاك الطاقة
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdld3VzaG9rcmFtamJpcWNicG5nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwNjQ1MjksImV4cCI6MjA0OTY0MDUyOX0.9v7QMV8NgGhSgBnGRqZKxr2GNSLY1dZcgvm-ioIkdXg', // مفتاح الوصول العام (مفتاح API)
   );
+
+  // TeacherService.sendVerificationCode(963988818024);
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
