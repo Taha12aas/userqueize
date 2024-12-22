@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Service/teacher_service.dart';
-import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/models/teacher.dart';
 
 class CubitTeacher extends Cubit<QuesAppStatus> {

@@ -13,7 +13,7 @@ import 'package:userqueize/Mobile/views/question_generate_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
-import 'package:userqueize/cubits/cubitSubject/cubit_Subject.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/models/Question.dart';
 import 'package:userqueize/utils/constants.dart';
@@ -42,34 +42,47 @@ D) زيادة الاستهلاك الطاقة
   );
 
   // TeacherService.sendVerificationCode(963988818024);
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (context) => CubitTeacher(),
+
+  runApp(const UserQuize());
+}
+
+class UserQuize extends StatelessWidget {
+  const UserQuize({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CubitTeacher(),
+        ),
+        BlocProvider(
+          create: (context) => CubitSubject(),
+        ),
+      ],
+      child: 
+    
+      MaterialApp(
+        routes: {
+          LogInView.id: (context) => const LogInView(),
+          HomeView.id: (context) => const HomeView(),
+          SubjectsView.id: (context) => const SubjectsView(),
+          TeacherSubjects.id: (context) => const TeacherSubjects(),
+          GeneratedQuestionsView.id: (context) =>
+              const GeneratedQuestionsView(),
+          TeacherProfileView.id: (context) => const TeacherProfileView(),
+          ChangePasswordView.id: (context) => const ChangePasswordView(),
+          CreateQuestionsView.id: (context) => const CreateQuestionsView(),
+          CreateSubjectQuestionsView.id: (context) =>
+              const CreateSubjectQuestionsView(),
+          QuestionGenerateView.id: (context) => const QuestionGenerateView(),
+          AddQuestion.id: (context) => const AddQuestion(),
+        },
+        theme:
+            ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
+        debugShowCheckedModeBanner: false,
+        initialRoute: LogInView.id,
       ),
-      BlocProvider(
-        create: (context) => CubitSubject(),
-      ),
-    ],
-    child: MaterialApp(
-      routes: {
-        LogInView.id: (context) => const LogInView(),
-        HomeView.id: (context) => const HomeView(),
-        SubjectsView.id: (context) => const SubjectsView(),
-        TeacherSubjects.id: (context) => const TeacherSubjects(),
-        GeneratedQuestionsView.id: (context) => const GeneratedQuestionsView(),
-        TeacherProfileView.id: (context) => const TeacherProfileView(),
-        ChangePasswordView.id: (context) => const ChangePasswordView(),
-        CreateQuestionsView.id: (context) => const CreateQuestionsView(),
-        CreateSubjectQuestionsView.id: (context) =>
-            const CreateSubjectQuestionsView(),
-        QuestionGenerateView.id: (context) => const QuestionGenerateView(),
-        AddQuestion.id: (context) => const AddQuestion(),
-      },
-      theme:
-          ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
-      debugShowCheckedModeBanner: false,
-      initialRoute: LogInView.id,
-    ),
-  ));
+    );
+  }
 }

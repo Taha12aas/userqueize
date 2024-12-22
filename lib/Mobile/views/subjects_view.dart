@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_subjects.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/teacher_profile_card.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
-import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject_status.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 
@@ -27,9 +27,9 @@ class SubjectsView extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            BlocBuilder<CubitSubject, QuesAppStatus>(
+            BlocBuilder<CubitSubject, CubitSubjectStatus>(
               builder: (context, state) {
-                if (state is SuccessState) {
+                if (state is SuccessStatee) {
                   return Expanded(
                       child: ListView.builder(
                     itemCount: state.subjects!.length,

@@ -7,7 +7,7 @@ import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subj
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/teather_profile_view/teacher_name.dart';
 import 'package:userqueize/Mobile/widgets/teather_profile_view/teacher_photor.dart';
-import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 

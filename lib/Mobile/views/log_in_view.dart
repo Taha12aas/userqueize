@@ -9,8 +9,8 @@ import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_app.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/register_or_log_in.dart';
-import 'package:userqueize/cubits/cubitSubject/cubit_Subject.dart';
-import 'package:userqueize/cubits/ques_app_status.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
+import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
@@ -91,11 +91,12 @@ class _LogInViewState extends State<LogInView> {
                           if (state.user!.password == password) {
                             log('message');
                             showAlertDialogAndNavigate(context);
-                            BlocProvider.of<CubitSubject>(context)
-                                .fetchSubject(state.user!.name);
+                              BlocProvider.of<CubitSubject>(context)
+                                    .fetchSubject(state.user!.name);
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 showSnackBar(context, 'كلمة السر خاطئة'));
+                                
                           }
                         }
                       },
@@ -108,7 +109,6 @@ class _LogInViewState extends State<LogInView> {
                               if (globalKey.currentState!.validate()) {
                                 BlocProvider.of<CubitTeacher>(context)
                                     .fetchUsers(phoneNumber);
-                                
                               }
                             },
                           );
