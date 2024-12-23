@@ -11,13 +11,16 @@ class ColumnTeacherInfo extends StatelessWidget {
     required this.hintText,
     required this.iconData,
     required this.horizntalSize,
-    this.keyboardType = false,
+    this.keyboardType = false, this.validator, this.address, this.phoneNumber,
   });
   final double horizntalSize;
   final String labelText;
   final String hintText;
   final IconData iconData;
   final bool? keyboardType;
+final String? Function(String?)? validator;
+final String? address;
+final int? phoneNumber;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,6 +41,7 @@ class ColumnTeacherInfo extends StatelessWidget {
             height: 5,
           ),
           InfoTextField(
+            validator: validator,
             hintText: hintText,
             iconData: iconData,
             keyboardType: keyboardType,
@@ -46,4 +50,5 @@ class ColumnTeacherInfo extends StatelessWidget {
       ),
     );
   }
+
 }

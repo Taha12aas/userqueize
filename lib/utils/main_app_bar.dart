@@ -28,6 +28,10 @@ AppBar mainAppBar(String title, BuildContext context) {
                   radius: 18.0,
                   backgroundImage: NetworkImage(state.user!.photo),
                 );
+              } else if (state is LoadingState) {
+                return const CircularProgressIndicator(
+                  color: kOrangeColor,
+                );
               } else {
                 return const CircleAvatar(
                   radius: 18.0,

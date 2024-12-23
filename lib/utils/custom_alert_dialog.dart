@@ -45,6 +45,7 @@ class CustomAlertDialog extends StatelessWidget {
                             context,
                             HomeView.id,
                             (route) => false,
+                            arguments: state.user!.phone
                           );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

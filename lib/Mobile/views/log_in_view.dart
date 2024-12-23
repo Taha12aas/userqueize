@@ -106,7 +106,6 @@ class _LogInViewState extends State<LogInView> {
                             label: 'تسجيل الدخول',
                             onPressed: () {
                               if (globalKey.currentState!.validate()) {
-                                
                                 BlocProvider.of<CubitTeacher>(context)
                                     .fetchUsers(phoneNumber);
                               }
@@ -156,8 +155,10 @@ class _LogInViewState extends State<LogInView> {
   }
 
   String? validateToPhoneNumber(p0) {
-    if (p0!.length < 12 || p0.length > 12) {
+    if (p0.isEmpty) {
       return 'رقم الهاتف مطلوب';
+    }else if (p0!.length < 12 || p0.length > 12) {
+      return 'الرجاء ادخال 12 رقم فقط';
     }
     phoneNumber = int.parse(p0);
     return null;

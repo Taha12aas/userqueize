@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -7,7 +8,8 @@ import 'package:userqueize/utils/responsive_text.dart';
 class TeacherProfileCard extends StatelessWidget {
   const TeacherProfileCard({
     super.key,
-    required this.text, required this.image,
+    required this.text,
+    required this.image,
   });
   final String text;
   final String image;
@@ -15,8 +17,7 @@ class TeacherProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(50),
+    return Bounceable(
       onTap: () {
         Navigator.pushNamed(context, TeacherProfileView.id);
       },
@@ -58,7 +59,7 @@ class TeacherProfileCard extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-             CircleAvatar(
+            CircleAvatar(
               radius: 30.0,
               backgroundImage: NetworkImage(image),
             ),

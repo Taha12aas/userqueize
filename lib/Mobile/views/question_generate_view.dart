@@ -29,17 +29,16 @@ class QuestionGenerateView extends StatelessWidget {
               const SizedBox(
                 height: 25,
               ),
-              FittedBox(
+              const Padding(
+                padding: EdgeInsets.only(right: 12),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const CounterColumn(
+                    CounterColumn(
                       title: ': عدد الخيارات',
                       counterValue: 1,
                     ),
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 0.15,
-                    ),
-                    const CounterColumn(
+                    CounterColumn(
                       title: ': عدد الاسئلة',
                       counterValue: 5,
                     ),
@@ -49,34 +48,26 @@ class QuestionGenerateView extends StatelessWidget {
               const SizedBox(
                 height: 17,
               ),
-              FittedBox(
-                child: Row(
-                  children: [
-                     const Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          ': أختر الدورة',
-                          style: FontStyleApp.textStyleOrangeBold20
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        SizedBox(
-                            width: 130,
-                            child: DropdownCheckSubject(items: years)),
-                      ],
-                    ),
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 0.15,
-                    ),
-                    const CounterColumn(
-                      title: ': عدد الاسئلة المكررة',
-                      counterValue: 2,
-                    )
-                  ],
-                ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Text(': أختر الدورة',
+                          style: FontStyleApp.textStyleOrangeBold20),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      SizedBox(
+                          width: 130,
+                          child: DropdownCheckSubject(items: years)),
+                    ],
+                  ),
+                  CounterColumn(
+                    title: ': عدد الاسئلة المكررة',
+                    counterValue: 2,
+                  )
+                ],
               ),
               const SizedBox(
                 height: 16,
@@ -89,10 +80,8 @@ class QuestionGenerateView extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.sizeOf(context).width * 0.2,
                     ),
-                    const Text(
-                      ": هل تريد اسئلة صح أو خطأ",
-                      style:FontStyleApp.textStyleOrangeBold20
-                    ),
+                    const Text(": هل تريد اسئلة صح أو خطأ",
+                        style: FontStyleApp.textStyleOrangeBold20),
                   ],
                 ),
               ),
@@ -100,11 +89,12 @@ class QuestionGenerateView extends StatelessWidget {
                 height: MediaQuery.sizeOf(context).height * 0.07,
               ),
               CustomButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, CreateSubjectQuestionsView.id);
-                  },
-                  label: 'انشاء اسئلة',
-                  iconData: Icons.generating_tokens_outlined),
+                onPressed: () {
+                  Navigator.pushNamed(context, CreateSubjectQuestionsView.id);
+                },
+                label: 'انشاء اسئلة',
+                iconData: Icons.generating_tokens_outlined,
+              ),
             ],
           ),
         ),

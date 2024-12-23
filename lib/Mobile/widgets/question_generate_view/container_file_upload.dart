@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
@@ -17,8 +18,7 @@ class ContainerFileUpload extends StatelessWidget {
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenHeight = MediaQuery.sizeOf(context).height;
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(7),
+    return Bounceable(
       onTap: () async {
         FilePickerResult? result = await FilePicker.platform.pickFiles(
           allowMultiple: true,
@@ -29,7 +29,7 @@ class ContainerFileUpload extends StatelessWidget {
           File file = File(result.files.single.path!);
         } else {
           ScaffoldMessenger.of(context)
-              .showSnackBar(showSnackBar(context, 'الرجاء اختيار ملف .'));
+              .showSnackBar(showSnackBar(context, 'الرجاء اختيار ملف'));
         }
       },
       child: Container(

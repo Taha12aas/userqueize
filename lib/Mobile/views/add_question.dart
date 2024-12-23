@@ -30,6 +30,7 @@ class AddQuestion extends StatelessWidget {
                 height: 10,
               ),
               const InfoTextField(
+                
                   hintText: 'سؤال', iconData: FontAwesomeIcons.circlePlus),
               const SizedBox(
                 height: 10,

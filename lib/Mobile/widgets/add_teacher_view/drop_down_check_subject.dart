@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/utils/constants.dart';
 
 class DropdownCheckSubject extends StatefulWidget {
   const DropdownCheckSubject({
@@ -17,6 +18,8 @@ class _DropdownCheckSubjectState extends State<DropdownCheckSubject> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
+      dropdownColor: Colors.black,
+      
       isExpanded: true, 
       decoration: InputDecoration(
         filled: true, 
@@ -48,7 +51,7 @@ class _DropdownCheckSubjectState extends State<DropdownCheckSubject> {
             child: Text(
               item,
               textAlign: TextAlign.right,
-              style: const TextStyle(color: Colors.orange),
+              style: const TextStyle(color: kOrangeColor),
             ),
           ),
         );

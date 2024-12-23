@@ -39,12 +39,12 @@ class _CounterColumnState extends State<CounterColumn> {
             children: [
               IconButton(
                 icon: const Icon(
-                  Icons.arrow_drop_up,
+                  Icons.arrow_drop_down,
                   color: Colors.orange,
                 ),
                 onPressed: () {
                   setState(() {
-                    if (_currentValue < 50) _currentValue += widget.counterValue;
+                    if (_currentValue > 1) _currentValue -= widget.counterValue;
                   });
                 },
               ),
@@ -56,13 +56,13 @@ class _CounterColumnState extends State<CounterColumn> {
                 ),
               ),
               IconButton(
-                icon: const Icon(
-                  Icons.arrow_drop_down,
+                icon: const Icon(Icons.arrow_drop_up
+                  ,
                   color: Colors.orange,
                 ),
                 onPressed: () {
                   setState(() {
-                    if (_currentValue > 2) _currentValue -= widget.counterValue;
+                    if (_currentValue < 50) _currentValue += widget.counterValue;
                   });
                 },
               ),
