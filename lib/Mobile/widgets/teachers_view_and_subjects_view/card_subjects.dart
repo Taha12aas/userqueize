@@ -4,22 +4,27 @@ import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/row_ho
 import 'package:userqueize/utils/constants.dart';
 
 class CardSubjects extends StatelessWidget {
-  const CardSubjects(
-      {super.key,
-      required this.onTap,
-      required this.subject,
-      required this.teacherImag,
-      required this.classTeacher});
-  final void Function() onTap;
+  const CardSubjects({
+    super.key,
+    required this.onTap,
+    required this.subject,
+    required this.teacherImag,
+    required this.classTeacher,
+    required this.courseDate,
+    required this.seasonSubject,
+  });
 
+  final void Function() onTap;
   final String subject;
   final String classTeacher;
   final String teacherImag;
+  final String courseDate;
+  final String seasonSubject;
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
-
     return Bounceable(
       onTap: onTap,
       child: Container(
@@ -30,32 +35,55 @@ class CardSubjects extends StatelessWidget {
           color: kAshenColor,
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: screenWidth * 0.02),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                teacherImag,
-                height: screenHeight * 0.074,
-                width: screenHeight * 0.074,
-                fit: BoxFit.cover,
-              ),
+            const SizedBox(
+              width: 15,
+            ),
+            const Icon(
+              color: Colors.white70,
+              Icons.download_rounded,
+              size: 35,
             ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Row(
                 children: [
-                  RowHomeView(
-                    classAndSubject: subject,
-                    screenWidth: screenWidth,
-                    subjectName: ' : اسم المادة',
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RowText(
+                          classAndSubject: courseDate,
+                          screenWidth: screenWidth,
+                          subjectName: ' : دورة ',
+                        ),
+                        SizedBox(height: screenHeight * 0.01),
+                        RowText(
+                          classAndSubject: seasonSubject,
+                          screenWidth: screenWidth,
+                          subjectName: ': فصل',
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: screenHeight * 0.01),
-                  RowHomeView(
-                      classAndSubject: classTeacher,
-                      screenWidth: screenWidth,
-                      subjectName: ': صف')
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RowText(
+                          classAndSubject: subject,
+                          screenWidth: screenWidth,
+                          subjectName: ' : اسم المادة',
+                        ),
+                        SizedBox(height: screenHeight * 0.01),
+                        RowText(
+                          classAndSubject: classTeacher,
+                          screenWidth: screenWidth,
+                          subjectName: ': صف',
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

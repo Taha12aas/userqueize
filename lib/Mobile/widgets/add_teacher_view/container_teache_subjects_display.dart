@@ -59,7 +59,9 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
                   final color =
                       index.isEven ? Colors.white : const Color(0xffE4E4E4);
                   return ContainerClassAndSubject(
-                      color: color, classs: classes[index], subject: subjects[index]);
+                      color: color,
+                      classs: classes[index],
+                      subject: subjects[index]);
                 },
               ),
             ),

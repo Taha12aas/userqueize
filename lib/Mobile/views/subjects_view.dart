@@ -4,6 +4,8 @@ import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_s
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/teacher_profile_card.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject_status.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
+import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 
@@ -20,9 +22,23 @@ class SubjectsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Align(
+            Align(
               alignment: Alignment.center,
-              child: TeacherProfileCard(),
+              child: BlocBuilder<CubitTeacher, QuesAppStatus>(
+                builder: (context, state) {
+                  if (state is SuccessState) {
+                    return TeacherProfileCard(
+                      text: state.user!.name,
+                      image: state.user!.photo,
+                    );
+                  } else {
+                    return const TeacherProfileCard(
+                      text: "يوجد حطا",
+                      image: 'assets/images/TeachersTaha.jpg',
+                    );
+                  }
+                },
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -37,7 +53,11 @@ class SubjectsView extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: CardSubjects(
-                          onTap: () {},
+                          courseDate: state.subjects![index].coursesDate,
+                          seasonSubject: state.subjects![index].seasonSubject,
+                          onTap: () {
+                            ////
+                          },
                           subject: state.subjects![index].nameSubject,
                           teacherImag: 'assets/images/subjects.png',
                           classTeacher: state.subjects![index].classSabject,

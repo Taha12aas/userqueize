@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/Mobile/views/generated_questions_view.dart';
-import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_subjects.dart';
+import 'package:userqueize/Mobile/views/question_generate_view.dart';
+import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/card_teacher_subject.dart';
 
 class ListViewCardSubjects extends StatelessWidget {
   const ListViewCardSubjects({
     super.key,
-    required this.listSubject, required this.listClasses,
+    required this.listSubject,
+    required this.listClasses,
   });
   final List<dynamic> listSubject;
   final List<dynamic> listClasses;
@@ -16,13 +17,12 @@ class ListViewCardSubjects extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: CardSubjects(
+            child: CardTeacherSubject(
               classTeacher: listClasses[index],
               subject: listSubject[index],
               teacherImag: 'assets/images/Teachers.png',
               onTap: () {
-                // ignore: use_build_context_synchronously
-                Navigator.pushNamed(context, GeneratedQuestionsView.id);
+                Navigator.pushNamed(context, QuestionGenerateView.id);
               },
             ));
       },

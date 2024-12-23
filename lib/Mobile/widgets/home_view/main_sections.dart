@@ -25,7 +25,7 @@ class MainSections extends StatelessWidget {
         Flexible(
           child: MainCategoriesSection(
             image: 'assets/images/Teachers.png',
-            label: 'المواد',
+            label: 'المواد المولدة',
             onTap: () {
               Navigator.pushNamed(context, SubjectsView.id);
             },

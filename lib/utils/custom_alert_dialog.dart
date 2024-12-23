@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
-import 'package:userqueize/Mobile/widgets/log_in_view/alert_dialog_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
@@ -18,12 +17,13 @@ class CustomAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey<FormState> globalKey = GlobalKey();
-    int code = 0;
+    List<TextEditingController> controllers =
+        List.generate(4, (index) => TextEditingController());
     return Form(
       key: globalKey,
       child: AlertDialog(
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 73, vertical: 15),
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         actions: [
           Center(
             child: SizedBox(
@@ -33,8 +33,11 @@ class CustomAlertDialog extends StatelessWidget {
                   return CustomButton(
                     onPressed: () {
                       if (globalKey.currentState!.validate()) {
+                        String enteredCode =
+                            controllers.map((e) => e.text).join();
                         if (state is SuccessState &&
-                            state.user!.verificationCode == code) {
+                            state.user!.verificationCode.toString() ==
+                                enteredCode) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
                           );
@@ -70,15 +73,65 @@ class CustomAlertDialog extends StatelessWidget {
             fontSize: getResponsiveText(context, 18),
           ),
         ),
-        content: AlertDialogTextField(
-          validator: (codee) {
-            if (codee!.length == 4) {
-              code = int.parse(codee);
-              return null;
-            } else {
-              return 'اربع ارقام';
-            }
-          },
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: List.generate(4, (index) {
+            return SizedBox(
+              width: 50,
+              child: TextFormField(
+                controller: controllers[index],
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                maxLength: 1,
+                style: FontStyleApp.textStyleOrange15,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: kOrangeColor)),
+                  counterText: "",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: kOrangeColor, width: 2),
+                  ),
+                ),
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    if (index < 3) {
+                      FocusScope.of(context).nextFocus();
+                    } else if (controllers
+                        .every((controller) => controller.text.isNotEmpty)) {
+                      String enteredCode =
+                          controllers.map((e) => e.text).join();
+                      if (BlocProvider.of<CubitTeacher>(context).state
+                              is SuccessState &&
+                          (BlocProvider.of<CubitTeacher>(context).state
+                                      as SuccessState)
+                                  .user!
+                                  .verificationCode
+                                  .toString() ==
+                              enteredCode) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
+                        );
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          HomeView.id,
+                          (route) => false,
+                        );
+                      }
+                    }
+                  } else if (value.isEmpty && index > 0) {
+                    FocusScope.of(context).previousFocus();
+                  }
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '';
+                  }
+                  return null;
+                },
+              ),
+            );
+          }),
         ),
       ),
     );

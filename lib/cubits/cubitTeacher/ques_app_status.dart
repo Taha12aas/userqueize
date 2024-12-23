@@ -4,16 +4,11 @@ abstract class QuesAppStatus {}
 
 class SuccessState extends QuesAppStatus {
   final Teacher? user;
-  
-
   SuccessState({
-  
     this.user,
   });
 }
 
-class FaliureState extends QuesAppStatus {
-
-}
+class FaliureState extends QuesAppStatus {}
 
 class LoadingState extends QuesAppStatus {}

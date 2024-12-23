@@ -5,11 +5,12 @@ import 'package:userqueize/Mobile/views/change_password_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/column_teacher_info.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subjects_display.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
-import 'package:userqueize/Mobile/widgets/teather_profile_view/teacher_name.dart';
 import 'package:userqueize/Mobile/widgets/teather_profile_view/teacher_photor.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
+import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 class TeacherProfileView extends StatelessWidget {
   const TeacherProfileView({super.key});
@@ -37,8 +38,14 @@ class TeacherProfileView extends StatelessWidget {
                       TeacherPhoto(
                         image: state.user!.photo,
                       ),
-                      TeacherName(
-                        name: state.user!.name,
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        state.user!.name,
+                        style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                          fontSize: getResponsiveText(context, 18),
+                        ),
                       ),
                       const SizedBox(
                         height: 10,

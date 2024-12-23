@@ -14,7 +14,7 @@ class _QuestionsListState extends State<QuestionsList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 30,
+      itemCount: 10,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),

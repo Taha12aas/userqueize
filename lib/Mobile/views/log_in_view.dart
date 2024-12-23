@@ -91,12 +91,11 @@ class _LogInViewState extends State<LogInView> {
                           if (state.user!.password == password) {
                             log('message');
                             showAlertDialogAndNavigate(context);
-                              BlocProvider.of<CubitSubject>(context)
-                                    .fetchSubject(state.user!.name);
+                            BlocProvider.of<CubitSubject>(context)
+                                .fetchSubject(state.user!.name);
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 showSnackBar(context, 'كلمة السر خاطئة'));
-                                
                           }
                         }
                       },
@@ -107,6 +106,7 @@ class _LogInViewState extends State<LogInView> {
                             label: 'تسجيل الدخول',
                             onPressed: () {
                               if (globalKey.currentState!.validate()) {
+                                
                                 BlocProvider.of<CubitTeacher>(context)
                                     .fetchUsers(phoneNumber);
                               }

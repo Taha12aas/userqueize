@@ -1,9 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:userqueize/Service/send_code.dart';
-import 'package:userqueize/models/teacher.dart';
 
 class TeacherService {
   static final SupabaseClient supabase = Supabase.instance.client;
@@ -19,15 +17,15 @@ class TeacherService {
   }
 
 //انشاء مدرس غير لازم الان
-  Future<void> createTeacher(Teacher teacher) async {
-    try {
-      final data = await supabase.from('teachers').insert([teacher.toJson()]);
-      debugPrint('تمت إضافة البيانات: $data');
-    } catch (e) {
-      debugPrint('حدث خطأ: $e');
-      rethrow;
-    }
-  }
+  // Future<void> createTeacher(Teacher teacher) async {
+  //   try {
+  //     final data = await supabase.from('teachers').insert([teacher.toJson()]);
+  //     debugPrint('تمت إضافة البيانات: $data');
+  //   } catch (e) {
+  //     debugPrint('حدث خطأ: $e');
+  //     rethrow;
+  //   }
+  // }
 
   static Future<void> updateTeacher(
       String columnName, String teacherName, dynamic value) async {
@@ -43,13 +41,12 @@ class TeacherService {
       int verificationCode = Random().nextInt(9000) + 1000;
       await updateTeacherVerificationCode(phoneNumber, verificationCode);
       // إرسال رسالة عبر WhatsApp
+
       // ignore: unused_local_variable
       String message = 'Your verification code is: $verificationCode';
       await sendWhatsAppMessage(phoneNumber.toString(), message);
-
       // تحقق من أن قيمة رمز التحقق صحيحة
       debugPrint('تم إنشاء رمز التحقق: $verificationCode');
-
       // تخزين رمز التحقق في قاعدة البيانات
     } catch (e) {
       debugPrint('حدث خطأ أثناء إرسال رمز التحقق: $e');

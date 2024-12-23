@@ -40,6 +40,8 @@ class HomeView extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: CardSubjects(
+                          courseDate: state.subjects![index].coursesDate,
+                          seasonSubject: state.subjects![index].seasonSubject,
                           onTap: () {},
                           subject: state.subjects![index].nameSubject,
                           teacherImag: 'assets/images/subjects.png',
