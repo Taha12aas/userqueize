@@ -1,5 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/show_snack_bar.dart';
 
 class ContainerFileUpload extends StatelessWidget {
   const ContainerFileUpload({
@@ -13,7 +19,19 @@ class ContainerFileUpload extends StatelessWidget {
 
     return InkWell(
       borderRadius: BorderRadius.circular(7),
-      onTap: () {},
+      onTap: () async {
+        FilePickerResult? result = await FilePicker.platform.pickFiles(
+          allowMultiple: true,
+          type: FileType.custom,
+          allowedExtensions: ['pdf'],
+        );
+        if (result != null) {
+          File file = File(result.files.single.path!);
+        } else {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(showSnackBar(context, 'الرجاء اختيار ملف .'));
+        }
+      },
       child: Container(
         width: screenWidth * 0.9,
         height: screenHeight * 0.27,
