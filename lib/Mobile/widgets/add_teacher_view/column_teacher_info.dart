@@ -8,19 +8,20 @@ class ColumnTeacherInfo extends StatelessWidget {
   const ColumnTeacherInfo({
     super.key,
     required this.labelText,
-    required this.hintText,
+    required this.initialValue,
     required this.iconData,
     required this.horizntalSize,
-    this.keyboardType = false, this.validator, this.address, this.phoneNumber,
+    this.keyboardType = false,
+    this.validator, this.controller,
   });
   final double horizntalSize;
   final String labelText;
-  final String hintText;
+  final String initialValue;
   final IconData iconData;
   final bool? keyboardType;
-final String? Function(String?)? validator;
-final String? address;
-final int? phoneNumber;
+  final String? Function(String?)? validator;
+
+    final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,7 +43,7 @@ final int? phoneNumber;
           ),
           InfoTextField(
             validator: validator,
-            hintText: hintText,
+            controller:controller ,
             iconData: iconData,
             keyboardType: keyboardType,
           )
@@ -50,5 +51,4 @@ final int? phoneNumber;
       ),
     );
   }
-
 }

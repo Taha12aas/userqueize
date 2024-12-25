@@ -30,8 +30,8 @@ class AddQuestion extends StatelessWidget {
                 height: 10,
               ),
               const InfoTextField(
-                
-                  hintText: 'سؤال', iconData: FontAwesomeIcons.circlePlus),
+                  // controller: , : 'سؤال',
+                  iconData: FontAwesomeIcons.circlePlus),
               const SizedBox(
                 height: 10,
               ),
@@ -43,7 +43,7 @@ class AddQuestion extends StatelessWidget {
                 height: 10,
               ),
               const InfoTextField(
-                  hintText: 'الخيار الاول',
+                  // initialValue: 'الخيار الاول',
                   iconData: FontAwesomeIcons.commentMedical),
               const SizedBox(
                 height: 10,
@@ -56,7 +56,7 @@ class AddQuestion extends StatelessWidget {
                 height: 10,
               ),
               const InfoTextField(
-                  hintText: 'الخيار الثاني',
+                  //  initialValue: 'الخيار الثاني',
                   iconData: FontAwesomeIcons.commentMedical),
               const SizedBox(
                 height: 10,
@@ -69,7 +69,7 @@ class AddQuestion extends StatelessWidget {
                 height: 10,
               ),
               const InfoTextField(
-                  hintText: 'الخيار الثالث',
+                  //   initialValue: 'الخيار الثالث',
                   iconData: FontAwesomeIcons.commentMedical),
               const SizedBox(
                 height: 10,
@@ -82,7 +82,7 @@ class AddQuestion extends StatelessWidget {
                 height: 10,
               ),
               const InfoTextField(
-                  hintText: 'الخيار الرابع',
+                  // controller: 'الخيار الرابع',
                   iconData: FontAwesomeIcons.commentMedical),
               SizedBox(
                 height: height * 0.04,

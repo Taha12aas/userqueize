@@ -17,91 +17,92 @@ class ChangePasswordView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Flexible(
-                    child: Text(
-                      ': تغيير كلمة المرور',
-                      style: FontStyleApp.textStyleWhiteBold18.copyWith(
-                        fontSize: getResponsiveText(context, 22),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        ': تغيير كلمة المرور',
+                        style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                          fontSize: getResponsiveText(context, 22),
+                        ),
                       ),
                     ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'كلمة المرور القديمة',
+                  style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                    fontSize: getResponsiveText(context, 16),
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                'كلمة المرور القديمة',
-                style: FontStyleApp.textStyleWhiteBold18.copyWith(
-                  fontSize: getResponsiveText(context, 16),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              AuthTextField(
-                validator: (p0) {
-                  
-                },
-                hintText: 'كلمة المرور القديمة',
-                iconData: FontAwesomeIcons.lock,
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              Text(
-                'كلمة المرور الجديدة',
-                style: FontStyleApp.textStyleWhiteBold18.copyWith(
-                  fontSize: getResponsiveText(context, 16),
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              /// TODO Edit
-              AuthTextField(
-                validator: (p0) {
-                  return null;
-                },
-                hintText: 'كلمة المرور الجديدة',
-                iconData: FontAwesomeIcons.lock,
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              Text(
-                'تأكيد كلمة المرور',
-                style: FontStyleApp.textStyleWhiteBold18.copyWith(
-                  fontSize: getResponsiveText(context, 16),
+                AuthTextField(
+                  validator: (p0) {},
+                  hintText: 'كلمة المرور القديمة',
+                  iconData: FontAwesomeIcons.lock,
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              AuthTextField(
-                validator: (p0) {
-                  return null;
-                },
-                hintText: 'تأكيد كلمة المرور',
-                iconData: FontAwesomeIcons.lock,
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              CustomButton(
-                title: 'حفظ',
-                onPressed: () {
-                  showAlertDialogAndNavigate(context);
-                },
-              )
-            ],
+                const SizedBox(
+                  height: 18,
+                ),
+                Text(
+                  'كلمة المرور الجديدة',
+                  style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                    fontSize: getResponsiveText(context, 16),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+
+                /// TODO Edit
+                AuthTextField(
+                  validator: (p0) {
+                    return null;
+                  },
+                  hintText: 'كلمة المرور الجديدة',
+                  iconData: FontAwesomeIcons.lock,
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                Text(
+                  'تأكيد كلمة المرور',
+                  style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                    fontSize: getResponsiveText(context, 16),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                AuthTextField(
+                  validator: (p0) {
+                    return null;
+                  },
+                  hintText: 'تأكيد كلمة المرور',
+                  iconData: FontAwesomeIcons.lock,
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                CustomButton(
+                  title: 'حفظ',
+                  onPressed: () {
+                    showAlertDialogAndNavigate(context);
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

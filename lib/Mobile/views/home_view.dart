@@ -25,64 +25,67 @@ class _HomeViewState extends State<HomeView> {
     BlocProvider.of<CubitTeacher>(context).fetchUsers(CubitTeacher.user.phone);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CubitTeacher, QuesAppStatus>(
-      builder: (context, state) {
-        if (state is SuccessState) {
-          
-          return Scaffold(
-            appBar: mainAppBar('الصفحة الرئيسية', context),
-            body: Padding(
-              padding: const EdgeInsets.all(18),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const MainSections(),
-                  const SizedBox(height: 20),
-                  Text(
-                    ' :  أحدث النشاطات',
-                    style: FontStyleApp.textStyleOrangeBold25.copyWith(
-                      fontSize: getResponsiveText(context, 25),
-                    ),
+    return BlocBuilder<CubitTeacher, QuesAppStatus>(builder: (context, state) {
+      if (state is SuccessState) {
+        return Scaffold(
+          appBar: mainAppBar('الصفحة الرئيسية', context),
+          body: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const MainSections(),
+                const SizedBox(height: 20),
+                Text(
+                  ' :  أحدث النشاطات',
+                  style: FontStyleApp.textStyleOrangeBold25.copyWith(
+                    fontSize: getResponsiveText(context, 25),
                   ),
-                  const SizedBox(height: 10),
-                  BlocBuilder<CubitSubject, CubitSubjectStatus>(
-                    builder: (context, state) {
-                      if (state is SuccessStatee) {
-                        return Expanded(
-                            child: ListView.builder(
-                          itemCount: state.subjects!.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: CardSubjects(
-                                courseDate: state.subjects![index].coursesDate,
-                                seasonSubject:
-                                    state.subjects![index].seasonSubject,
-                                onTap: () {},
-                                subject: state.subjects![index].nameSubject,
-                                teacherImag: 'assets/images/subjects.png',
-                                classTeacher:
-                                    state.subjects![index].classSabject,
-                              ),
-                            );
-                          },
-                        ));
-                      } else {
-                        return const Text(
-                          'لا يوجد اسئلة',
-                          style: FontStyleApp.textStyleOrangeBold20,
-                        );
-                      }
-                    },
-                  )
-                ],
-              ),
+                ),
+                const SizedBox(height: 10),
+                BlocBuilder<CubitSubject, CubitSubjectStatus>(
+                  builder: (context, state) {
+                    if (state is SuccessStatee) {
+                      return Expanded(
+                          child: ListView.builder(
+                        itemCount: state.subjects!.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: CardSubjects(
+                              courseDate: state.subjects![index].coursesDate,
+                              seasonSubject:
+                                  state.subjects![index].seasonSubject,
+                              onTap: () {},
+                              subject: state.subjects![index].nameSubject,
+                              teacherImag: 'assets/images/subjects.png',
+                              classTeacher: state.subjects![index].classSabject,
+                            ),
+                          );
+                        },
+                      ));
+                    } else {
+                      return const Text(
+                        'لا يوجد اسئلة',
+                        style: FontStyleApp.textStyleOrangeBold20,
+                      );
+                    }
+                  },
+                )
+              ],
             ),
-          );
-        }else {return const Scaffold(body: Center(child: CircularProgressIndicator(color: kOrangeColor,))); }
-      } 
-    );
+          ),
+        );
+      } else {
+        return const Scaffold(
+            body: Center(
+                child: CircularProgressIndicator(
+          color: kOrangeColor,
+        )));
+      }
+    });
   }
 }

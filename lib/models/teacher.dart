@@ -38,8 +38,7 @@ class Teacher {
       'address': address,
       'password': password,
       'verificationCode': verificationCode,
-      'classes_subjects':classesSubjects
-
+      'classes_subjects': classesSubjects
     };
   }
 }

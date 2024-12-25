@@ -26,8 +26,30 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
   String address = '';
   int phoneNumber = 0;
   GlobalKey<FormState> globalKey = GlobalKey();
+  late TextEditingController addressController;
+
+  late TextEditingController phoneNumberController;
   @override
-  
+  void initState() {
+    super.initState();
+    addressController = TextEditingController();
+    phoneNumberController = TextEditingController();
+    // تعيين القيم الأولية
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final state = BlocProvider.of<CubitTeacher>(context).state;
+      if (state is SuccessState) {
+        addressController.text = state.user!.address;
+        phoneNumberController.text = state.user!.phone.toString();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    addressController.dispose(); // إغلاق متحكم العنوان
+    phoneNumberController.dispose(); // إغلاق متحكم رقم الهاتف
+    super.dispose(); // استدعاء dispose من الكلاس الأب
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,18 +96,20 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                           children: [
                             Expanded(
                               child: ColumnTeacherInfo(
+                                controller: addressController,
                                 validator: validateToAddress,
                                 labelText: ': العنوان',
-                                hintText: state.user!.address,
+                                initialValue: state.user!.address,
                                 iconData: FontAwesomeIcons.locationDot,
                                 horizntalSize: 64,
                               ),
                             ),
                             Expanded(
                               child: ColumnTeacherInfo(
+                                controller: phoneNumberController,
                                 validator: validateToPhoneNumber,
                                 labelText: ': رقم الهاتف',
-                                hintText: '${state.user!.phone}',
+                                initialValue: '${state.user!.phone}',
                                 iconData: FontAwesomeIcons.phone,
                                 horizntalSize: 89,
                                 keyboardType: true,
@@ -113,27 +137,45 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                           height: MediaQuery.sizeOf(context).height * 0.1,
                         ),
                         CustomButton(
-                          title: 'حفظ',
-                          onPressed: () {
-                            if (globalKey.currentState!.validate()) {
-                              BlocProvider.of<CubitTeacher>(context)
-                                  .updateUsers(
-                                      'address', state.user!.name, address);
-                              BlocProvider.of<CubitTeacher>(context)
-                                  .updateUsers(
-                                      'phone', state.user!.name, phoneNumber);
+                            title: 'حفظ',
+                            onPressed: () {
+                              if (globalKey.currentState!.validate()) {
+                                final updatedAddress =
+                                    addressController.text.trim();
+                                final updatedPhone = int.parse(
+                                    phoneNumberController.text.trim());
 
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, HomeView.id, (route) => false,
+                                if (updatedAddress != state.user!.address) {
+                                  BlocProvider.of<CubitTeacher>(context)
+                                      .updateUsers(
+                                    'address',
+                                    state.user!.name,
+                                    updatedAddress,
                                   );
-                            }
-                          },
-                        )
+                                }
+
+                                if (updatedPhone != state.user!.phone) {
+                                  BlocProvider.of<CubitTeacher>(context)
+                                      .updateUsers(
+                                    'phone',
+                                    state.user!.name,
+                                    updatedPhone,
+                                  );
+                                }
+
+                                // الانتقال إلى الصفحة الرئيسية بعد الحفظ
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  HomeView.id,
+                                  (route) => false,
+                                );
+                              }
+                            })
                       ],
                     );
                   } else {
                     return const Text(
-                      "data",
+                      "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
                       style: FontStyleApp.textStyleOrangeBold30,
                     );
                   }
