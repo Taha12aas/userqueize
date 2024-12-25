@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
@@ -26,30 +28,6 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
   String address = '';
   int phoneNumber = 0;
   GlobalKey<FormState> globalKey = GlobalKey();
-  late TextEditingController addressController;
-
-  late TextEditingController phoneNumberController;
-  @override
-  void initState() {
-    super.initState();
-    addressController = TextEditingController();
-    phoneNumberController = TextEditingController();
-    // تعيين القيم الأولية
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final state = BlocProvider.of<CubitTeacher>(context).state;
-      if (state is SuccessState) {
-        addressController.text = state.user!.address;
-        phoneNumberController.text = state.user!.phone.toString();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    addressController.dispose(); // إغلاق متحكم العنوان
-    phoneNumberController.dispose(); // إغلاق متحكم رقم الهاتف
-    super.dispose(); // استدعاء dispose من الكلاس الأب
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,125 +39,128 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Center(
             child: SingleChildScrollView(
-              child: BlocBuilder<CubitTeacher, QuesAppStatus>(
-                builder: (context, state) {
+              child: BlocListener<CubitTeacher, QuesAppStatus>(
+                listener: (context, state) {
                   if (state is LoadingState) {
-                    return const CircularProgressIndicator(
-                      color: kOrangeColor,
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomeView.id,
+                      (route) => false,
                     );
-                  } else if (state is SuccessState) {
-                    List<dynamic> classes = state.user!.classesSubjects['صف'];
-                    List<dynamic> subjects =
-                        state.user!.classesSubjects['مواد'];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        TeacherPhoto(
-                          image: state.user!.photo,
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          state.user!.name,
-                          style: FontStyleApp.whiteBold18.copyWith(
-                            fontSize: getResponsiveText(context, 18),
+                  } else {
+                    log(state.toString());
+                  }
+                },
+                child: BlocBuilder<CubitTeacher, QuesAppStatus>(
+                  builder: (context, state) {
+                    if (state is LoadingState) {
+                      return const CircularProgressIndicator(
+                        color: kOrangeColor,
+                      );
+                    } else if (state is SuccessState) {
+                      List<dynamic> classes = state.user!.classesSubjects['صف'];
+                      List<dynamic> subjects =
+                          state.user!.classesSubjects['مواد'];
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 5,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ColumnTeacherInfo(
-                                controller: addressController,
-                                validator: validateToAddress,
-                                labelText: ': العنوان',
-                                initialValue: state.user!.address,
-                                iconData: FontAwesomeIcons.locationDot,
-                                horizntalSize: 64,
-                              ),
+                          TeacherPhoto(
+                            image: state.user!.photo,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            state.user!.name,
+                            style: FontStyleApp.whiteBold18.copyWith(
+                              fontSize: getResponsiveText(context, 18),
                             ),
-                            Expanded(
-                              child: ColumnTeacherInfo(
-                                controller: phoneNumberController,
-                                validator: validateToPhoneNumber,
-                                labelText: ': رقم الهاتف',
-                                initialValue: '${state.user!.phone}',
-                                iconData: FontAwesomeIcons.phone,
-                                horizntalSize: 89,
-                                keyboardType: true,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ColumnTeacherInfo(
+                                  validator: validateToAddress,
+                                  labelText: ': العنوان',
+                                  initialValue: state.user!.address,
+                                  iconData: FontAwesomeIcons.locationDot,
+                                  horizntalSize: 64,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        CustomButton(
-                          title: 'تغير كلمة المرور',
-                          onPressed: () {
-                            Navigator.pushNamed(context, ChangePasswordView.id);
-                          },
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        ContainerTeacherSubjectsDisplay(
-                          classes: classes,
-                          subjects: subjects,
-                        ),
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.1,
-                        ),
-                        CustomButton(
+                              Expanded(
+                                child: ColumnTeacherInfo(
+                                  validator: validateToPhoneNumber,
+                                  labelText: ': رقم الهاتف',
+                                  initialValue: '${state.user!.phone}',
+                                  iconData: FontAwesomeIcons.phone,
+                                  horizntalSize: 89,
+                                  keyboardType: true,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          CustomButton(
+                            title: 'تغير كلمة المرور',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, ChangePasswordView.id);
+                            },
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          ContainerTeacherSubjectsDisplay(
+                            classes: classes,
+                            subjects: subjects,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.1,
+                          ),
+                          CustomButton(
                             title: 'حفظ',
                             onPressed: () {
                               if (globalKey.currentState!.validate()) {
-                                final updatedAddress =
-                                    addressController.text.trim();
-                                final updatedPhone = int.parse(
-                                    phoneNumberController.text.trim());
-
-                                if (updatedAddress != state.user!.address) {
+                                if (address != state.user!.address) {
                                   BlocProvider.of<CubitTeacher>(context)
                                       .updateUsers(
                                     'address',
                                     state.user!.name,
-                                    updatedAddress,
+                                    address,
                                   );
                                 }
-
-                                if (updatedPhone != state.user!.phone) {
+                                if (phoneNumber != state.user!.phone) {
                                   BlocProvider.of<CubitTeacher>(context)
                                       .updateUsers(
                                     'phone',
                                     state.user!.name,
-                                    updatedPhone,
+                                    phoneNumber,
                                   );
                                 }
-
-                                // الانتقال إلى الصفحة الرئيسية بعد الحفظ
-                                Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  HomeView.id,
-                                  (route) => false,
-                                );
+                                if (phoneNumber == state.user!.phone && address == state.user!.address) {
+                                  Navigator.pop(context);
+                                }
                               }
-                            })
-                      ],
-                    );
-                  } else {
-                    return const Text(
-                      "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-                      style: FontStyleApp.orangeBold30,
-                    );
-                  }
-                },
+                            },
+                          )
+                        ],
+                      );
+                    } else {
+                      return const Text(
+                        "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+                        style: FontStyleApp.orangeBold30,
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ),

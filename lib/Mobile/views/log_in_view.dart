@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/register_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
@@ -61,14 +62,16 @@ class _LogInViewState extends State<LogInView> {
                       ],
                     ),
                     const SizedBox(height: 18),
-                    AuthTextField(initialValue: '963988818024',
+                    AuthTextField(
+                      initialValue: '963988818024',
                       validator: validateToPhoneNumber,
                       hintText: 'رقم الهاتف',
                       iconData: FontAwesomeIcons.phone,
                       keyboardType: true,
                     ),
                     const SizedBox(height: 18),
-                    AuthTextField(initialValue: 'Taha!@#taha123',
+                    AuthTextField(
+                      initialValue: 'Taha!@#taha123',
                       validator: validateToPassword,
                       hintText: 'كلمة المرور',
                       iconData: FontAwesomeIcons.lock,
@@ -87,9 +90,13 @@ class _LogInViewState extends State<LogInView> {
                       listener: (context, state) {
                         if (state is SuccessState) {
                           if (state.user!.password == password) {
-                            showAlertDialogAndNavigate(context);
                             BlocProvider.of<CubitSubject>(context)
                                 .fetchSubject(state.user!.name);
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomeView.id,
+                              (route) => false,
+                            );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 showSnackBar(context, 'كلمة السر خاطئة'));

@@ -21,7 +21,7 @@ static late Teacher user;
     }
   }
 
-  void updateUsers(String columnName, String teacherName, dynamic value) async {
+   void updateUsers(String columnName, String teacherName, dynamic value) async {
     try {
       await TeacherService.updateTeacher(columnName, teacherName, value);
       emit(LoadingState());

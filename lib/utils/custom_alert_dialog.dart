@@ -22,24 +22,23 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
   final TextEditingController _pinController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
-  // // متغير لتخزين رمز التحقق المولد
-  // String? generatedVerificationCode;
+  // متغير لتخزين رمز التحقق المولد
+  String? generatedVerificationCode;
 
-  // دالة لتوليد رمز التحقق
-  // Future<void> _generateVerificationCode(int phoneNumber) async {
-  //   int? code = await TeacherService.sendVerificationCode(phoneNumber);
-  //   setState(() {
-  //     generatedVerificationCode = code.toString(); // تخزين الرمز كمتحول نصي
-  //   });
-  //   debugPrint("Generated Code: $generatedVerificationCode");
-  // }
+  Future<void> _generateVerificationCode(int phoneNumber) async {
+    int? code = await TeacherService.sendVerificationCode(phoneNumber);
+    setState(() {
+      generatedVerificationCode = code.toString(); // تخزين الرمز كمتحول نصي
+    });
+    debugPrint("Generated Code: $generatedVerificationCode");
+  }
 
   // دالة للتحقق من الرمز المدخل
-  void _validateCodeAndNavigate(String enteredCode, SuccessState state) async {
-    if (enteredCode == '1111') {
+  void _validateCodeAndNavigate(String enteredCode, int phoneUser) async {
+    if (enteredCode == _pinController) {
       // تحديث حالة التحقق في قاعدة البيانات
       await TeacherService.updateTeacherVerificationCode(
-          state.user!.phone, int.parse(enteredCode));
+          phoneUser, int.parse(enteredCode));
 
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
@@ -52,7 +51,6 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         context,
         HomeView.id,
         (route) => false,
-        arguments: state.user!.phone,
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -73,16 +71,16 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
               width: 150,
               child: BlocBuilder<CubitTeacher, QuesAppStatus>(
                 builder: (context, state) {
-                  if (state is SuccessState) {
-                    // توليد رمز التحقق عند فتح الحوار
-                    // if (generatedVerificationCode == null) {
-                    //   _generateVerificationCode(state.user!.phone);
-                    // }
+                  if (state is LoadingState) {
+                    if (generatedVerificationCode == null) {
+                      _generateVerificationCode(CubitTeacher.user.phone);
+                    }
                     return CustomButton(
                       onPressed: () {
                         String enteredCode = _pinController.text;
                         if (enteredCode.length == 4) {
-                          _validateCodeAndNavigate(enteredCode, state);
+                          _validateCodeAndNavigate(
+                              enteredCode, CubitTeacher.user.phone);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             showSnackBar(
@@ -116,7 +114,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: BlocBuilder<CubitTeacher, QuesAppStatus>(
             builder: (context, state) {
-              if (state is SuccessState) {
+              if (state is LoadingState) {
                 return PinCodeTextField(
                   length: 4,
                   obscureText: false,
@@ -141,7 +139,8 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                   appContext: context,
                   onCompleted: (enteredCode) {
                     if (enteredCode.length == 4) {
-                      _validateCodeAndNavigate(enteredCode, state);
+                      _validateCodeAndNavigate(
+                          enteredCode, CubitTeacher.user.phone);
                     }
                   },
                 );

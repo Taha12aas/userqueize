@@ -4,7 +4,7 @@ class Teacher {
   final String photo;
   final int phone;
   final String address;
-  final String password;
+  final String? password;
   final int verificationCode;
   final Map<String, dynamic> classesSubjects;
   Teacher({
@@ -13,7 +13,7 @@ class Teacher {
     required this.photo,
     required this.phone,
     required this.address,
-    required this.password,
+    this.password,
     required this.verificationCode,
     required this.classesSubjects,
   });

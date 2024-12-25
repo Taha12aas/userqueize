@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:userqueize/Mobile/views/log_in_view.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_app.dart';
@@ -31,6 +28,8 @@ class _RegisterViewState extends State<RegisterView> {
 
   String password = '';
 
+  String confirmPassword = '';
+
   GlobalKey<FormState> globalKey = GlobalKey();
 
   @override
@@ -57,7 +56,7 @@ class _RegisterViewState extends State<RegisterView> {
                       children: [
                         Flexible(
                           child: Text(
-                            'تسجيل الدخول',
+                            'انشاء حساب',
                             textAlign: TextAlign.end,
                             style: FontStyleApp.whiteBold18.copyWith(
                                 fontSize: getResponsiveText(context, 18)),
@@ -79,20 +78,28 @@ class _RegisterViewState extends State<RegisterView> {
                       iconData: FontAwesomeIcons.lock,
                       obscureText: true,
                     ),
+                    const SizedBox(height: 18),
+                    AuthTextField(
+                      validator: validateToPassword2,
+                      hintText: 'تأكيد كلمة المرور',
+                      iconData: FontAwesomeIcons.lock,
+                      obscureText: true,
+                    ),
                     const SizedBox(height: 10),
                     RegisterOrLogIn(
                       label1: 'لديك حساب ؟',
                       label2: 'اضغط هنا لتسجيل الدخول',
                       onPressed: () {
-                        Navigator.pushNamed(context, LogInView.id);
+                        Navigator.pop(context);
                       },
                     ),
                     const Spacer(),
                     BlocListener<CubitTeacher, QuesAppStatus>(
                       listener: (context, state) {
                         if (state is SuccessState) {
-                          if (state.user!.password == password) {
-                            log('message');
+                          if (confirmPassword == password) {
+                            BlocProvider.of<CubitTeacher>(context).updateUsers(
+                                'password', state.user!.name, password);
                             showAlertDialogAndNavigate(context);
                             BlocProvider.of<CubitSubject>(context)
                                 .fetchSubject(state.user!.name);
@@ -106,7 +113,7 @@ class _RegisterViewState extends State<RegisterView> {
                         builder: (context, state) {
                           return CustomButton(
                             iconData: Icons.login,
-                            label: 'تسجيل الدخول',
+                            label: 'انشاء حساب',
                             onPressed: () {
                               if (globalKey.currentState!.validate()) {
                                 BlocProvider.of<CubitTeacher>(context)
@@ -157,9 +164,40 @@ class _RegisterViewState extends State<RegisterView> {
     return null;
   }
 
+  String? validateToPassword2(password2) {
+    if (password2 == null || password2.isEmpty) {
+      return 'كلمة المرور مطلوبة';
+    }
+    if (password2.length < 8) {
+      return 'كلمة المرور يجب أن تكون أطول من 8 محارف';
+    }
+    final hasUpperCase = password2.contains(RegExp(r'[A-Z]'));
+    final hasLowerCase = password2.contains(RegExp(r'[a-z]'));
+    final hasDigits = password2.contains(RegExp(r'[0-9]'));
+    final hasSpecialCharacters = password2.contains(RegExp(r'[!@#\$&*~]'));
+
+    if (!hasUpperCase) {
+      return 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل';
+    }
+    if (!hasLowerCase) {
+      return 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل';
+    }
+    if (!hasDigits) {
+      return 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
+    }
+    if (!hasSpecialCharacters) {
+      return 'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل';
+    }
+
+    confirmPassword = password2;
+    return null;
+  }
+
   String? validateToPhoneNumber(p0) {
-    if (p0!.length < 12 || p0.length > 12) {
+    if (p0.isEmpty) {
       return 'رقم الهاتف مطلوب';
+    } else if (p0!.length < 12 || p0.length > 12) {
+      return 'الرجاء ادخال 12 رقم فقط';
     }
     phoneNumber = int.parse(p0);
     return null;
