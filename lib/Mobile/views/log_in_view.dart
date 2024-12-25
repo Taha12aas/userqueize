@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
@@ -89,7 +87,6 @@ class _LogInViewState extends State<LogInView> {
                       listener: (context, state) {
                         if (state is SuccessState) {
                           if (state.user!.password == password) {
-                            log('message');
                             showAlertDialogAndNavigate(context);
                             BlocProvider.of<CubitSubject>(context)
                                 .fetchSubject(state.user!.name);

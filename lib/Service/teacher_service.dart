@@ -35,9 +35,9 @@ class TeacherService {
     debugPrint('تمت تعديل البيانات: $data');
   }
 
-  static Future<void> sendVerificationCode(int phoneNumber) async {
+  static Future<int?> sendVerificationCode(int phoneNumber) async {
     try {
-      // توليد رمز تحقق عشوائي مكون من 6 أرقام
+      // توليد رمز تحقق عشوائي مكون من 4 أرقام
       int verificationCode = Random().nextInt(9000) + 1000;
       await updateTeacherVerificationCode(phoneNumber, verificationCode);
       // إرسال رسالة عبر WhatsApp
@@ -47,6 +47,7 @@ class TeacherService {
       await sendWhatsAppMessage(phoneNumber.toString(), message);
       // تحقق من أن قيمة رمز التحقق صحيحة
       debugPrint('تم إنشاء رمز التحقق: $verificationCode');
+      return verificationCode;
       // تخزين رمز التحقق في قاعدة البيانات
     } catch (e) {
       debugPrint('حدث خطأ أثناء إرسال رمز التحقق: $e');
