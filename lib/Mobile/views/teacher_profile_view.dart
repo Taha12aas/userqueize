@@ -85,7 +85,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                         ),
                         Text(
                           state.user!.name,
-                          style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                          style: FontStyleApp.whiteBold18.copyWith(
                             fontSize: getResponsiveText(context, 18),
                           ),
                         ),
@@ -176,7 +176,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                   } else {
                     return const Text(
                       "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-                      style: FontStyleApp.textStyleOrangeBold30,
+                      style: FontStyleApp.orangeBold30,
                     );
                   }
                 },

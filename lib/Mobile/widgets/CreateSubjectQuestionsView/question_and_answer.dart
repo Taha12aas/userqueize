@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
-import 'package:userqueize/utils/responsive_text.dart';
 
 class QuestionAndAnswer extends StatelessWidget {
   const QuestionAndAnswer({
@@ -19,12 +17,11 @@ class QuestionAndAnswer extends StatelessWidget {
       itemCount: data.length,
       itemBuilder: (context, index) {
         final questionData = data[index];
-
-        final isOrangeBackground = index % 2 != 0;
+        final isEven = index % 2 == 0;
 
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-          color: isOrangeBackground ? kAshenColor : Colors.white,
+          color: isEven ? const Color(0xFFF1F1F1) : const Color(0xFFE8E9E6),
           elevation: 5,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
@@ -37,10 +34,7 @@ class QuestionAndAnswer extends StatelessWidget {
                     Flexible(
                       child: Text(
                         questionData['question'],
-                        style: FontStyleApp.textStyleOrangeBold15.copyWith(
-                          color:
-                              isOrangeBackground ? Colors.white : Colors.black,
-                        ),
+                        style: FontStyleApp.blackBold16,
                         textAlign: TextAlign.right,
                         softWrap: true,
                       ),
@@ -48,9 +42,7 @@ class QuestionAndAnswer extends StatelessWidget {
                     const SizedBox(width: 10),
                     Text(
                       '- ${index + 1}',
-                      style: FontStyleApp.textStyleOrangeBold15.copyWith(
-                        color: isOrangeBackground ? Colors.white : Colors.black,
-                      ),
+                      style: FontStyleApp.blackBold16,
                     ),
                   ],
                 ),
@@ -59,34 +51,38 @@ class QuestionAndAnswer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: questionData['answers'].map<Widget>((answer) {
                     return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: answer == questionData['correctAnswer']
-                                  ? kOrangeColor
-                                  : Colors.black54,
-                              borderRadius: BorderRadius.circular(18)),
-                          child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  questionData['correctAnswer'],
-                                  style: FontStyleApp.textStyleOrangeBold15
-                                      .copyWith(
-                                    color: Colors.white,
-                                    fontSize: getResponsiveText(context, 15),
-                                  ),
-                                ),
-                              )),
-                        ));
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Container(
+                        height: 45,
+                        decoration: BoxDecoration(
+                          color: answer == questionData['correctAnswer']
+                              ? const Color(
+                                  0xFFFF7100) // البرتقالي للإجابة الصحيحة
+                              : const Color(
+                                  0xFFB0B0B0), // الرمادي الفاتح للإجابات الأخرى
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              answer,
+                              style: FontStyleApp.blackBold16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
                   }).toList(),
                 ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Color(0xFFEE4B2B), // الأحمر الفاقع لأيقونة الحذف
+                    ),
                     onPressed: () {},
                   ),
                 ),

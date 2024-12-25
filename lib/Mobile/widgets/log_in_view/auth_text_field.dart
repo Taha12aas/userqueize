@@ -53,7 +53,7 @@ class AuthTextField extends StatelessWidget {
             focusedBorder: statueBorder(kOrangeColor),
             errorBorder: statueBorder(Colors.red),
             focusedErrorBorder: statueBorder(Colors.red),
-            errorStyle: FontStyleApp.textStyleOrange15,
+            errorStyle: FontStyleApp.orange15,
           ),
         );
       },

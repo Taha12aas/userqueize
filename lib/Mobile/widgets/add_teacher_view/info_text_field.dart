@@ -7,20 +7,20 @@ import 'package:userqueize/utils/font_style.dart';
 class InfoTextField extends StatelessWidget {
   const InfoTextField({
     super.key,
-    
     required this.iconData,
     this.keyboardType = false,
-    this.validator, this.controller,
+    this.validator,
+    this.controller,
   });
-  
+
   final IconData iconData;
   final bool? keyboardType;
   final String? Function(String?)? validator;
-    final TextEditingController? controller;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller:controller ,
+      controller: controller,
       validator: validator,
       keyboardType: keyboardType! ? TextInputType.number : null,
       textDirection: TextDirection.rtl,
@@ -36,7 +36,7 @@ class InfoTextField extends StatelessWidget {
         focusedBorder: statueBorder(kOrangeColor),
         errorBorder: statueBorder(Colors.red),
         focusedErrorBorder: statueBorder(Colors.red),
-        errorStyle: FontStyleApp.textStyleOrange15,
+        errorStyle: FontStyleApp.orange15,
       ),
     );
   }

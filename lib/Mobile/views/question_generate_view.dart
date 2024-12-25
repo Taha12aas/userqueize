@@ -53,8 +53,7 @@ class QuestionGenerateView extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text(': أختر الدورة',
-                          style: FontStyleApp.textStyleOrangeBold20),
+                      Text(': أختر الدورة', style: FontStyleApp.orangeBold20),
                       SizedBox(
                         height: 15,
                       ),
@@ -81,7 +80,7 @@ class QuestionGenerateView extends StatelessWidget {
                       width: MediaQuery.sizeOf(context).width * 0.2,
                     ),
                     const Text(": هل تريد اسئلة صح أو خطأ",
-                        style: FontStyleApp.textStyleOrangeBold20),
+                        style: FontStyleApp.orangeBold20),
                   ],
                 ),
               ),

@@ -22,7 +22,7 @@ class RowText extends StatelessWidget {
         Flexible(
           child: Text(
             classAndSubject,
-            style: FontStyleApp.textStyleOrange15.copyWith(
+            style: FontStyleApp.orange15.copyWith(
               fontSize: getResponsiveText(context, 15),
             ),
             overflow: TextOverflow.ellipsis,
@@ -31,7 +31,7 @@ class RowText extends StatelessWidget {
         Flexible(
           child: Text(
             subjectName,
-            style: FontStyleApp.textStylewite15.copyWith(
+            style: FontStyleApp.boldwite15.copyWith(
               fontSize: getResponsiveText(context, 15),
             ),
           ),

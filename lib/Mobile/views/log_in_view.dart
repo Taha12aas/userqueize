@@ -56,7 +56,7 @@ class _LogInViewState extends State<LogInView> {
                           child: Text(
                             'تسجيل الدخول',
                             textAlign: TextAlign.end,
-                            style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                            style: FontStyleApp.whiteBold18.copyWith(
                                 fontSize: getResponsiveText(context, 18)),
                           ),
                         ),
@@ -157,7 +157,7 @@ class _LogInViewState extends State<LogInView> {
   String? validateToPhoneNumber(p0) {
     if (p0.isEmpty) {
       return 'رقم الهاتف مطلوب';
-    }else if (p0!.length < 12 || p0.length > 12) {
+    } else if (p0!.length < 12 || p0.length > 12) {
       return 'الرجاء ادخال 12 رقم فقط';
     }
     phoneNumber = int.parse(p0);

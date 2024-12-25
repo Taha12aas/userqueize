@@ -31,7 +31,7 @@ class ButtonClass extends StatelessWidget {
           child: Center(
               child: Text(
             text,
-            style: FontStyleApp.textStyleOrange15
+            style: FontStyleApp.orange15
                 .copyWith(fontSize: getResponsiveText(context, 15)),
           )),
         ),

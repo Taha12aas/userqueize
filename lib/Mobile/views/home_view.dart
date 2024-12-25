@@ -41,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
                 const SizedBox(height: 20),
                 Text(
                   ' :  أحدث النشاطات',
-                  style: FontStyleApp.textStyleOrangeBold25.copyWith(
+                  style: FontStyleApp.orangeBold25.copyWith(
                     fontSize: getResponsiveText(context, 25),
                   ),
                 ),
@@ -70,7 +70,7 @@ class _HomeViewState extends State<HomeView> {
                     } else {
                       return const Text(
                         'لا يوجد اسئلة',
-                        style: FontStyleApp.textStyleOrangeBold20,
+                        style: FontStyleApp.orangeBold20,
                       );
                     }
                   },

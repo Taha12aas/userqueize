@@ -42,11 +42,8 @@ class CustomAlertDialog extends StatelessWidget {
                             showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
                           );
                           Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            HomeView.id,
-                            (route) => false,
-                            arguments: state.user!.phone
-                          );
+                              context, HomeView.id, (route) => false,
+                              arguments: state.user!.phone);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             showSnackBar(context, 'رمز التحقق خاطئ'),
@@ -70,7 +67,7 @@ class CustomAlertDialog extends StatelessWidget {
         title: Text(
           'أدخل رمز التحقق',
           textAlign: TextAlign.center,
-          style: FontStyleApp.textStyleWhiteBold18.copyWith(
+          style: FontStyleApp.whiteBold18.copyWith(
             fontSize: getResponsiveText(context, 18),
           ),
         ),
@@ -84,7 +81,7 @@ class CustomAlertDialog extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
                 maxLength: 1,
-                style: FontStyleApp.textStyleOrange15,
+                style: FontStyleApp.orange15,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kOrangeColor)),

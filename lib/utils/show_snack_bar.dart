@@ -29,7 +29,7 @@ SnackBar showSnackBar(BuildContext context, String content) {
         const Spacer(),
         Text(
           content,
-          style: FontStyleApp.textStyleWhiteBold18.copyWith(
+          style: FontStyleApp.whiteBold18.copyWith(
             fontSize: getResponsiveText(context, 15),
           ),
         ),

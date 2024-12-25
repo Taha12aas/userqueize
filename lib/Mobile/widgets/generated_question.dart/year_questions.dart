@@ -44,7 +44,7 @@ class YearQuestions extends StatelessWidget {
           Flexible(
             child: Text(
               year,
-              style: FontStyleApp.textStyleWhiteBold18.copyWith(
+              style: FontStyleApp.whiteBold18.copyWith(
                 fontSize: getResponsiveText(context, 18),
               ),
             ),

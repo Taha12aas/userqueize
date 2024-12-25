@@ -17,7 +17,6 @@ import 'package:userqueize/utils/responsive_text.dart';
 import 'package:userqueize/utils/show_alert_dialog_and_navigate.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
-
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
@@ -60,7 +59,7 @@ class _RegisterViewState extends State<RegisterView> {
                           child: Text(
                             'تسجيل الدخول',
                             textAlign: TextAlign.end,
-                            style: FontStyleApp.textStyleWhiteBold18.copyWith(
+                            style: FontStyleApp.whiteBold18.copyWith(
                                 fontSize: getResponsiveText(context, 18)),
                           ),
                         ),
@@ -82,12 +81,12 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                     const SizedBox(height: 10),
                     RegisterOrLogIn(
-                    label1: 'لديك حساب ؟',
-                    label2: 'اضغط هنا لتسجيل الدخول',
-                    onPressed: () {
-                      Navigator.pushNamed(context, LogInView.id);
-                    },
-                  ),
+                      label1: 'لديك حساب ؟',
+                      label2: 'اضغط هنا لتسجيل الدخول',
+                      onPressed: () {
+                        Navigator.pushNamed(context, LogInView.id);
+                      },
+                    ),
                     const Spacer(),
                     BlocListener<CubitTeacher, QuesAppStatus>(
                       listener: (context, state) {
@@ -128,7 +127,7 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
   }
-  
+
   String? validateToPassword(passwordd) {
     if (passwordd == null || passwordd.isEmpty) {
       return 'كلمة المرور مطلوبة';

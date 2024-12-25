@@ -28,7 +28,7 @@ class AlertDialogTextField extends StatelessWidget {
             focusedBorder: statueBorder(kOrangeColor),
             errorBorder: statueBorder(Colors.red),
             focusedErrorBorder: statueBorder(Colors.red),
-            errorStyle: FontStyleApp.textStyleOrange15.copyWith()),
+            errorStyle: FontStyleApp.orange15.copyWith()),
       ),
     );
   }

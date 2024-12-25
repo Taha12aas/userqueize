@@ -37,7 +37,7 @@ class MainCategoriesSection extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 label,
-                style: FontStyleApp.textStyleOrangeBold25.copyWith(
+                style: FontStyleApp.orangeBold25.copyWith(
                   fontSize: getResponsiveText(context, 23),
                 ),
               ),

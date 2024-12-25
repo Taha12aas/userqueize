@@ -37,7 +37,7 @@ class TeacherProfileCard extends StatelessWidget {
                   Flexible(
                     child: Text(
                       text,
-                      style: FontStyleApp.textStylewite15.copyWith(
+                      style: FontStyleApp.boldwite15.copyWith(
                         fontSize: getResponsiveText(context, 15),
                       ),
                     ),
@@ -48,7 +48,7 @@ class TeacherProfileCard extends StatelessWidget {
                   Flexible(
                     child: Text(
                       ' : الاسم',
-                      style: FontStyleApp.textStyleOrange15.copyWith(
+                      style: FontStyleApp.orange15.copyWith(
                         fontSize: getResponsiveText(context, 15),
                       ),
                     ),

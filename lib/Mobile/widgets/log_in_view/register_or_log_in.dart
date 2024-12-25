@@ -6,7 +6,8 @@ class RegisterOrLogIn extends StatelessWidget {
   const RegisterOrLogIn({
     super.key,
     required this.label1,
-    required this.label2, required this.onPressed,
+    required this.label2,
+    required this.onPressed,
   });
   final String label1;
   final String label2;
@@ -20,14 +21,14 @@ class RegisterOrLogIn extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             label2,
-            style: FontStyleApp.textStyleOrangeBold15.copyWith(
+            style: FontStyleApp.orangeBold15.copyWith(
               fontSize: getResponsiveText(context, 12),
             ),
           ),
         ),
         Text(
           label1,
-          style: FontStyleApp.textStyleWhiteBold18.copyWith(
+          style: FontStyleApp.whiteBold18.copyWith(
             fontSize: getResponsiveText(context, 12),
           ),
         ),

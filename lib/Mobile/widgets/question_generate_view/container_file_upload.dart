@@ -50,7 +50,7 @@ class ContainerFileUpload extends StatelessWidget {
             const SizedBox(height: 10),
             const Text(
               'اسحب او اختر ملف',
-              style: FontStyleApp.textStyleBold16,
+              style: FontStyleApp.blackBold16,
             ),
             const SizedBox(height: 20),
             Flexible(

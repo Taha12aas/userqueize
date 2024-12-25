@@ -68,7 +68,7 @@ class SubjectsView extends StatelessWidget {
                 } else {
                   return const Text(
                     'لا يوجد اسئلة',
-                    style: FontStyleApp.textStyleOrangeBold20,
+                    style: FontStyleApp.orangeBold20,
                   );
                 }
               },

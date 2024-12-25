@@ -42,8 +42,7 @@ AppBar mainAppBar(String title, BuildContext context) {
           ),
         ),
         Flexible(
-          child:
-              Center(child: Text(title, style: FontStyleApp.textStylewite15)),
+          child: Center(child: Text(title, style: FontStyleApp.boldwite15)),
         ),
         const SizedBox(
           width: 30,

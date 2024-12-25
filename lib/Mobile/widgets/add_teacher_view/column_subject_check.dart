@@ -24,7 +24,7 @@ class ColumnSubjectCheck extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.end,
-            style: FontStyleApp.textStyleWhiteBold18
+            style: FontStyleApp.whiteBold18
                 .copyWith(fontSize: getResponsiveText(context, 18)),
           ),
           HorizontalDivider(

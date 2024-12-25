@@ -12,7 +12,8 @@ class ColumnTeacherInfo extends StatelessWidget {
     required this.iconData,
     required this.horizntalSize,
     this.keyboardType = false,
-    this.validator, this.controller,
+    this.validator,
+    this.controller,
   });
   final double horizntalSize;
   final String labelText;
@@ -21,7 +22,7 @@ class ColumnTeacherInfo extends StatelessWidget {
   final bool? keyboardType;
   final String? Function(String?)? validator;
 
-    final TextEditingController? controller;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,7 +33,7 @@ class ColumnTeacherInfo extends StatelessWidget {
           Text(
             labelText,
             textAlign: TextAlign.end,
-            style: FontStyleApp.textStyleWhiteBold18
+            style: FontStyleApp.whiteBold18
                 .copyWith(fontSize: getResponsiveText(context, 18)),
           ),
           HorizontalDivider(
@@ -43,7 +44,7 @@ class ColumnTeacherInfo extends StatelessWidget {
           ),
           InfoTextField(
             validator: validator,
-            controller:controller ,
+            controller: controller,
             iconData: iconData,
             keyboardType: keyboardType,
           )

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/utils/font_style.dart';
 
 class CounterColumn extends StatefulWidget {
-  const CounterColumn({super.key, required this.title, required this.counterValue});
+  const CounterColumn(
+      {super.key, required this.title, required this.counterValue});
   final String title;
   final int counterValue;
   @override
@@ -17,10 +18,7 @@ class _CounterColumnState extends State<CounterColumn> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          widget.title,
-          style: FontStyleApp.textStyleOrangeBold20
-        ),
+        Text(widget.title, style: FontStyleApp.orangeBold20),
         const SizedBox(height: 12),
         Container(
           decoration: BoxDecoration(
@@ -56,13 +54,14 @@ class _CounterColumnState extends State<CounterColumn> {
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.arrow_drop_up
-                  ,
+                icon: const Icon(
+                  Icons.arrow_drop_up,
                   color: Colors.orange,
                 ),
                 onPressed: () {
                   setState(() {
-                    if (_currentValue < 50) _currentValue += widget.counterValue;
+                    if (_currentValue < 50)
+                      _currentValue += widget.counterValue;
                   });
                 },
               ),

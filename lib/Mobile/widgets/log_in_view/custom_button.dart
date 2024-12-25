@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         label: Text(
           label,
-          style: FontStyleApp.textStyleOrangeBold20.copyWith(
+          style: FontStyleApp.orangeBold20.copyWith(
             fontSize: getResponsiveText(context, 20),
           ),
         ),

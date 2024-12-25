@@ -6,7 +6,8 @@ import 'package:userqueize/utils/responsive_text.dart';
 class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
-    required this.title, required this.onPressed,
+    required this.title,
+    required this.onPressed,
   });
   final String title;
   final VoidCallback onPressed;
@@ -20,7 +21,7 @@ class CustomButton extends StatelessWidget {
               MediaQuery.of(context).size.height * 0.057)),
       child: Text(
         title,
-        style: FontStyleApp.textStylewite15
+        style: FontStyleApp.boldwite15
             .copyWith(fontSize: getResponsiveText(context, 20)),
       ),
     );
