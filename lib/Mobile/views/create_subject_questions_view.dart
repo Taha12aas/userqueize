@@ -9,6 +9,21 @@ class CreateSubjectQuestionsView extends StatelessWidget {
   const CreateSubjectQuestionsView({super.key});
   static String id = 'CreateSubjectQuestionsView';
 
+// String fullQuestionText = '''
+// 8. ما هي أحد التحدsيات التي يواجهها مجال الذكاء الصناعي؟
+
+// A) تحسين جودة الحياة
+// B) توفير فرص عمل جديدة
+// C) قضايا الخصوصية والأمان
+// D) زيادة الاستهلاك الطاقة
+// ''';
+//   Question question = Question.parseFromText(fullQuestionText);
+
+//   log("السؤال: ${question.questionText}");
+//   log("الخيارات:");
+//   for (var option in question.options) {
+//     log(option);
+//   }
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> data = [

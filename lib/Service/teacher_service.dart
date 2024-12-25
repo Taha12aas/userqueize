@@ -35,6 +35,7 @@ class TeacherService {
     debugPrint('تمت تعديل البيانات: $data');
   }
 
+  // ignore: body_might_complete_normally_nullable
   static Future<int?> sendVerificationCode(int phoneNumber) async {
     try {
       // توليد رمز تحقق عشوائي مكون من 4 أرقام

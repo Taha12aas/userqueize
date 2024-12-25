@@ -21,37 +21,49 @@ class CustomAlertDialog extends StatefulWidget {
 class _CustomAlertDialogState extends State<CustomAlertDialog> {
   final TextEditingController _pinController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-
-  // متغير لتخزين رمز التحقق المولد
   String? generatedVerificationCode;
 
   Future<void> _generateVerificationCode(int phoneNumber) async {
-    int? code = await TeacherService.sendVerificationCode(phoneNumber);
-    setState(() {
-      generatedVerificationCode = code.toString(); // تخزين الرمز كمتحول نصي
-    });
-    debugPrint("Generated Code: $generatedVerificationCode");
-  }
-
-  // دالة للتحقق من الرمز المدخل
-  void _validateCodeAndNavigate(String enteredCode, int phoneUser) async {
-    if (enteredCode == _pinController) {
-      // تحديث حالة التحقق في قاعدة البيانات
-      await TeacherService.updateTeacherVerificationCode(
-          phoneUser, int.parse(enteredCode));
-
+    try {
+      int? code = await TeacherService.sendVerificationCode(phoneNumber);
+      setState(() {
+        generatedVerificationCode = code?.toString();
+      });
+      debugPrint("Generated Code: $generatedVerificationCode");
+    } catch (e) {
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         // ignore: use_build_context_synchronously
-        showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
+        showSnackBar(context, 'فشل في إرسال رمز التحقق، حاول مرة أخرى'),
       );
+    }
+  }
 
-      Navigator.pushNamedAndRemoveUntil(
+  void _validateCodeAndNavigate(String enteredCode, int phoneUser) async {
+    if (enteredCode == generatedVerificationCode) {
+      try {
+        await TeacherService.updateTeacherVerificationCode(
+          phoneUser,
+          int.parse(enteredCode),
+        );
         // ignore: use_build_context_synchronously
-        context,
-        HomeView.id,
-        (route) => false,
-      );
+        ScaffoldMessenger.of(context).showSnackBar(
+          // ignore: use_build_context_synchronously
+          showSnackBar(context, 'تم تسجيل الدخول بنجاح'),
+        );
+        Navigator.pushNamedAndRemoveUntil(
+          // ignore: use_build_context_synchronously
+          context,
+          HomeView.id,
+          (route) => false,
+        );
+      } catch (e) {
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          // ignore: use_build_context_synchronously
+          showSnackBar(context, 'حدث خطأ أثناء التحديث'),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         showSnackBar(context, 'رمز التحقق خاطئ'),
@@ -61,95 +73,82 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: AlertDialog(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        actions: [
-          Center(
-            child: SizedBox(
-              width: 150,
-              child: BlocBuilder<CubitTeacher, QuesAppStatus>(
-                builder: (context, state) {
-                  if (state is LoadingState) {
-                    if (generatedVerificationCode == null) {
-                      _generateVerificationCode(CubitTeacher.user.phone);
-                    }
-                    return CustomButton(
-                      onPressed: () {
-                        String enteredCode = _pinController.text;
-                        if (enteredCode.length == 4) {
-                          _validateCodeAndNavigate(
-                              enteredCode, CubitTeacher.user.phone);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            showSnackBar(
-                                context, 'من فضلك أدخل رمز التحقق بالكامل'),
-                          );
-                        }
-                      },
-                      label: 'موافق',
-                      iconData: Icons.check,
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              ),
-            ),
-          ),
-        ],
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(color: kOrangeColor, width: 2),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        backgroundColor: kAshenColor,
-        title: Text(
-          'أدخل رمز التحقق',
-          textAlign: TextAlign.center,
-          style: FontStyleApp.whiteBold18.copyWith(
-            fontSize: getResponsiveText(context, 18),
-          ),
-        ),
-        content: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: BlocBuilder<CubitTeacher, QuesAppStatus>(
-            builder: (context, state) {
-              if (state is LoadingState) {
-                return PinCodeTextField(
-                  length: 4,
-                  obscureText: false,
-                  animationType: AnimationType.fade,
-                  pinTheme: PinTheme(
-                    shape: PinCodeFieldShape.box,
-                    borderRadius: BorderRadius.circular(8),
-                    fieldHeight: 50,
-                    fieldWidth: 50,
-                    activeFillColor: Colors.white,
-                    inactiveFillColor: Colors.transparent,
-                    selectedFillColor: Colors.transparent,
-                    activeColor: kOrangeColor,
-                    inactiveColor: kOrangeColor,
-                    selectedColor: kOrangeColor,
-                  ),
-                  animationDuration: const Duration(milliseconds: 300),
-                  controller: _pinController,
-                  keyboardType: TextInputType.number,
-                  focusNode: _focusNode,
-                  onChanged: (value) {},
-                  appContext: context,
-                  onCompleted: (enteredCode) {
-                    if (enteredCode.length == 4) {
-                      _validateCodeAndNavigate(
-                          enteredCode, CubitTeacher.user.phone);
-                    }
-                  },
-                );
-              }
-              return const SizedBox.shrink();
-            },
-          ),
+    return AlertDialog(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: kOrangeColor, width: 2),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      backgroundColor: kAshenColor,
+      title: Text(
+        'أدخل رمز التحقق',
+        textAlign: TextAlign.center,
+        style: FontStyleApp.whiteBold18.copyWith(
+          fontSize: getResponsiveText(context, 18),
         ),
       ),
+      content: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        child: BlocBuilder<CubitTeacher, QuesAppStatus>(
+          builder: (context, state) {
+            if (state is LoadingState && generatedVerificationCode == null) {
+              // استدعاء الدالة لتوليد رمز التحقق
+              _generateVerificationCode(CubitTeacher.user.phone);
+            }
+            return PinCodeTextField(
+              length: 4,
+              obscureText: false,
+              animationType: AnimationType.fade,
+              pinTheme: PinTheme(
+                shape: PinCodeFieldShape.box,
+                borderRadius: BorderRadius.circular(8),
+                fieldHeight: 50,
+                fieldWidth: 50,
+                activeFillColor: Colors.white,
+                inactiveFillColor: Colors.transparent,
+                selectedFillColor: Colors.transparent,
+                activeColor: kOrangeColor,
+                inactiveColor: kOrangeColor,
+                selectedColor: kOrangeColor,
+              ),
+              animationDuration: const Duration(milliseconds: 300),
+              controller: _pinController,
+              keyboardType: TextInputType.number,
+              focusNode: _focusNode,
+              onChanged: (value) {},
+              appContext: context,
+              onCompleted: (enteredCode) {
+                if (enteredCode.length == 4) {
+                  _validateCodeAndNavigate(
+                      enteredCode, CubitTeacher.user.phone);
+                }
+              },
+            );
+          },
+        ),
+      ),
+      actions: [
+        Center(
+          child: SizedBox(
+            width: 150,
+            child: CustomButton(
+              onPressed: () {
+                String enteredCode = _pinController.text;
+                if (enteredCode.length == 4) {
+                  _validateCodeAndNavigate(
+                      enteredCode, CubitTeacher.user.phone);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    showSnackBar(context, 'من فضلك أدخل رمز التحقق بالكامل'),
+                  );
+                }
+              },
+              label: 'موافق',
+              iconData: Icons.check,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

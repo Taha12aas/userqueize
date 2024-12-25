@@ -13,7 +13,6 @@ import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
-import 'package:userqueize/utils/show_alert_dialog_and_navigate.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
 class LogInView extends StatefulWidget {

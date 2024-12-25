@@ -26,6 +26,7 @@ class ContainerFileUpload extends StatelessWidget {
           allowedExtensions: ['pdf'],
         );
         if (result != null) {
+          // ignore: unused_local_variable
           File file = File(result.files.single.path!);
         } else {
           ScaffoldMessenger.of(context)

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/auth_text_field.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
@@ -9,6 +8,7 @@ import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
+import 'package:userqueize/utils/show_alert_dialog_and_navigate.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
 class ChangePasswordView extends StatefulWidget {
@@ -109,11 +109,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   BlocListener<CubitTeacher, QuesAppStatus>(
                     listener: (context, state) {
                       if (state is LoadingState) {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          HomeView.id,
-                          (route) => false,
-                        );
+                        showAlertDialogAndNavigate(context);
+
                         ScaffoldMessenger.of(context).showSnackBar(
                           showSnackBar(context, 'تم تغيير كلمة المرور بنجاح'),
                         );
