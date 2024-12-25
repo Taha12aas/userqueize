@@ -12,13 +12,14 @@ class AuthTextField extends StatelessWidget {
     required this.iconData,
     this.obscureText = false,
     this.keyboardType = false,
-    required this.validator,
+    required this.validator, this.initialValue,
   });
   final String hintText;
   final IconData iconData;
   final bool? obscureText;
   final bool? keyboardType;
   final String? Function(String?) validator;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class AuthTextField extends StatelessWidget {
       valueListenable: obsc,
       child: TextFieldIconS(iconData: iconData),
       builder: (context, value, child) {
-        return TextFormField(
+        return TextFormField(initialValue: initialValue,//موقت للحذف
           validator: validator,
           keyboardType: keyboardType! ? TextInputType.number : null,
           obscureText: obscureText! ? value : obscureText!,

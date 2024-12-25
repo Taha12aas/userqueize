@@ -61,14 +61,14 @@ class _LogInViewState extends State<LogInView> {
                       ],
                     ),
                     const SizedBox(height: 18),
-                    AuthTextField(
+                    AuthTextField(initialValue: '963988818024',
                       validator: validateToPhoneNumber,
                       hintText: 'رقم الهاتف',
                       iconData: FontAwesomeIcons.phone,
                       keyboardType: true,
                     ),
                     const SizedBox(height: 18),
-                    AuthTextField(
+                    AuthTextField(initialValue: 'Taha!@#taha123',
                       validator: validateToPassword,
                       hintText: 'كلمة المرور',
                       iconData: FontAwesomeIcons.lock,
