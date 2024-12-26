@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/add_question.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/CreateSubjectQuestionsView/question_and_answer.dart';
+import 'package:userqueize/models/question.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 
@@ -9,50 +11,28 @@ class CreateSubjectQuestionsView extends StatelessWidget {
   const CreateSubjectQuestionsView({super.key});
   static String id = 'CreateSubjectQuestionsView';
 
-// String fullQuestionText = '''
-// 8. ما هي أحد التحدsيات التي يواجهها مجال الذكاء الصناعي؟
-
-// A) تحسين جودة الحياة
-// B) توفير فرص عمل جديدة
-// C) قضايا الخصوصية والأمان
-// D) زيادة الاستهلاك الطاقة
-// ''';
-//   Question question = Question.parseFromText(fullQuestionText);
-
-//   log("السؤال: ${question.questionText}");
-//   log("الخيارات:");
-//   for (var option in question.options) {
-//     log(option);
-//   }
   @override
   Widget build(BuildContext context) {
+    String fullQuestionText = '''
+8. ما هي أحد التحديات التي يواجهها مجال الذكاء الصناعي؟
+
+A) تحسين جودة الحياة
+B) توفير فرص عمل جديدة
+C) قضايا الخصوصية والأمان
+D) زيادة الاستهلاك الطاقة
+''';
+    Question question = Question.parseFromText(fullQuestionText);
+    for (var option in question.options) {
+      log(option);
+    }
     final List<Map<String, dynamic>> data = [
       {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
-      },
-      {
-        'question':
-            'ما هو الحاسوب الذي يستخدم لتطوير البرمجيات وإنجاز المشاريع البرمجية؟',
-        'answers': ['حاسوب مكتبي', 'حاسوب محمول', 'حاسوب لوحي', 'حاسوب ذكي'],
-        'correctAnswer': 'حاسوب مكتبي'
+        'question': question.questionText,
+        'answers': question.options,
+        'fullQuestionText': fullQuestionText
       },
     ];
-
+    log(data.toString());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: kOrangeBlackColor,

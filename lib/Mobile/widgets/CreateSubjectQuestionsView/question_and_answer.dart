@@ -56,14 +56,12 @@ class QuestionAndAnswer extends StatelessWidget {
                         height: 45,
                         decoration: BoxDecoration(
                           color: answer == questionData['correctAnswer']
-                              ? const Color(
-                                  0xFFFF7100) // البرتقالي للإجابة الصحيحة
-                              : const Color(
-                                  0xFFB0B0B0), // الرمادي الفاتح للإجابات الأخرى
+                              ? const Color(0xFFFF7100)
+                              : const Color(0xFFB0B0B0),
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Align(
-                          alignment: Alignment.centerRight,
+                          alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
@@ -81,7 +79,7 @@ class QuestionAndAnswer extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(
                       Icons.delete,
-                      color: Color(0xFFEE4B2B), // الأحمر الفاقع لأيقونة الحذف
+                      color: Color(0xFFEE4B2B),
                     ),
                     onPressed: () {},
                   ),

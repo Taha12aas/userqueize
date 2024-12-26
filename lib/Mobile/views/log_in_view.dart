@@ -90,7 +90,7 @@ class _LogInViewState extends State<LogInView> {
                         if (state is SuccessState) {
                           if (state.user!.password == password) {
                             BlocProvider.of<CubitSubject>(context)
-                                .fetchSubject(state.user!.name);
+                                .fetchSubject(state.user!.name);  
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               HomeView.id,
