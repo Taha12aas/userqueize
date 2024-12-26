@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:userqueize/Mobile/views/add_question.dart';
+import 'package:userqueize/Mobile/views/alert_view.dart';
 import 'package:userqueize/Mobile/views/change_password_view.dart';
 import 'package:userqueize/Mobile/views/create_questions_view.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
@@ -72,6 +73,7 @@ class UserQuize extends StatelessWidget {
           QuestionGenerateView.id: (context) => const QuestionGenerateView(),
           AddQuestion.id: (context) => const AddQuestion(),
           RegisterView.id: (context) => const RegisterView(),
+          AlertView.id: (context) => const AlertView(),
         },
         theme:
             ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),

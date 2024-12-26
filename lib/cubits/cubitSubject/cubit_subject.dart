@@ -5,16 +5,15 @@ import 'package:userqueize/Service/subject_service.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject_status.dart';
 import 'package:userqueize/models/subject.dart';
 
-
 class CubitSubject extends Cubit<CubitSubjectStatus> {
   CubitSubject() : super(LoadingStatee());
-
+  static late List<SubjectsGenerated> subjectsCount;
   void fetchSubject(String teacherName) async {
     try {
       List<Map<String, dynamic>> result =
           await SubjectService.fetchSubject(teacherName);
 
-      List<SubjectsGenerated> subjectsCount = [];
+      subjectsCount = [];
 
       for (var i = 0; i < result.length; i++) {
         subjectsCount.add(SubjectsGenerated.fromJson(result[i]));

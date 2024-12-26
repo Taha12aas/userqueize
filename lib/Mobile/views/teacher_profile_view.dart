@@ -145,7 +145,8 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                     phoneNumber,
                                   );
                                 }
-                                if (phoneNumber == state.user!.phone && address == state.user!.address) {
+                                if (phoneNumber == state.user!.phone &&
+                                    address == state.user!.address) {
                                   Navigator.pop(context);
                                 }
                               }

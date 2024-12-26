@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/add_question.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/CreateSubjectQuestionsView/question_and_answer.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/models/question.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
@@ -13,14 +14,8 @@ class CreateSubjectQuestionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String fullQuestionText = '''
-8. ما هي أحد التحديات التي يواجهها مجال الذكاء الصناعي؟
-
-A) تحسين جودة الحياة
-B) توفير فرص عمل جديدة
-C) قضايا الخصوصية والأمان
-D) زيادة الاستهلاك الطاقة
-''';
+    String fullQuestionText = '';
+    fullQuestionText = CubitSubject.subjectsCount[1].courses;
     Question question = Question.parseFromText(fullQuestionText);
     for (var option in question.options) {
       log(option);

@@ -98,9 +98,12 @@ class _RegisterViewState extends State<RegisterView> {
                       listener: (context, state) {
                         if (state is SuccessState) {
                           if (confirmPassword == password) {
+                            BlocProvider.of<CubitTeacher>(context)
+                                .generateCode(CubitTeacher.user.phone);
+                            showAlertDialogAndNavigate(context);
                             BlocProvider.of<CubitTeacher>(context).updateUsers(
                                 'password', state.user!.name, password);
-                            showAlertDialogAndNavigate(context);
+
                             BlocProvider.of<CubitSubject>(context)
                                 .fetchSubject(state.user!.name);
                           } else {

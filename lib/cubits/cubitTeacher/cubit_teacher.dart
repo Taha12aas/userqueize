@@ -7,12 +7,14 @@ import 'package:userqueize/models/teacher.dart';
 
 class CubitTeacher extends Cubit<QuesAppStatus> {
   CubitTeacher() : super(LoadingState());
-static late Teacher user;
+
+  static late Teacher user;
+  static int? verificationCode;
   void fetchUsers(int teacherNumber) async {
     try {
       List<Map<String, dynamic>> result =
           await TeacherService.fetchTeacher(teacherNumber);
-       user = Teacher.fromJson(result[0]);
+      user = Teacher.fromJson(result[0]);
       log('------------Fetch User Data-----------------');
       emit(SuccessState(user: user));
     } catch (e) {
@@ -21,9 +23,18 @@ static late Teacher user;
     }
   }
 
-   void updateUsers(String columnName, String teacherName, dynamic value) async {
+  void updateUsers(String columnName, String teacherName, dynamic value) async {
     try {
       await TeacherService.updateTeacher(columnName, teacherName, value);
+      emit(LoadingState());
+    } catch (e) {
+      emit(FaliureState());
+    }
+  }
+
+  void generateCode(int phoneNumber) async {
+    try {
+      verificationCode = await TeacherService.sendVerificationCode(phoneNumber);
       emit(LoadingState());
     } catch (e) {
       emit(FaliureState());
