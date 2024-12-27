@@ -1,7 +1,7 @@
+import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/utils/constants.dart';
-import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
 //Container الموجود في الصفحة الرئيسة
@@ -23,7 +23,7 @@ class MainCategoriesSection extends StatelessWidget {
     return Bounceable(
       onTap: onTap,
       child: Container(
-        width: screenWidth * 0.40,
+        width: screenWidth * 0.41,
         decoration: BoxDecoration(
           color: kAshenColor,
           borderRadius: BorderRadius.circular(12),
@@ -37,9 +37,10 @@ class MainCategoriesSection extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 label,
-                style: FontStyleApp.orangeBold25.copyWith(
-                  fontSize: getResponsiveText(context, 23),
-                ),
+                style: ArabicTextStyle(
+                    arabicFont: ArabicFont.aalooBhaijaan,
+                    fontSize: getResponsiveText(context, 23),
+                    color: kOrangeColor),
               ),
             ],
           ),

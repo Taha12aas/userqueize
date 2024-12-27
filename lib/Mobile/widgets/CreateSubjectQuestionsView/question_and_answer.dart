@@ -35,7 +35,6 @@ class QuestionAndAnswer extends StatelessWidget {
                       child: Text(
                         questionData['question'],
                         style: FontStyleApp.blackBold16,
-                        textAlign: TextAlign.right,
                         softWrap: true,
                       ),
                     ),

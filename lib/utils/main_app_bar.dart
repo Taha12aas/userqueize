@@ -1,10 +1,10 @@
+import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
-import 'package:userqueize/utils/font_style.dart';
 
 AppBar mainAppBar(String title, BuildContext context) {
   return AppBar(
@@ -42,7 +42,13 @@ AppBar mainAppBar(String title, BuildContext context) {
           ),
         ),
         Flexible(
-          child: Center(child: Text(title, style: FontStyleApp.boldwite15)),
+          child: Center(
+            child: Text(title,
+                style: const ArabicTextStyle(
+                    arabicFont: ArabicFont.aalooBhaijaan,
+                    fontSize: 15,
+                    color: kWhite)),
+          ),
         ),
         const SizedBox(
           width: 30,

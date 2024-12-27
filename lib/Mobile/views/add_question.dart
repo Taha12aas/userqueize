@@ -24,7 +24,7 @@ class AddQuestion extends StatelessWidget {
               ),
               const Text(
                 ': السؤال',
-                style: FontStyleApp.orange18,
+                style: FontStyleApp.orangeDinNextLTArabic18,
               ),
               const SizedBox(
                 height: 10,
@@ -37,7 +37,7 @@ class AddQuestion extends StatelessWidget {
               ),
               const Text(
                 ': الخيار الاول',
-                style: FontStyleApp.orange18,
+                style: FontStyleApp.orangeDinNextLTArabic18,
               ),
               const SizedBox(
                 height: 10,
@@ -50,7 +50,7 @@ class AddQuestion extends StatelessWidget {
               ),
               const Text(
                 ': الخيار الثاني',
-                style: FontStyleApp.orange18,
+                style: FontStyleApp.orangeDinNextLTArabic18,
               ),
               const SizedBox(
                 height: 10,
@@ -63,7 +63,7 @@ class AddQuestion extends StatelessWidget {
               ),
               const Text(
                 ': الخيار الثالث',
-                style: FontStyleApp.orange18,
+                style: FontStyleApp.orangeDinNextLTArabic18,
               ),
               const SizedBox(
                 height: 10,
@@ -76,7 +76,7 @@ class AddQuestion extends StatelessWidget {
               ),
               const Text(
                 ': الخيار الرابع',
-                style: FontStyleApp.orange18,
+                style: FontStyleApp.orangeDinNextLTArabic18,
               ),
               const SizedBox(
                 height: 10,
