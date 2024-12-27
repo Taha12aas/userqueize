@@ -15,20 +15,16 @@ class CreateSubjectQuestionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String fullQuestionText = '';
-    fullQuestionText = CubitSubject.subjectsCount[1].courses;
+    fullQuestionText = CubitSubject.subjectsCount[0].courses;
     Question question = Question.parseFromText(fullQuestionText);
 
-    List<Map<String, dynamic>> test = [];
     final List<Map<String, dynamic>> data = [
       {
         'question': question.questionText,
         'answers': question.options,
       },
-      for (var i = 0; i < question.questionText.length; i++) {}
     ];
-    for (var i = 0; i < data.length; i++) {
-      test.add(data[i]);
-    }
+
     log(data.toString());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
