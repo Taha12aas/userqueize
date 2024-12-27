@@ -24,9 +24,7 @@ class CreateSubjectQuestionsView extends StatelessWidget {
         'question': question.questionText,
         'answers': question.options,
       },
-      for (var i = 0; i < question.questionText.length; i++) {
-
-      }
+      for (var i = 0; i < question.questionText.length; i++) {}
     ];
     for (var i = 0; i < data.length; i++) {
       test.add(data[i]);
@@ -50,7 +48,7 @@ class CreateSubjectQuestionsView extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            QuestionAndAnswer(data: test),
+            QuestionAndAnswer(data: data),
             const SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed: () {

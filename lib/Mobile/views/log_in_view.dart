@@ -1,3 +1,4 @@
+import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
@@ -11,8 +12,7 @@ import 'package:userqueize/Mobile/widgets/log_in_view/register_or_log_in.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
-import 'package:userqueize/utils/font_style.dart';
-import 'package:userqueize/utils/responsive_text.dart';
+import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
 class LogInView extends StatefulWidget {
@@ -47,15 +47,17 @@ class _LogInViewState extends State<LogInView> {
                     const SizedBox(height: 40),
                     const LogoApp(),
                     const SizedBox(height: 40),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Flexible(
                           child: Text(
                             'تسجيل الدخول',
                             textAlign: TextAlign.end,
-                            style: FontStyleApp.whiteBold18.copyWith(
-                                fontSize: getResponsiveText(context, 18)),
+                            style: ArabicTextStyle(
+                                arabicFont: ArabicFont.aalooBhaijaan,
+                                fontSize: 20,
+                                color: kOrangeColor),
                           ),
                         ),
                       ],
@@ -64,7 +66,7 @@ class _LogInViewState extends State<LogInView> {
                     AuthTextField(
                       initialValue: '963988818024',
                       validator: validateToPhoneNumber,
-                      hintText: 'رقم الهاتف',
+                      hintText: '963988888888',
                       iconData: FontAwesomeIcons.phone,
                       keyboardType: true,
                     ),
@@ -90,7 +92,7 @@ class _LogInViewState extends State<LogInView> {
                         if (state is SuccessState) {
                           if (state.user!.password == password) {
                             BlocProvider.of<CubitSubject>(context)
-                                .fetchSubject(state.user!.name);  
+                                .fetchSubject(state.user!.name);
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               HomeView.id,
