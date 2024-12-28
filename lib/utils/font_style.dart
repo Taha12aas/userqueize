@@ -1,5 +1,4 @@
 import 'package:arabic_font/arabic_font.dart';
-import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
 
 class FontStyleApp {

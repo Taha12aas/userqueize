@@ -75,8 +75,7 @@ class UserQuize extends StatelessWidget {
           RegisterView.id: (context) => const RegisterView(),
           AlertView.id: (context) => const AlertView(),
         },
-        theme:
-            ThemeData(scaffoldBackgroundColor: kBackGround, fontFamily: 'Exo2'),
+        theme: ThemeData(scaffoldBackgroundColor: kBackGround),
         debugShowCheckedModeBanner: false,
         initialRoute: LogInView.id,
       ),
