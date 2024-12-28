@@ -1,16 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:userqueize/Mobile/views/add_question.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/CreateSubjectQuestionsView/question_and_answer.dart';
+import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
+import 'package:userqueize/Mobile/widgets/add_teacher_view/info_text_field.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
+import 'package:userqueize/utils/font_style.dart';
 
-class CreateSubjectQuestionsView extends StatelessWidget {
+class CreateSubjectQuestionsView extends StatefulWidget {
   const CreateSubjectQuestionsView({super.key});
   static String id = 'CreateSubjectQuestionsView';
 
   @override
+  State<CreateSubjectQuestionsView> createState() =>
+      _CreateSubjectQuestionsViewState();
+}
+
+class _CreateSubjectQuestionsViewState
+    extends State<CreateSubjectQuestionsView> {
+  TextEditingController questionController = TextEditingController();
+  TextEditingController answerOneController = TextEditingController();
+  TextEditingController answerTowController = TextEditingController();
+  TextEditingController answerThreeController = TextEditingController();
+  TextEditingController answerFourController = TextEditingController();
+  GlobalKey<FormState> globalKey = GlobalKey();
+  @override
+  void dispose() {
+    questionController.dispose();
+    answerOneController.dispose();
+    answerTowController.dispose();
+    answerThreeController.dispose();
+    answerFourController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     List<dynamic> fullQuestionText = [
       {
         "question": "ما هو الذكاء الاصطناعي؟",
@@ -30,122 +57,167 @@ class CreateSubjectQuestionsView extends StatelessWidget {
           "هنري فوكس تالبوت"
         ]
       },
-      {
-        "question":
-            "ما هو التقنية التي تعتمد على شبكات عصبية صناعية تحاكي الدماغ البشري؟",
-        "answers": [
-          "التعلم العميق",
-          "معالجة اللغة الطبيعية",
-          "الرؤية الحاسوبية",
-          "التعلم الموجّه"
-        ]
-      },
-      {
-        "question": "ما هي أحد مظاهر الذكاء الاصطناعي الحديثة؟",
-        "answers": [
-          "التعلم العميق",
-          "الحوسبة السحابية",
-          "الروبوتات الصناعية",
-          "أنظمة المحاكاة"
-        ]
-      },
-      {
-        "question": "ما هي قدرات تقنية التعلم العميق؟",
-        "answers": [
-          "التعرف على الصور",
-          "إنشاء الروبوتات",
-          "الحوسبة السحابية",
-          "المحاكاة البيئية"
-        ]
-      },
-      {
-        "question": "أين تستثمر الشركات في وادي السيليكون في الذكاء الاصطناعي؟",
-        "answers": [
-          "فيسبوك وغوغل",
-          "آبل وأمازون",
-          "مايكروسوفت وسامسونغ",
-          "إنفيديا وAMD"
-        ]
-      },
-      {
-        "question":
-            "ما هو المجال الأكاديمي الذي يهتم بصنع حواسيب وبرامج قادرة على اتخاذ سلوك ذكي؟",
-        "answers": [
-          "الذكاء الاصطناعي",
-          "علم الروبوتات",
-          "علم البيانات",
-          "الهندسة الحيوية"
-        ]
-      },
-      {
-        "question": "ما هو الاستخدام الشائع لمصطلح الذكاء الاصطناعي اليوم؟",
-        "answers": [
-          "تشغيل الأجهزة المنزلية",
-          "التحكم في الطائرات",
-          "محاكاة الذكاء البشري",
-          "التفاعل مع البشر"
-        ]
-      },
-      {
-        "question": "ما هي الشركات التي تهتم بتحذيرات تطور الذكاء الاصطناعي؟",
-        "answers": [
-          "فيسبوك وغوغل",
-          "آبل وأمازون",
-          "مايكروسوفت وسامسونغ",
-          "أدوبي وسوني"
-        ]
-      },
-      {
-        "question": "ما هو أحد التعريفات الأكاديمية للذكاء الاصطناعي؟",
-        "answers": [
-          "دراسة وتصميم أنظمة ذكية",
-          "إنشاء برامج محاكاة",
-          "تحليل البيانات البيئية",
-          "تصنيع الروبوتات"
-        ]
-      }
     ];
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kOrangeBlackColor,
-        child: const Icon(
-          Icons.add,
-          color: kOrangeColor,
-        ),
-        onPressed: () {
-          Navigator.pushNamed(context, AddQuestion.id);
-        },
-      ),
-      appBar: customAppBar('الأسئلة المولدة', context),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            QuestionAndAnswer(data: fullQuestionText),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  HomeView.id,
-                  (route) => false,
+    return Form(
+      key: globalKey,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: kOrangeBlackColor,
+          child: const Icon(
+            Icons.add,
+            color: kOrangeColor,
+          ),
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                  color: kBackGround,
+                  height: 800,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            ': السؤال',
+                            style: FontStyleApp.orangeDinNextLTArabic18,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InfoTextField(
+                              validator: validateToQuestion,
+                              controller: questionController,
+                              iconData: FontAwesomeIcons.circlePlus),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            ': الخيار الاول',
+                            style: FontStyleApp.orangeDinNextLTArabic18,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InfoTextField(
+                              validator: validateToQuestion,
+                              controller: answerOneController,
+                              iconData: FontAwesomeIcons.commentMedical),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            ': الخيار الثاني',
+                            style: FontStyleApp.orangeDinNextLTArabic18,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InfoTextField(
+                              validator: validateToQuestion,
+                              controller: answerTowController,
+                              iconData: FontAwesomeIcons.commentMedical),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            ': الخيار الثالث',
+                            style: FontStyleApp.orangeDinNextLTArabic18,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InfoTextField(
+                              controller: answerThreeController,
+                              iconData: FontAwesomeIcons.commentMedical),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            ': الخيار الرابع',
+                            style: FontStyleApp.orangeDinNextLTArabic18,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InfoTextField(
+                              controller: answerFourController,
+                              iconData: FontAwesomeIcons.commentMedical),
+                          SizedBox(
+                            height: height * 0.04,
+                          ),
+                          CustomButton(
+                            title: 'اضافة سؤال',
+                            onPressed: () {
+                              if (globalKey.currentState!.validate()) {
+                                fullQuestionText.add({
+                                  'question': questionController.text,
+                                  'answers': [
+                                    answerOneController.text,
+                                    answerTowController.text,
+                                    answerThreeController.text,
+                                    answerFourController.text
+                                  ]
+                                });
+                                Navigator.pop(
+                                  context,
+                                );
+                                setState(() {});
+                              }
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 );
               },
-              icon: const Icon(Icons.save),
-              label: const Text('حفظ'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
+            );
+          },
+        ),
+        appBar: customAppBar('الأسئلة المولدة', context),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            )
-          ],
+              QuestionAndAnswer(data: fullQuestionText),
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    HomeView.id,
+                    (route) => false,
+                  );
+                },
+                icon: const Icon(Icons.save),
+                label: const Text('حفظ'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              )
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  String? validateToQuestion(String? question) {
+    if (question!.isEmpty) {
+      return 'الحقل مطلوب';
+    }
+    return null;
   }
 }

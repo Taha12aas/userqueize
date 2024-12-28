@@ -130,7 +130,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                           },
                         );
                       } else {
-                        return SizedBox();
+                        return const SizedBox();
                       }
                     },
                   ),

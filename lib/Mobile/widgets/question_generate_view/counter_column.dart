@@ -60,8 +60,9 @@ class _CounterColumnState extends State<CounterColumn> {
                 ),
                 onPressed: () {
                   setState(() {
-                    if (_currentValue < 50)
+                    if (_currentValue < 50) {
                       _currentValue += widget.counterValue;
+                    }
                   });
                 },
               ),

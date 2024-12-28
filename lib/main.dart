@@ -71,7 +71,7 @@ class UserQuize extends StatelessWidget {
           CreateSubjectQuestionsView.id: (context) =>
               const CreateSubjectQuestionsView(),
           QuestionGenerateView.id: (context) => const QuestionGenerateView(),
-          AddQuestion.id: (context) => const AddQuestion(),
+          // AddQuestion.id: (context) => const AddQuestion(),
           RegisterView.id: (context) => const RegisterView(),
           AlertView.id: (context) => const AlertView(),
         },
