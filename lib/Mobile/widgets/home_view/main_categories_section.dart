@@ -1,7 +1,7 @@
-import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/utils/constants.dart';
+import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
 //Container الموجود في الصفحة الرئيسة
@@ -37,11 +37,10 @@ class MainCategoriesSection extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 label,
-                style: ArabicTextStyle(
-                    arabicFont: ArabicFont.aalooBhaijaan,
-                    fontSize: getResponsiveText(context, 23),
-                    color: kOrangeColor),
-              ),
+                style: FontStyleApp.boldOrange23.copyWith(
+                  fontSize: getResponsiveText(context, 23),
+                ),
+              )
             ],
           ),
         ),

@@ -42,6 +42,7 @@ class _HomeViewState extends State<HomeView> {
                 Text(
                   ' :  أحدث النشاطات',
                   style: FontStyleApp.orangeBold25.copyWith(
+                    fontWeight: FontWeight.bold,
                     fontSize: getResponsiveText(context, 25),
                   ),
                 ),

@@ -21,7 +21,7 @@ class CustomButton extends StatelessWidget {
               MediaQuery.of(context).size.height * 0.057)),
       child: Text(
         title,
-        style: FontStyleApp.boldwite15
+        style: FontStyleApp.boldWhite15
             .copyWith(fontSize: getResponsiveText(context, 20)),
       ),
     );

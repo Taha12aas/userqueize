@@ -1,6 +1,6 @@
-import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
+import 'package:userqueize/utils/font_style.dart';
 
 AppBar customAppBar(String title, BuildContext context) {
   return AppBar(
@@ -14,8 +14,7 @@ AppBar customAppBar(String title, BuildContext context) {
     backgroundColor: kAshenColor,
     title: Text(
       title,
-      style: const ArabicTextStyle(
-          arabicFont: ArabicFont.aalooBhaijaan, fontSize: 15, color: kWhite),
+      style: FontStyleApp.boldWhite15.copyWith(fontWeight: FontWeight.bold),
     ),
     iconTheme: const IconThemeData(
       color: Colors.white,

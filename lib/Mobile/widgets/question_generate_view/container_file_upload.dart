@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
 class ContainerFileUpload extends StatelessWidget {
@@ -49,9 +50,12 @@ class ContainerFileUpload extends StatelessWidget {
               color: Colors.black,
             ),
             const SizedBox(height: 10),
-            const Text(
+            Text(
               'اسحب او اختر ملف',
-              style: FontStyleApp.blackBold16,
+              style: FontStyleApp.blackBold16.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: getResponsiveText(context, 16),
+              ),
             ),
             const SizedBox(height: 20),
             Flexible(
