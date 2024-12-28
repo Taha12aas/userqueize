@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/font_style.dart';
 
-class QuestionAndAnswer extends StatelessWidget {
+class QuestionAndAnswer extends StatefulWidget {
   const QuestionAndAnswer({
     super.key,
     required this.data,
   });
 
-  final List<Map<String, dynamic>> data;
+  final List<dynamic> data;
 
+  @override
+  State<QuestionAndAnswer> createState() => _QuestionAndAnswerState();
+}
+
+class _QuestionAndAnswerState extends State<QuestionAndAnswer> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: data.length,
+      itemCount: widget.data.length,
       itemBuilder: (context, index) {
-        final questionData = data[index];
+        final questionData = widget.data[index];
         final isEven = index % 2 == 0;
 
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-          color: isEven ? const Color(0xFFF1F1F1) : const Color(0xFFE8E9E6),
+          color: isEven
+              ? const Color(0xFFF1F1F1)
+              : const Color.fromARGB(233, 232, 233, 230),
           elevation: 5,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
@@ -33,10 +40,10 @@ class QuestionAndAnswer extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        questionData['question'],
-                        style: FontStyleApp.blackBold16,
-                        softWrap: true,
-                      ),
+                          textAlign: TextAlign.right,
+                          questionData['question'],
+                          style: FontStyleApp.blackBold16,
+                          softWrap: true),
                     ),
                     const SizedBox(width: 10),
                     Text(
@@ -52,21 +59,18 @@ class QuestionAndAnswer extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: Container(
-                        height: 45,
                         decoration: BoxDecoration(
-                          color: answer == questionData['correctAnswer']
+                          color: answer == questionData['question']
                               ? const Color(0xFFFF7100)
                               : const Color(0xFFB0B0B0),
                           borderRadius: BorderRadius.circular(18),
                         ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              answer,
-                              style: FontStyleApp.blackBold16,
-                            ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            textAlign: TextAlign.right,
+                            answer,
+                            style: FontStyleApp.blackBold16,
                           ),
                         ),
                       ),
@@ -80,7 +84,11 @@ class QuestionAndAnswer extends StatelessWidget {
                       Icons.delete,
                       color: Color(0xFFEE4B2B),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        widget.data.removeAt(index);
+                      });
+                    },
                   ),
                 ),
               ],

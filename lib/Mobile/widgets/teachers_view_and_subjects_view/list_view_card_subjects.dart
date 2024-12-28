@@ -15,6 +15,7 @@ class ListViewCardSubjects extends StatelessWidget {
     return ListView.builder(
       itemCount: listSubject.length,
       itemBuilder: (context, index) {
+        
         return Padding(
             padding: const EdgeInsets.only(top: 10),
             child: CardTeacherSubject(
@@ -22,7 +23,8 @@ class ListViewCardSubjects extends StatelessWidget {
               subject: listSubject[index],
               teacherImag: 'assets/images/Teachers.png',
               onTap: () {
-                Navigator.pushNamed(context, QuestionGenerateView.id);
+                Navigator.pushNamed(context, QuestionGenerateView.id,
+                    arguments: [listClasses[index],listSubject[index]]);
               },
             ));
       },

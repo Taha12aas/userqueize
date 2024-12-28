@@ -2,10 +2,10 @@ class SubjectsGenerated {
   int? id;
   final String nameSubject;
   final String coursesDate;
-  final String courses;
+  final List<dynamic> courses;
   final String nameTeacher;
   final String classSabject;
-  final String  seasonSubject;
+  final String seasonSubject;
 
   SubjectsGenerated(
       {this.id,
