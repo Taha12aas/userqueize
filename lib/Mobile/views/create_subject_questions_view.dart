@@ -35,29 +35,30 @@ class _CreateSubjectQuestionsViewState
     super.dispose();
   }
 
+  List<dynamic> fullQuestionText = [
+    {
+      "question": "ما هو الذكاء الاصطناعي؟",
+      "answers": [
+        "القدرات الذهنية البشرية",
+        "الذكاء الذي تبديه الآلات",
+        "أنماط العمل الحاسوبي",
+        "الآلات الذكية"
+      ]
+    },
+    {
+      "question": "من هو الباحث الذي وضع مصطلح الذكاء الاصطناعي؟",
+      "answers": [
+        "جون مكارثي",
+        "إلنور أوستروم",
+        "إدجار كود",
+        "هنري فوكس تالبوت"
+      ]
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    List<dynamic> fullQuestionText = [
-      {
-        "question": "ما هو الذكاء الاصطناعي؟",
-        "answers": [
-          "القدرات الذهنية البشرية",
-          "الذكاء الذي تبديه الآلات",
-          "أنماط العمل الحاسوبي",
-          "الآلات الذكية"
-        ]
-      },
-      {
-        "question": "من هو الباحث الذي وضع مصطلح الذكاء الاصطناعي؟",
-        "answers": [
-          "جون مكارثي",
-          "إلنور أوستروم",
-          "إدجار كود",
-          "هنري فوكس تالبوت"
-        ]
-      },
-    ];
+
     return Form(
       key: globalKey,
       child: Scaffold(
@@ -69,15 +70,16 @@ class _CreateSubjectQuestionsViewState
           ),
           onPressed: () {
             showModalBottomSheet(
+              isScrollControlled: true,
               context: context,
               builder: (context) {
                 return Container(
                   color: kBackGround,
-                  height: 800,
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(18),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           const SizedBox(
@@ -154,21 +156,27 @@ class _CreateSubjectQuestionsViewState
                           CustomButton(
                             title: 'اضافة سؤال',
                             onPressed: () {
-                              if (globalKey.currentState!.validate()) {
-                                fullQuestionText.add({
-                                  'question': questionController.text,
-                                  'answers': [
-                                    answerOneController.text,
-                                    answerTowController.text,
-                                    answerThreeController.text,
-                                    answerFourController.text
-                                  ]
-                                });
-                                Navigator.pop(
-                                  context,
-                                );
-                                setState(() {});
-                              }
+                              setState(() {
+                                if (globalKey.currentState!.validate()) {
+                                  fullQuestionText.add({
+                                    'question': questionController.text,
+                                    'answers': [
+                                      answerOneController.text,
+                                      answerTowController.text,
+                                      answerThreeController.text,
+                                      answerFourController.text
+                                    ]
+                                  });
+                                  questionController.clear();
+                                  answerOneController.clear();
+                                  answerTowController.clear();
+                                  answerThreeController.clear();
+                                  answerFourController.clear();
+                                  Navigator.pop(
+                                    context,
+                                  );
+                                }
+                              });
                             },
                           )
                         ],
