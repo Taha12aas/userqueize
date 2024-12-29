@@ -8,7 +8,6 @@ class CardSubjects extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.subject,
-    required this.teacherImag,
     required this.classTeacher,
     required this.courseDate,
     required this.seasonSubject,
@@ -17,7 +16,6 @@ class CardSubjects extends StatelessWidget {
   final void Function() onTap;
   final String subject;
   final String classTeacher;
-  final String teacherImag;
   final String courseDate;
   final String seasonSubject;
 

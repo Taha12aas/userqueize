@@ -22,7 +22,6 @@ class ChangePasswordView extends StatefulWidget {
 class _ChangePasswordViewState extends State<ChangePasswordView> {
   String oldPassword = '';
   String newPassword = '';
-
   String confirmPassword = '';
   GlobalKey<FormState> globalKey = GlobalKey();
   @override
@@ -116,7 +115,11 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               if (oldPassword == CubitTeacher.user.password) {
                                 BlocProvider.of<CubitTeacher>(context)
                                     .generateCode(CubitTeacher.user.phone);
-                                Navigator.pushNamedAndRemoveUntil(context, AlertView.id,(route) => false,);
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  AlertView.id,
+                                  (route) => false,
+                                );
                                 BlocProvider.of<CubitTeacher>(context)
                                     .updateUsers('password',
                                         CubitTeacher.user.name, newPassword);

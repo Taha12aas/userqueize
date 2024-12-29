@@ -5,10 +5,11 @@ class QuestionAndAnswer extends StatefulWidget {
   const QuestionAndAnswer({
     super.key,
     required this.data,
+    required this.isIcon,
   });
 
   final List<dynamic> data;
-
+  final bool isIcon;
   @override
   State<QuestionAndAnswer> createState() => _QuestionAndAnswerState();
 }
@@ -77,20 +78,22 @@ class _QuestionAndAnswerState extends State<QuestionAndAnswer> {
                     );
                   }).toList(),
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Color(0xFFEE4B2B),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        widget.data.removeAt(index);
-                      });
-                    },
-                  ),
-                ),
+                widget.isIcon
+                    ? Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Color(0xFFEE4B2B),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              widget.data.removeAt(index);
+                            });
+                          },
+                        ),
+                      )
+                    : SizedBox(),
               ],
             ),
           ),
