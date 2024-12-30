@@ -29,7 +29,7 @@ class _QuestionAndAnswerState extends State<QuestionAndAnswer> {
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           color: isEven
               ? const Color(0xFFF1F1F1)
-              : const Color.fromARGB(233, 232, 233, 230),
+              : const Color.fromARGB(255, 234, 231, 248),
           elevation: 5,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
