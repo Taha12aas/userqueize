@@ -1,20 +1,29 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/font_style.dart';
 
 class CounterColumn extends StatefulWidget {
   const CounterColumn(
-      {super.key, required this.title, required this.counterValue});
+      {super.key,
+      required this.title,
+      required this.counterValue,
+      required this.maxValue,
+      });
   final String title;
   final int counterValue;
+  final int maxValue;
+
   @override
   State<CounterColumn> createState() => _CounterColumnState();
 }
 
 class _CounterColumnState extends State<CounterColumn> {
-  int _currentValue = 1;
-
+  int currentValue = 0;
+  
   @override
   Widget build(BuildContext context) {
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -42,12 +51,14 @@ class _CounterColumnState extends State<CounterColumn> {
                 ),
                 onPressed: () {
                   setState(() {
-                    if (_currentValue > 1) _currentValue -= widget.counterValue;
+                    if (currentValue > 0) {
+                      currentValue -= widget.counterValue;
+                    }
                   });
                 },
               ),
               Text(
-                '$_currentValue',
+                '$currentValue',
                 style: const TextStyle(
                   color: Colors.orange,
                   fontSize: 32,
@@ -60,8 +71,9 @@ class _CounterColumnState extends State<CounterColumn> {
                 ),
                 onPressed: () {
                   setState(() {
-                    if (_currentValue < 50) {
-                      _currentValue += widget.counterValue;
+                    if (currentValue <= widget.maxValue) {
+                      currentValue += widget.counterValue;
+                      log(currentValue.toString());
                     }
                   });
                 },
