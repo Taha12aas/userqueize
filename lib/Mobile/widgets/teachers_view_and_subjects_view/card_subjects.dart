@@ -33,59 +33,44 @@ class CardSubjects extends StatelessWidget {
           color: kAshenColor,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              width: 15,
-            ),
-            const Icon(
-              color: Colors.white70,
-              Icons.download_rounded,
-              size: 35,
-            ),
             Expanded(
-              child: Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RowText(
-                          classAndSubject: courseDate,
-                          screenWidth: screenWidth,
-                          subjectName: ' : دورة ',
-                        ),
-                        SizedBox(height: screenHeight * 0.01),
-                        RowText(
-                          classAndSubject: seasonSubject,
-                          screenWidth: screenWidth,
-                          subjectName: ': فصل',
-                        ),
-                      ],
-                    ),
+                  RowText(
+                    classAndSubject: courseDate,
+                    screenWidth: screenWidth,
+                    subjectName: ' : دورة ',
                   ),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RowText(
-                          classAndSubject: subject,
-                          screenWidth: screenWidth,
-                          subjectName: ' : اسم المادة',
-                        ),
-                        SizedBox(height: screenHeight * 0.01),
-                        RowText(
-                          classAndSubject: classTeacher,
-                          screenWidth: screenWidth,
-                          subjectName: ': صف',
-                        ),
-                      ],
-                    ),
+                  SizedBox(height: screenHeight * 0.01),
+                  RowText(
+                    classAndSubject: seasonSubject,
+                    screenWidth: screenWidth,
+                    subjectName: ': فصل',
                   ),
                 ],
               ),
             ),
-            SizedBox(width: screenWidth * 0.02),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RowText(
+                    classAndSubject: subject,
+                    screenWidth: screenWidth,
+                    subjectName: ' : اسم المادة',
+                  ),
+                  SizedBox(height: screenHeight * 0.01),
+                  RowText(
+                    classAndSubject: classTeacher,
+                    screenWidth: screenWidth,
+                    subjectName: ': صف',
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(width: screenWidth * 0.02)
           ],
         ),
       ),

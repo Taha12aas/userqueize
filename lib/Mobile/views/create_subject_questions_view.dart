@@ -116,7 +116,13 @@ class _CreateSubjectQuestionsViewState
         return Form(
           key: globalKey,
           child: Container(
-            color: kBackGround,
+            decoration: const BoxDecoration(
+              color: kBackGround,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(26),
+                topRight: Radius.circular(26),
+              ),
+            ),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(18),

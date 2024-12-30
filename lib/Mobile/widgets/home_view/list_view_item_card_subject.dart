@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/views/reading_generated_questions.dart';
@@ -27,8 +26,13 @@ class ListViewItemCardSubject extends StatelessWidget {
                   courseDate: state.subjects![index].coursesDate,
                   seasonSubject: state.subjects![index].seasonSubject,
                   onTap: () {
-                    Navigator.pushNamed(context, ReadingGeneratedQuestions.id);
-                    ////
+                    Navigator.pushNamed(context, ReadingGeneratedQuestions.id,
+                        arguments: [
+                          state.subjects![index].nameSubject,
+                          state.subjects![index].classSabject,
+                          state.subjects![index].coursesDate,
+                          state.subjects![index].seasonSubject,
+                        ]);
                   },
                   subject: state.subjects![index].nameSubject,
                   classTeacher: state.subjects![index].classSabject,
