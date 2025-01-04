@@ -98,6 +98,10 @@ class _LogInViewState extends State<LogInView> {
                               HomeView.id,
                               (route) => false,
                             );
+                          } else if (state is LoadingState) {
+                            const Center(
+                              child: CircularProgressIndicator(),
+                            );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 showSnackBar(context, 'كلمة السر خاطئة'));

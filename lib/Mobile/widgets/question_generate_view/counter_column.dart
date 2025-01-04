@@ -1,15 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/font_style.dart';
+import 'package:userqueize/utils/responsive_text.dart';
 
 class CounterColumn extends StatefulWidget {
-  const CounterColumn(
-      {super.key,
-      required this.title,
-      required this.counterValue,
-      required this.maxValue,
-      });
+  const CounterColumn({
+    super.key,
+    required this.title,
+    required this.counterValue,
+    required this.maxValue,
+  });
   final String title;
   final int counterValue;
   final int maxValue;
@@ -20,14 +19,18 @@ class CounterColumn extends StatefulWidget {
 
 class _CounterColumnState extends State<CounterColumn> {
   int currentValue = 0;
-  
+
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(widget.title, style: FontStyleApp.orangeBold20),
+        Text(
+          widget.title,
+          style: FontStyleApp.orangeBold20.copyWith(
+            fontSize: getResponsiveText(context, 18),
+          ),
+        ),
         const SizedBox(height: 12),
         Container(
           decoration: BoxDecoration(
@@ -59,9 +62,11 @@ class _CounterColumnState extends State<CounterColumn> {
               ),
               Text(
                 '$currentValue',
-                style: const TextStyle(
-                  color: Colors.orange,
-                  fontSize: 32,
+                style: FontStyleApp.orangeBold25.copyWith(
+                  fontSize: getResponsiveText(
+                    context,
+                    25,
+                  ),
                 ),
               ),
               IconButton(
@@ -73,7 +78,6 @@ class _CounterColumnState extends State<CounterColumn> {
                   setState(() {
                     if (currentValue <= widget.maxValue) {
                       currentValue += widget.counterValue;
-                      log(currentValue.toString());
                     }
                   });
                 },
