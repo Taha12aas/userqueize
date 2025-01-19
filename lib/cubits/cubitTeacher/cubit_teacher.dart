@@ -9,11 +9,11 @@ class CubitTeacher extends Cubit<QuesAppStatus> {
   CubitTeacher() : super(LoadingState());
 
   static late Teacher user;
+  static late List<Map<String, dynamic>> result;
   static int? verificationCode;
   void fetchUsers(int teacherNumber) async {
     try {
-      List<Map<String, dynamic>> result =
-          await TeacherService.fetchTeacher(teacherNumber);
+      result = await TeacherService.fetchTeacher(teacherNumber);
       user = Teacher.fromJson(result[0]);
       log('------------Fetch User Data-----------------');
       emit(SuccessState(user: user));

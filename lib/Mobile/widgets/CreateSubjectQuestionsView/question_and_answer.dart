@@ -93,7 +93,7 @@ class _QuestionAndAnswerState extends State<QuestionAndAnswer> {
                           },
                         ),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
               ],
             ),
           ),
