@@ -30,7 +30,7 @@ class SubjectsGenerated {
     return {
       'season_subject': seasonSubject,
       'name_sabject': nameSubject,
-      'course_date': coursesDate,
+      'courses_date': coursesDate,
       'courses': courses,
       'name_teacher': nameTeacher,
       'class': classSabject,

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/CreateSubjectQuestionsView/question_and_answer.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/info_text_field.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
+import 'package:userqueize/models/subject.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -60,12 +64,23 @@ class _CreateSubjectQuestionsViewState
               height: 10,
             ),
             QuestionAndAnswer(
-              data: fullQuestionTex,
+              data: fullQuestionTex[0],
               isIcon: true,
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed: () {
+                BlocProvider.of<CubitSubject>(context).addCourse(
+                  SubjectsGenerated(
+                    nameSubject: fullQuestionTex[1][1],
+                    coursesDate: DateTime.now().year.toString(),
+                    courses: fullQuestionTex[0],
+                    nameTeacher: CubitTeacher.user.name,
+                    classSabject: fullQuestionTex[1][0],
+                    seasonSubject:
+                        DateTime.now().month < DateTime.march ? 'اول' : 'ثاني',
+                  ),
+                );
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   HomeView.id,

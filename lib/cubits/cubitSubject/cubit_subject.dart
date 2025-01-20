@@ -9,6 +9,7 @@ class CubitSubject extends Cubit<CubitSubjectStatus> {
   CubitSubject() : super(LoadingStatee());
   static List<SubjectsGenerated> subjectsCount = [];
   void fetchSubject(String teacherName) async {
+    subjectsCount.clear();
     try {
       List<Map<String, dynamic>> result =
           await SubjectService.fetchSubject(teacherName);
@@ -19,6 +20,15 @@ class CubitSubject extends Cubit<CubitSubjectStatus> {
       emit(SuccessStatee(subjects: subjectsCount));
     } catch (e) {
       log(e.toString());
+      emit(FaliureStatee());
+    }
+  }
+
+  void addCourse(SubjectsGenerated subject) {
+    try {
+      SubjectService.addCourse(subject);
+      emit(SuccessStatee());
+    } catch (e) {
       emit(FaliureStatee());
     }
   }

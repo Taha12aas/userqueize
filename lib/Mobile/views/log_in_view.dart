@@ -90,7 +90,11 @@ class _LogInViewState extends State<LogInView> {
                         label1: 'ليس لديك حساب ؟',
                         label2: 'اضغط هنا لانشاء حساب',
                         onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(context, RegisterView.id, (route) => false,);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RegisterView.id,
+                            (route) => false,
+                          );
                         },
                       ),
                       const Spacer(),
@@ -100,12 +104,11 @@ class _LogInViewState extends State<LogInView> {
                             isActiv = false;
                             setState(() {});
                             ScaffoldMessenger.of(context).showSnackBar(
-                                showSnackBar(context, 'رقم الهاتف خاطئ',Icons.error));
+                                showSnackBar(
+                                    context, 'رقم الهاتف خاطئ', Icons.error));
                           } else {
                             if (state is SuccessState) {
                               if (state.user!.password == password) {
-                                BlocProvider.of<CubitSubject>(context)
-                                    .fetchSubject(state.user!.name);
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   HomeView.id,
@@ -115,7 +118,8 @@ class _LogInViewState extends State<LogInView> {
                                 isActiv = false;
                                 setState(() {});
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    showSnackBar(context, 'كلمة السر خاطئة',Icons.error));
+                                    showSnackBar(context, 'كلمة السر خاطئة',
+                                        Icons.error));
                               }
                             }
                           }

@@ -4,6 +4,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/home_view/list_view_item_card_subject.dart';
 import 'package:userqueize/Mobile/widgets/home_view/main_sections.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/utils/constants.dart';
@@ -26,6 +27,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     BlocProvider.of<CubitTeacher>(context).fetchUsers(CubitTeacher.user.phone);
+    BlocProvider.of<CubitSubject>(context).fetchSubject(CubitTeacher.user.name);
     super.initState();
   }
 
@@ -135,11 +137,14 @@ class _HomeViewState extends State<HomeView> {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 Text(
+                Text(
                   '😉 تأكد من اتصالك بالانترنت ',
-                  style: FontStyleApp.orangeBold25.copyWith(fontSize: getResponsiveText(context, 25)),
+                  style: FontStyleApp.orangeBold25
+                      .copyWith(fontSize: getResponsiveText(context, 25)),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * .5,
                   child: CustomButton(

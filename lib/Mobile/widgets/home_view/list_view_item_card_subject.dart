@@ -18,24 +18,25 @@ class ListViewItemCardSubject extends StatelessWidget {
         if (state is SuccessStatee) {
           return Expanded(
               child: ListView.builder(
-            itemCount: state.subjects!.length,
+            itemCount: CubitSubject.subjectsCount.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: CardSubjects(
-                  courseDate: state.subjects![index].coursesDate,
-                  seasonSubject: state.subjects![index].seasonSubject,
+                  courseDate: CubitSubject.subjectsCount[index].coursesDate,
+                  seasonSubject:
+                      CubitSubject.subjectsCount[index].seasonSubject,
                   onTap: () {
                     Navigator.pushNamed(context, ReadingGeneratedQuestions.id,
                         arguments: [
-                          state.subjects![index].nameSubject,
-                          state.subjects![index].classSabject,
-                          state.subjects![index].coursesDate,
-                          state.subjects![index].seasonSubject,
+                          CubitSubject.subjectsCount[index].nameSubject,
+                          CubitSubject.subjectsCount[index].classSabject,
+                          CubitSubject.subjectsCount[index].coursesDate,
+                          CubitSubject.subjectsCount[index].seasonSubject,
                         ]);
                   },
-                  subject: state.subjects![index].nameSubject,
-                  classTeacher: state.subjects![index].classSabject,
+                  subject: CubitSubject.subjectsCount[index].nameSubject,
+                  classTeacher: CubitSubject.subjectsCount[index].classSabject,
                 ),
               );
             },
