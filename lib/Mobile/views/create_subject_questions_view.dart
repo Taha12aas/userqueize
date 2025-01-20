@@ -35,28 +35,10 @@ class _CreateSubjectQuestionsViewState
     super.dispose();
   }
 
-  List<dynamic> fullQuestionText = [
-    {
-      "question": "ما هو الذكاء الاصطناعي؟",
-      "answers": [
-        "القدرات الذهنية البشرية",
-        "الذكاء الذي تبديه الآلات",
-        "أنماط العمل الحاسوبي",
-        "الآلات الذكية"
-      ]
-    },
-    {
-      "question": "من هو الباحث الذي وضع مصطلح الذكاء الاصطناعي؟",
-      "answers": [
-        "جون مكارثي",
-        "إلنور أوستروم",
-        "إدجار كود",
-        "هنري فوكس تالبوت"
-      ]
-    },
-  ];
+  late List fullQuestionTex;
   @override
   Widget build(BuildContext context) {
+    fullQuestionTex = ModalRoute.of(context)!.settings.arguments as List;
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -78,7 +60,7 @@ class _CreateSubjectQuestionsViewState
               height: 10,
             ),
             QuestionAndAnswer(
-              data: fullQuestionText,
+              data: fullQuestionTex,
               isIcon: true,
             ),
             const SizedBox(height: 20),
@@ -206,7 +188,7 @@ class _CreateSubjectQuestionsViewState
                       onPressed: () {
                         setState(() {
                           if (globalKey.currentState!.validate()) {
-                            fullQuestionText.add({
+                            fullQuestionTex.add({
                               'question': questionController.text,
                               'answers': [
                                 answerOneController.text,

@@ -121,7 +121,7 @@ class _RegisterViewState extends State<RegisterView> {
                               setState(() {});
                               ScaffoldMessenger.of(context).showSnackBar(
                                   showSnackBar(
-                                      context, 'هذا الحساب موجود مسبقا'));
+                                      context, 'هذا الحساب موجود مسبقا',Icons.error));
                             }
                           }
                         },

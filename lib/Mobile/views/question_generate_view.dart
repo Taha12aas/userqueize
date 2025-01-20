@@ -1,18 +1,37 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subject.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/counter_column.dart';
+import 'package:userqueize/Service/generator_service.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
+import 'package:userqueize/utils/show_snack_bar.dart';
 
-class QuestionGenerateView extends StatelessWidget {
+class QuestionGenerateView extends StatefulWidget {
   const QuestionGenerateView({super.key});
   static String id = 'QuestionGenerateView';
 
+  @override
+  State<QuestionGenerateView> createState() => _QuestionGenerateViewState();
+}
+
+class _QuestionGenerateViewState extends State<QuestionGenerateView> {
+  File? file;
+  String responseMessage = '';
+  bool isLoading = false;
+  ValueNotifier<int> qustionsCount = ValueNotifier(5);
+  ValueNotifier<int> answersCount = ValueNotifier(2);
+  ValueNotifier<int> trueOrFalseCount = ValueNotifier(0);
+  ValueNotifier<int> frequentlyQuestionsCount = ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
     List subjectName = ModalRoute.of(context)!.settings.arguments as List;
@@ -33,23 +52,45 @@ class QuestionGenerateView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 16),
-              const ContainerFileUpload(),
+              ContainerFileUpload(
+                onTap: () async {
+                  FilePickerResult? result =
+                      await FilePicker.platform.pickFiles(
+                    allowMultiple: false,
+                    type: FileType.custom,
+                    allowedExtensions: ['pdf', 'docx'],
+                  );
+                  if (result != null) {
+                    setState(() {
+                      file = File(result.files.single.path!);
+                    });
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      showSnackBar(context, 'الرجاء اختيار ملف', Icons.error),
+                    );
+                  }
+                },
+              ),
               const SizedBox(height: 25),
-              const Padding(
-                padding: EdgeInsets.only(right: 12),
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Expanded(
                       child: CounterColumn(
-                        maxValue: 4,
+                        minValue: 2,
+                        valueNotifier: answersCount,
+                        maxValue: 3,
                         title: ': عدد الخيارات',
                         counterValue: 1,
                       ),
                     ),
                     Expanded(
                       child: CounterColumn(
-                        maxValue: 60,
+                        minValue: 5,
+                        valueNotifier: qustionsCount,
+                        maxValue: 55,
                         title: ': عدد الاسئلة',
                         counterValue: 5,
                       ),
@@ -58,21 +99,25 @@ class QuestionGenerateView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 17),
-              const Padding(
-                padding: EdgeInsets.only(right: 22),
+              Padding(
+                padding: const EdgeInsets.only(right: 22),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Expanded(
                       child: CounterColumn(
+                        minValue: 0,
+                        valueNotifier: trueOrFalseCount,
                         title: ':  اسئلة الصح والخطأ',
                         counterValue: 1,
-                        maxValue: 30,
+                        maxValue: 29,
                       ),
                     ),
                     Expanded(
                       child: CounterColumn(
-                        maxValue: 30,
+                        minValue: 0,
+                        valueNotifier: frequentlyQuestionsCount,
+                        maxValue: 28,
                         title: ': الاسئلة المكررة',
                         counterValue: 2,
                       ),
@@ -101,8 +146,47 @@ class QuestionGenerateView extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
               CustomButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, CreateSubjectQuestionsView.id);
+                onPressed: () async {
+                  if (file != null) {
+                    setState(() => isLoading = true);
+                    responseMessage =
+                        await GeneratorService.uploadAndSendMessage(
+                      file!,
+                      '''قم بتوليد ${qustionsCount.value} أسئلة متعددة الخيارات (كل سؤال يحتوي على ${answersCount.value} خيارات) ومن ضمنها (${trueOrFalseCount.value}) أسئلة صح أو خطأ من الملف التالي بصيغة التالية فقط وبدون أي إضافات وبدون ذكر اسئلة تخص الصفحات:  
+
+للأسئلة متعددة الخيارات:  
+[
+  {
+      "question": "نص السؤال هنا",
+      "answers": [
+          "الإجابة 1",
+          "الإجابة 2",
+          "...",
+          "الإجابة ${answersCount.value}"
+      ]
+  }
+
+  للأسئلة صح أو خطأ:  
+  {
+      "question": "نص السؤال هنا",
+      "answers": [
+          "صح",
+          "خطأ"
+      ]
+  }
+]
+''',
+                    );
+                    setState(() => isLoading = false);
+                    log(responseMessage);
+                    Navigator.pushNamed(context, CreateSubjectQuestionsView.id,
+                        arguments: jsonDecode(responseMessage));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      showSnackBar(
+                          context, 'يرجى اختيار ملف وإدخال رسالة', Icons.error),
+                    );
+                  }
                 },
                 label: 'انشاء اسئلة',
                 iconData: Icons.generating_tokens_outlined,

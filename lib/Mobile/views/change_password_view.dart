@@ -126,7 +126,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   showSnackBar(
-                                      context, 'كلمة المرور القديمة خاطئة'),
+                                      context, 'كلمة المرور القديمة خاطئة',Icons.error),
                                 );
                               }
                             }

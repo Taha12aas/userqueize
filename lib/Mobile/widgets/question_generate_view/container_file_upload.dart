@@ -12,28 +12,15 @@ import 'package:userqueize/utils/show_snack_bar.dart';
 class ContainerFileUpload extends StatelessWidget {
   const ContainerFileUpload({
     super.key,
+    required this.onTap,
   });
-
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenHeight = MediaQuery.sizeOf(context).height;
-
     return Bounceable(
-      onTap: () async {
-        FilePickerResult? result = await FilePicker.platform.pickFiles(
-          allowMultiple: true,
-          type: FileType.custom,
-          allowedExtensions: ['pdf'],
-        );
-        if (result != null) {
-          // ignore: unused_local_variable
-          File file = File(result.files.single.path!);
-        } else {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(showSnackBar(context, 'الرجاء اختيار ملف'));
-        }
-      },
+      onTap: onTap,
       child: Container(
         width: screenWidth * 0.9,
         height: screenHeight * 0.27,
@@ -60,7 +47,7 @@ class ContainerFileUpload extends StatelessWidget {
             const SizedBox(height: 20),
             Flexible(
               child: TextButton(
-                onPressed: () {},
+                onPressed: onTap,
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.black,
                   padding:

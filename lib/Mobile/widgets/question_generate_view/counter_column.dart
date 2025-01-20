@@ -2,90 +2,87 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
-class CounterColumn extends StatefulWidget {
+class CounterColumn extends StatelessWidget {
   const CounterColumn({
     super.key,
     required this.title,
     required this.counterValue,
     required this.maxValue,
+    required this.valueNotifier, required this.minValue,
   });
   final String title;
   final int counterValue;
   final int maxValue;
-
-  @override
-  State<CounterColumn> createState() => _CounterColumnState();
-}
-
-class _CounterColumnState extends State<CounterColumn> {
-  int currentValue = 0;
+  final int minValue;
+  final ValueNotifier<int> valueNotifier;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          widget.title,
-          style: FontStyleApp.orangeBold20.copyWith(
-            fontSize: getResponsiveText(context, 18),
-          ),
-        ),
-        const SizedBox(height: 12),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.orange,
-              width: 2,
+    return ValueListenableBuilder(
+      valueListenable: valueNotifier,
+      builder: (context, value, child) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: FontStyleApp.orangeBold20.copyWith(
+                fontSize: getResponsiveText(context, 18),
+              ),
             ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_drop_down,
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
                   color: Colors.orange,
+                  width: 2,
                 ),
-                onPressed: () {
-                  setState(() {
-                    if (currentValue > 0) {
-                      currentValue -= widget.counterValue;
-                    }
-                  });
-                },
+                borderRadius: BorderRadius.circular(8),
               ),
-              Text(
-                '$currentValue',
-                style: FontStyleApp.orangeBold25.copyWith(
-                  fontSize: getResponsiveText(
-                    context,
-                    25,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.orange,
+                    ),
+                    onPressed: () {
+                      if (valueNotifier.value > minValue) {
+                        valueNotifier.value -= counterValue;
+                      }
+                    },
                   ),
-                ),
+                  Text(
+                    '${valueNotifier.value}',
+                    style: FontStyleApp.orangeBold25.copyWith(
+                      fontSize: getResponsiveText(
+                        context,
+                        25,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_drop_up,
+                      color: Colors.orange,
+                    ),
+                    onPressed: () {
+                      if (valueNotifier.value <= maxValue) {
+                        valueNotifier.value += counterValue;
+                      }
+                    },
+                  ),
+                ],
               ),
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_drop_up,
-                  color: Colors.orange,
-                ),
-                onPressed: () {
-                  setState(() {
-                    if (currentValue <= widget.maxValue) {
-                      currentValue += widget.counterValue;
-                    }
-                  });
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

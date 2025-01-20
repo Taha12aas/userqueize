@@ -100,7 +100,7 @@ class _LogInViewState extends State<LogInView> {
                             isActiv = false;
                             setState(() {});
                             ScaffoldMessenger.of(context).showSnackBar(
-                                showSnackBar(context, 'رقم الهاتف خاطئ'));
+                                showSnackBar(context, 'رقم الهاتف خاطئ',Icons.error));
                           } else {
                             if (state is SuccessState) {
                               if (state.user!.password == password) {
@@ -115,7 +115,7 @@ class _LogInViewState extends State<LogInView> {
                                 isActiv = false;
                                 setState(() {});
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    showSnackBar(context, 'كلمة السر خاطئة'));
+                                    showSnackBar(context, 'كلمة السر خاطئة',Icons.error));
                               }
                             }
                           }

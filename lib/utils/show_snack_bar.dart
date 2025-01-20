@@ -3,7 +3,7 @@ import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
-SnackBar showSnackBar(BuildContext context, String content) {
+SnackBar showSnackBar(BuildContext context, String content, IconData icon) {
   return SnackBar(
     padding: const EdgeInsets.symmetric(vertical: 6),
     duration: const Duration(seconds: 2),
@@ -19,10 +19,10 @@ SnackBar showSnackBar(BuildContext context, String content) {
         const SizedBox(
           width: 10,
         ),
-        const CircleAvatar(
-          backgroundColor: Colors.white,
+        CircleAvatar(
+          backgroundColor: Colors.transparent,
           child: Icon(
-            Icons.check,
+            icon,
             color: kOrangeColor,
           ),
         ),

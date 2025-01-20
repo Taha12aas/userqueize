@@ -62,19 +62,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
               focusNode: _focusNode,
               appContext: context,
               onCompleted: (enteredCode) {
-                if (_pinController.text.length == 4 &&
-                    _pinController.text ==
-                        CubitTeacher.verificationCode.toString()) {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, HomeView.id, (route) => false);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    showSnackBar(context, 'تمت العملبة بنجاح'),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    showSnackBar(context, 'من فضلك أدخل رمز التحقق بالكامل'),
-                  );
-                }
+                checkVerificationCode(context);
               },
             );
           },
@@ -86,19 +74,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
             width: 150,
             child: CustomButton(
               onPressed: () {
-                if (_pinController.text.length == 4 &&
-                    _pinController.text ==
-                        CubitTeacher.verificationCode.toString()) {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, HomeView.id, (route) => false);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    showSnackBar(context, 'تمت العملبة بنجاح'),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    showSnackBar(context, 'من فضلك أدخل رمز التحقق بالكامل'),
-                  );
-                }
+                checkVerificationCode(context);
               },
               label: 'موافق',
               iconData: Icons.check,
@@ -107,5 +83,19 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         ),
       ],
     );
+  }
+
+  void checkVerificationCode(BuildContext context) {
+    if (_pinController.text.length == 4 &&
+        _pinController.text == CubitTeacher.verificationCode.toString()) {
+      Navigator.pushNamedAndRemoveUntil(context, HomeView.id, (route) => false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        showSnackBar(context, 'تمت العملبة بنجاح', Icons.check),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        showSnackBar(context, 'من فضلك أدخل رمز التحقق بالكامل', Icons.error),
+      );
+    }
   }
 }
