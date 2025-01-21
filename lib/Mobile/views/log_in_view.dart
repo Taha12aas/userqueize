@@ -10,7 +10,6 @@ import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_app.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/logo_image.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/register_or_log_in.dart';
-import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
@@ -109,6 +108,8 @@ class _LogInViewState extends State<LogInView> {
                           } else {
                             if (state is SuccessState) {
                               if (state.user!.password == password) {
+                                // BlocProvider.of<CubitSubject>(context)
+                                //     .fetchSubject(CubitTeacher.user.name);
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   HomeView.id,

@@ -81,6 +81,7 @@ class _CreateSubjectQuestionsViewState
                         DateTime.now().month < DateTime.march ? 'اول' : 'ثاني',
                   ),
                 );
+                CubitSubject.subjectsCount.clear();
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   HomeView.id,

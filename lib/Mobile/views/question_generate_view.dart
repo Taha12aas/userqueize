@@ -65,7 +65,9 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                       file = File(result.files.single.path!);
                     });
                   } else {
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
+                      // ignore: use_build_context_synchronously
                       showSnackBar(context, 'الرجاء اختيار ملف', Icons.error),
                     );
                   }
@@ -179,6 +181,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                     );
                     setState(() => isLoading = false);
                     log(responseMessage);
+                    // ignore: use_build_context_synchronously
                     Navigator.pushNamed(context, CreateSubjectQuestionsView.id,
                         arguments: [jsonDecode(responseMessage),subjectName]);
                   } else {
