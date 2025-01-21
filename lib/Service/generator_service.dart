@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class GeneratorService {
-  static String apiKey = 'sec_uWjdLp0J5NRzojgjE8pb4NgU6Xxspdkc'; // مفتاح API
+  static String apiKey = 'sec_uxEykJ1EYvdL7EElabd7Ui3wihCcgfuK';
   static String uploadUrl = 'https://api.chatpdf.com/v1/sources/add-file';
   static String chatUrl = 'https://api.chatpdf.com/v1/chats/message';
 

@@ -183,7 +183,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                     log(responseMessage);
                     // ignore: use_build_context_synchronously
                     Navigator.pushNamed(context, CreateSubjectQuestionsView.id,
-                        arguments: [jsonDecode(responseMessage),subjectName]);
+                        arguments: [jsonDecode(responseMessage), subjectName]);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       showSnackBar(
