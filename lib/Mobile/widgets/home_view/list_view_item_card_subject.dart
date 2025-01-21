@@ -33,6 +33,7 @@ class ListViewItemCardSubject extends StatelessWidget {
                           CubitSubject.subjectsCount[index].classSabject,
                           CubitSubject.subjectsCount[index].coursesDate,
                           CubitSubject.subjectsCount[index].seasonSubject,
+                          CubitSubject.subjectsCount[index].generateTime
                         ]);
                   },
                   subject: CubitSubject.subjectsCount[index].nameSubject,

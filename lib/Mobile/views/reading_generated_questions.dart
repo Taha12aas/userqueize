@@ -21,7 +21,8 @@ class _ReadingGeneratedQuestionsState extends State<ReadingGeneratedQuestions> {
       if (subjectInfo[0] == CubitSubject.subjectsCount[i].nameSubject &&
           subjectInfo[1] == CubitSubject.subjectsCount[i].classSabject &&
           subjectInfo[2] == CubitSubject.subjectsCount[i].coursesDate &&
-          subjectInfo[3] == CubitSubject.subjectsCount[i].seasonSubject) {
+          subjectInfo[3] == CubitSubject.subjectsCount[i].seasonSubject &&
+          subjectInfo[4] == CubitSubject.subjectsCount[i].generateTime) {
         course.addAll(CubitSubject.subjectsCount[i].courses);
       }
     }

@@ -6,6 +6,7 @@ class SubjectsGenerated {
   final String nameTeacher;
   final String classSabject;
   final String seasonSubject;
+  final String generateTime;
 
   SubjectsGenerated(
       {this.id,
@@ -14,7 +15,8 @@ class SubjectsGenerated {
       required this.courses,
       required this.nameTeacher,
       required this.classSabject,
-      required this.seasonSubject});
+      required this.seasonSubject,
+      required this.generateTime});
 
   factory SubjectsGenerated.fromJson(Map<String, dynamic> json) {
     return SubjectsGenerated(
@@ -23,7 +25,8 @@ class SubjectsGenerated {
         coursesDate: json['courses_date'],
         courses: json['courses'],
         nameTeacher: json['name_teacher'],
-        classSabject: json['class']);
+        classSabject: json['class'],
+        generateTime: json['generate_time']);
   }
 
   Map<String, dynamic> toJson() {
@@ -34,6 +37,7 @@ class SubjectsGenerated {
       'courses': courses,
       'name_teacher': nameTeacher,
       'class': classSabject,
+      'generate_time':generateTime
     };
   }
 }

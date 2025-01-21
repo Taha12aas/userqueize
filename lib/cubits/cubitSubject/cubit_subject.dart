@@ -16,7 +16,11 @@ class CubitSubject extends Cubit<CubitSubjectStatus> {
         subjectsCount.add(SubjectsGenerated.fromJson(result[i]));
       }
       log('--------------Subjects---------------');
-      emit(SuccessStatee(subjects: subjectsCount));
+      if (subjectsCount.isEmpty) {
+        emit(FaliureStatee());
+      } else {
+        emit(SuccessStatee(subjects: subjectsCount));
+      }
     } catch (e) {
       log(e.toString());
       emit(FaliureStatee());

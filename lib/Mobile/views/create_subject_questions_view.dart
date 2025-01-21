@@ -79,6 +79,7 @@ class _CreateSubjectQuestionsViewState
                     classSabject: fullQuestionTex[1][0],
                     seasonSubject:
                         DateTime.now().month < DateTime.march ? 'اول' : 'ثاني',
+                    generateTime: DateTime.now().toString(),
                   ),
                 );
                 CubitSubject.subjectsCount.clear();
