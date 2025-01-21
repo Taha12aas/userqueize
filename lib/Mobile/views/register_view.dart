@@ -127,7 +127,7 @@ class _RegisterViewState extends State<RegisterView> {
                         },
                         child: BlocBuilder<CubitTeacher, QuesAppStatus>(
                           builder: (context, state) {
-                            return CustomButton(
+                            return CustomButtonIcon(
                               iconData: Icons.login,
                               label: 'انشاء حساب',
                               onPressed: () {

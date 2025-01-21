@@ -11,6 +11,8 @@ import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_
 import 'package:userqueize/Mobile/widgets/question_generate_view/counter_column.dart';
 import 'package:userqueize/Service/generator_service.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
+import 'package:userqueize/utils/constants.dart';
+import 'package:userqueize/utils/custom_animated_loader.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
@@ -147,10 +149,21 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
-              CustomButton(
+              CustomButtonIcon(
                 onPressed: () async {
                   if (file != null) {
                     setState(() => isLoading = true);
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return const Center(
+                          child: CustomAnimatedLoader(
+                            color: kOrangeColor,
+                          ),
+                        );
+                      },
+                    );
                     responseMessage =
                         await GeneratorService.uploadAndSendMessage(
                       file!,

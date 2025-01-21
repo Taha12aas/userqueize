@@ -3,8 +3,8 @@ import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+class CustomButtonIcon extends StatelessWidget {
+  const CustomButtonIcon({
     super.key,
     required this.onPressed,
     required this.label,

@@ -72,7 +72,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         Center(
           child: SizedBox(
             width: 150,
-            child: CustomButton(
+            child: CustomButtonIcon(
               onPressed: () {
                 checkVerificationCode(context);
               },

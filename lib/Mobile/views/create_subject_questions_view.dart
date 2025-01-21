@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/CreateSubjectQuestionsView/question_and_answer.dart';
-import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/info_text_field.dart';
+import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/models/subject.dart';
 import 'package:userqueize/utils/constants.dart';
+import 'package:userqueize/utils/custom_animated_loader.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 
@@ -68,32 +69,44 @@ class _CreateSubjectQuestionsViewState
               isIcon: true,
             ),
             const SizedBox(height: 20),
-            ElevatedButton.icon(
-              onPressed: () {
-                BlocProvider.of<CubitSubject>(context).addCourse(
-                  SubjectsGenerated(
-                    nameSubject: fullQuestionTex[1][1],
-                    coursesDate: DateTime.now().year.toString(),
-                    courses: fullQuestionTex[0],
-                    nameTeacher: CubitTeacher.user.name,
-                    classSabject: fullQuestionTex[1][0],
-                    seasonSubject:
-                        DateTime.now().month < DateTime.march ? 'اول' : 'ثاني',
-                    generateTime: DateTime.now().toString(),
-                  ),
-                );
-                CubitSubject.subjectsCount.clear();
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  HomeView.id,
-                  (route) => false,
-                );
-              },
-              icon: const Icon(Icons.save),
-              label: const Text('حفظ'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width*.5,
+              child: CustomButtonIcon(
+                iconData: Icons.save_alt,
+                label: 'حفظ',
+                onPressed: () async {
+                  BlocProvider.of<CubitSubject>(context).addCourse(
+                    SubjectsGenerated(
+                      nameSubject: fullQuestionTex[1][1],
+                      coursesDate: DateTime.now().year.toString(),
+                      courses: fullQuestionTex[0],
+                      nameTeacher: CubitTeacher.user.name,
+                      classSabject: fullQuestionTex[1][0],
+                      seasonSubject:
+                          DateTime.now().month < DateTime.march ? 'اول' : 'ثاني',
+                      generateTime: DateTime.now().toString(),
+                    ),
+                  );
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return const Center(
+                        child: CustomAnimatedLoader(
+                          color: kWhite,
+                        ),
+                      );
+                    },
+                  );
+                  await Future.delayed(const Duration(seconds: 4));
+                  CubitSubject.subjectsCount.clear();
+                  Navigator.pushNamedAndRemoveUntil(
+                    // ignore: use_build_context_synchronously
+                    context,
+                    HomeView.id,
+                    (route) => false,
+                  );
+                },
               ),
             ),
             const SizedBox(
@@ -200,8 +213,9 @@ class _CreateSubjectQuestionsViewState
                     SizedBox(
                       height: height * 0.04,
                     ),
-                    CustomButton(
-                      title: 'اضافة سؤال',
+                    CustomButtonIcon(
+                      iconData: Icons.add_box_outlined,
+                      label: 'اضافة سؤال',
                       onPressed: () {
                         setState(() {
                           if (globalKey.currentState!.validate()) {

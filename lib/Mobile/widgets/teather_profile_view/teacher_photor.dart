@@ -19,14 +19,13 @@ class TeacherPhoto extends StatefulWidget {
 }
 
 class _TeacherPhotoState extends State<TeacherPhoto> {
-  File? _selectedImage; // لتخزين الصورة المختارة
+  File? _selectedImage;
 
-  // دالة لاختيار الصورة
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? pickedFile = await picker.pickImage(
       source: ImageSource
-          .gallery, // يمكن تغيير المصدر إلى الكاميرا باستخدام ImageSource.camera
+          .gallery,
     );
 
     if (pickedFile != null) {
@@ -52,7 +51,7 @@ class _TeacherPhotoState extends State<TeacherPhoto> {
                 if (state is SuccessState) {
                   _pickImage();
                 }
-              }, // استدعاء دالة اختيار الصورة
+              },
               icon: const Icon(Icons.add_a_photo),
               color: Colors.orange,
             );

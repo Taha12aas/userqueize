@@ -127,7 +127,7 @@ class _LogInViewState extends State<LogInView> {
                         },
                         child: BlocBuilder<CubitTeacher, QuesAppStatus>(
                           builder: (context, state) {
-                            return CustomButton(
+                            return CustomButtonIcon(
                               iconData: Icons.login,
                               label: 'تسجيل الدخول',
                               onPressed: () {
