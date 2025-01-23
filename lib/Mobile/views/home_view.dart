@@ -116,20 +116,22 @@ class _HomeViewState extends State<HomeView> {
                         color: Colors.black.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(Icons.trending_up, color: kOrange),
-                          SizedBox(width: 8),
-                          Text(
-                            "أحدث النشاطات",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                      child: FittedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(Icons.trending_up, color: kOrange),
+                            const SizedBox(width: 8),
+                            Text(
+                              "أحدث النشاطات",
+                              style: TextStyle(
+                                fontSize: getResponsiveText(context, 18),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
