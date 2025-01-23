@@ -127,7 +127,7 @@ class _HomeViewState extends State<HomeView> {
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(
-                color: kOrangeColor,
+                color: kOrange,
               ),
             ),
           );

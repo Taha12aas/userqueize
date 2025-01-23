@@ -159,7 +159,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                       builder: (BuildContext context) {
                         return const Center(
                           child: CustomAnimatedLoader(
-                            color: kOrangeColor,
+                            color: kOrange,
                           ),
                         );
                       },

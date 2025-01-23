@@ -20,7 +20,7 @@ class YearQuestions extends StatelessWidget {
     return Container(
       height: MediaQuery.sizeOf(context).height * .06,
       decoration: BoxDecoration(
-        color: kAshenColor,
+        color: kAshen,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(

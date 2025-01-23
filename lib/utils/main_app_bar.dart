@@ -12,7 +12,7 @@ AppBar mainAppBar(String title, BuildContext context) {
       borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
     ),
-    backgroundColor: kAshenColor,
+    backgroundColor: kAshen,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -30,7 +30,7 @@ AppBar mainAppBar(String title, BuildContext context) {
                 );
               } else if (state is LoadingState) {
                 return const CircularProgressIndicator(
-                  color: kOrangeColor,
+                  color: kOrange,
                 );
               } else {
                 return const CircleAvatar(

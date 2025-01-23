@@ -29,8 +29,19 @@ class CardSubjects extends StatelessWidget {
         width: double.infinity,
         height: screenHeight * 0.12,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 5.0,
+              offset: const Offset(3, 3),
+            ),
+          ],
+          border: Border.all(
+            color: kOrangeBlackColor,
+            width: 0.5,
+          ),
           borderRadius: BorderRadius.circular(12),
-          color: kAshenColor,
+          color: kAshen,
         ),
         child: Row(
           children: [

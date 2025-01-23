@@ -11,7 +11,7 @@ AppBar customAppBar(String title, BuildContext context) {
         bottomRight: Radius.circular(16),
       ),
     ),
-    backgroundColor: kAshenColor,
+    backgroundColor: kAshen,
     title: Text(
       title,
       style: FontStyleApp.boldWhite15.copyWith(fontWeight: FontWeight.bold),

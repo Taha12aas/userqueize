@@ -11,18 +11,42 @@ class CustomButton extends StatelessWidget {
   });
   final String title;
   final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-          backgroundColor: kOrangeColor,
-          minimumSize: Size(MediaQuery.of(context).size.width * 0.96,
-              MediaQuery.of(context).size.height * 0.057)),
-      child: Text(
-        title,
-        style: FontStyleApp.boldWhite15
-            .copyWith(fontSize: getResponsiveText(context, 20)),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: kOrangeBlackColor,
+          width: 0.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 5.0,
+            offset: const Offset(3, 3),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kOrange,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          minimumSize: Size(
+            MediaQuery.of(context).size.width * 0.96,
+            MediaQuery.of(context).size.height * 0.057,
+          ),
+        ),
+        child: Text(
+          title,
+          style: FontStyleApp.boldWhite15.copyWith(
+            fontSize: getResponsiveText(context, 20),
+          ),
+        ),
       ),
     );
   }

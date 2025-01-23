@@ -25,7 +25,18 @@ class TeacherProfileCard extends StatelessWidget {
         width: screenWidth * 0.65,
         padding: EdgeInsets.symmetric(vertical: screenWidth * 0.001),
         decoration: BoxDecoration(
-          color: kAshenColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 5.0,
+              offset: const Offset(3, 3),
+            ),
+          ],
+          border: Border.all(
+            color: kOrangeBlackColor,
+            width: 0.5,
+          ),
+          color: kAshen,
           borderRadius: BorderRadius.circular(60),
         ),
         child: Row(

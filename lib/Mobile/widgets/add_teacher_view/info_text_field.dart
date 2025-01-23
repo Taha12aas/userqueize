@@ -10,7 +10,8 @@ class InfoTextField extends StatelessWidget {
     required this.iconData,
     this.keyboardType = false,
     this.validator,
-    this.initialValue, this.controller,
+    this.initialValue,
+    this.controller,
   });
   final IconData iconData;
   final bool? keyboardType;
@@ -34,7 +35,7 @@ class InfoTextField extends StatelessWidget {
         suffixIcon: TextFieldIconS(iconData: iconData),
         enabledBorder: statueBorder(Colors.white),
         disabledBorder: statueBorder(Colors.white),
-        focusedBorder: statueBorder(kOrangeColor),
+        focusedBorder: statueBorder(kOrange),
         errorBorder: statueBorder(Colors.red),
         focusedErrorBorder: statueBorder(Colors.red),
         errorStyle: FontStyleApp.orange15,

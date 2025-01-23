@@ -48,7 +48,7 @@ class _DropdownCheckSubjectState extends State<DropdownCheckSubject> {
             child: Text(
               item,
               textAlign: TextAlign.right,
-              style: const TextStyle(color: kOrangeColor, fontSize: 16),
+              style: const TextStyle(color: kOrange, fontSize: 16),
             ),
           ),
         );

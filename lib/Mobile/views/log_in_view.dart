@@ -36,7 +36,7 @@ class _LogInViewState extends State<LogInView> {
       child: Scaffold(
         body: ModalProgressHUD(
           progressIndicator: const CircularProgressIndicator(
-            color: kOrangeColor,
+            color: kOrange,
           ),
           inAsyncCall: isActiv,
           child: SingleChildScrollView(
@@ -63,7 +63,7 @@ class _LogInViewState extends State<LogInView> {
                               style: ArabicTextStyle(
                                   arabicFont: ArabicFont.aalooBhaijaan,
                                   fontSize: 20,
-                                  color: kOrangeColor),
+                                  color: kOrange),
                             ),
                           ),
                         ],

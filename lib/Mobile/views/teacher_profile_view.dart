@@ -55,7 +55,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                   builder: (context, state) {
                     if (state is LoadingState) {
                       return const CircularProgressIndicator(
-                        color: kOrangeColor,
+                        color: kOrange,
                       );
                     } else if (state is SuccessState) {
                       List<dynamic> classes = state.user!.classesSubjects['صف'];

@@ -12,7 +12,8 @@ class AuthTextField extends StatelessWidget {
     required this.iconData,
     this.obscureText = false,
     this.keyboardType = false,
-    required this.validator, this.initialValue,
+    required this.validator,
+    this.initialValue,
   });
   final String hintText;
   final IconData iconData;
@@ -28,7 +29,8 @@ class AuthTextField extends StatelessWidget {
       valueListenable: obsc,
       child: TextFieldIconS(iconData: iconData),
       builder: (context, value, child) {
-        return TextFormField(initialValue: initialValue,//موقت للحذف
+        return TextFormField(
+          initialValue: initialValue, //موقت للحذف
           validator: validator,
           keyboardType: keyboardType! ? TextInputType.number : null,
           obscureText: obscureText! ? value : obscureText!,
@@ -51,7 +53,7 @@ class AuthTextField extends StatelessWidget {
                 : null,
             enabledBorder: statueBorder(Colors.white),
             disabledBorder: statueBorder(Colors.white),
-            focusedBorder: statueBorder(kOrangeColor),
+            focusedBorder: statueBorder(kOrange),
             errorBorder: statueBorder(Colors.red),
             focusedErrorBorder: statueBorder(Colors.red),
             errorStyle: FontStyleApp.orange15,

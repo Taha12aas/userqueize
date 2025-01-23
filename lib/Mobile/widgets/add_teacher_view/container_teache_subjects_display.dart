@@ -26,7 +26,7 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              color: kOrangeColor,
+              color: kOrange,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

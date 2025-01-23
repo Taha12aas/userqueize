@@ -10,7 +10,6 @@ class CardTeacherSubject extends StatelessWidget {
     required this.subject,
     required this.teacherImag,
     required this.classTeacher,
-   
   });
 
   final void Function() onTap;
@@ -28,7 +27,18 @@ class CardTeacherSubject extends StatelessWidget {
         height: screenHeight * 0.12,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: kAshenColor,
+          color: kAshen,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 5.0,
+              offset: const Offset(3, 3),
+            ),
+          ],
+          border: Border.all(
+            color: kOrangeBlackColor,
+            width: 0.5,
+          ),
         ),
         child: Row(
           children: [

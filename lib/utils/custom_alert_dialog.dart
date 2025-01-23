@@ -25,10 +25,10 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
     return AlertDialog(
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       shape: RoundedRectangleBorder(
-        side: const BorderSide(color: kOrangeColor, width: 2),
+        side: const BorderSide(color: kOrange, width: 2),
         borderRadius: BorderRadius.circular(16),
       ),
-      backgroundColor: kAshenColor,
+      backgroundColor: kAshen,
       title: Text(
         'أدخل رمز التحقق',
         textAlign: TextAlign.center,
@@ -52,9 +52,9 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                 activeFillColor: Colors.white,
                 inactiveFillColor: Colors.transparent,
                 selectedFillColor: Colors.transparent,
-                activeColor: kOrangeColor,
-                inactiveColor: kOrangeColor,
-                selectedColor: kOrangeColor,
+                activeColor: kOrange,
+                inactiveColor: kOrange,
+                selectedColor: kOrange,
               ),
               animationDuration: const Duration(milliseconds: 300),
               controller: _pinController,

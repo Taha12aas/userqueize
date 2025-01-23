@@ -20,11 +20,11 @@ class CustomButtonIcon extends StatelessWidget {
       child: ElevatedButton.icon(
         icon: Icon(
           iconData,
-          color: kOrangeColor,
+          color: kOrange,
         ),
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.orange[50],
-          side: const BorderSide(color: kOrangeColor, width: 2),
+          side: const BorderSide(color: kOrange, width: 2),
           shadowColor: Colors.transparent,
           padding: const EdgeInsets.symmetric(vertical: 16),
           elevation: 0,

@@ -40,7 +40,7 @@ class _RegisterViewState extends State<RegisterView> {
       child: Scaffold(
         body: ModalProgressHUD(
           progressIndicator: const CircularProgressIndicator(
-            color: kOrangeColor,
+            color: kOrange,
           ),
           inAsyncCall: isActiv,
           child: SingleChildScrollView(
@@ -120,8 +120,8 @@ class _RegisterViewState extends State<RegisterView> {
                               isActiv = false;
                               setState(() {});
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  showSnackBar(
-                                      context, 'هذا الحساب موجود مسبقا',Icons.error));
+                                  showSnackBar(context,
+                                      'هذا الحساب موجود مسبقا', Icons.error));
                             }
                           }
                         },

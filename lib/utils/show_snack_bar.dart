@@ -8,7 +8,7 @@ SnackBar showSnackBar(BuildContext context, String content, IconData icon) {
     padding: const EdgeInsets.symmetric(vertical: 6),
     duration: const Duration(seconds: 2),
     shape: const RoundedRectangleBorder(
-      side: BorderSide(color: kOrangeColor),
+      side: BorderSide(color: kOrange),
       borderRadius: BorderRadius.all(
         Radius.circular(20),
       ),
@@ -23,7 +23,7 @@ SnackBar showSnackBar(BuildContext context, String content, IconData icon) {
           backgroundColor: Colors.transparent,
           child: Icon(
             icon,
-            color: kOrangeColor,
+            color: kOrange,
           ),
         ),
         const Spacer(),

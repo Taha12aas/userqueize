@@ -25,7 +25,18 @@ class MainCategoriesSection extends StatelessWidget {
       child: Container(
         width: screenWidth * 0.41,
         decoration: BoxDecoration(
-          color: kAshenColor,
+          color: kAshen,
+          border: Border.all(
+            color: kOrangeBlackColor,
+            width: 1.0,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 5.0,
+              offset: const Offset(3, 3),
+            ),
+          ],
           borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(

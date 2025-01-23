@@ -51,7 +51,7 @@ class _CreateSubjectQuestionsViewState
         backgroundColor: kOrangeBlackColor,
         child: const Icon(
           Icons.add,
-          color: kOrangeColor,
+          color: kOrange,
         ),
         onPressed: () {
           showModalBottomSheetAddQuestion(context, height);
@@ -70,7 +70,7 @@ class _CreateSubjectQuestionsViewState
             ),
             const SizedBox(height: 20),
             SizedBox(
-              width: MediaQuery.sizeOf(context).width*.5,
+              width: MediaQuery.sizeOf(context).width * .5,
               child: CustomButtonIcon(
                 iconData: Icons.save_alt,
                 label: 'حفظ',
@@ -82,8 +82,9 @@ class _CreateSubjectQuestionsViewState
                       courses: fullQuestionTex[0],
                       nameTeacher: CubitTeacher.user.name,
                       classSabject: fullQuestionTex[1][0],
-                      seasonSubject:
-                          DateTime.now().month < DateTime.march ? 'اول' : 'ثاني',
+                      seasonSubject: DateTime.now().month < DateTime.march
+                          ? 'اول'
+                          : 'ثاني',
                       generateTime: DateTime.now().toString(),
                     ),
                   );

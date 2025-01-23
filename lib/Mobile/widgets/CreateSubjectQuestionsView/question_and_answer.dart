@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 
 class QuestionAndAnswer extends StatefulWidget {
@@ -10,6 +11,7 @@ class QuestionAndAnswer extends StatefulWidget {
 
   final List<dynamic> data;
   final bool isIcon;
+
   @override
   State<QuestionAndAnswer> createState() => _QuestionAndAnswerState();
 }
@@ -28,9 +30,12 @@ class _QuestionAndAnswerState extends State<QuestionAndAnswer> {
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           color: isEven
-              ? const Color(0xFFF1F1F1)
-              : const Color.fromARGB(255, 234, 231, 248),
+              ? const Color.fromARGB(255, 32, 35, 52)
+              : const Color(0xFF2A2E40),
           elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
@@ -41,15 +46,20 @@ class _QuestionAndAnswerState extends State<QuestionAndAnswer> {
                   children: [
                     Flexible(
                       child: Text(
-                          textAlign: TextAlign.right,
-                          questionData['question'],
-                          style: FontStyleApp.blackBold16,
-                          softWrap: true),
+                        questionData['question'],
+                        textAlign: TextAlign.right,
+                        style: FontStyleApp.boldWhite15.copyWith(
+                          color: kWhite,
+                        ),
+                        softWrap: true,
+                      ),
                     ),
                     const SizedBox(width: 10),
                     Text(
                       '- ${index + 1}',
-                      style: FontStyleApp.blackBold16,
+                      style: FontStyleApp.boldWhite15.copyWith(
+                        color: kOrange,
+                      ),
                     ),
                   ],
                 ),
@@ -62,16 +72,25 @@ class _QuestionAndAnswerState extends State<QuestionAndAnswer> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: answer == questionData['question']
-                              ? const Color(0xFFFF7100)
-                              : const Color(0xFFB0B0B0),
+                              ? kOrange
+                              : const Color(0xFF3A3F54),
                           borderRadius: BorderRadius.circular(18),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 4,
+                              offset: const Offset(2, 2),
+                            ),
+                          ],
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Text(
-                            textAlign: TextAlign.right,
                             answer,
-                            style: FontStyleApp.blackBold16,
+                            textAlign: TextAlign.right,
+                            style: FontStyleApp.boldWhite15.copyWith(
+                              color: kWhite,
+                            ),
                           ),
                         ),
                       ),
