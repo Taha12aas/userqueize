@@ -109,11 +109,27 @@ class _HomeViewState extends State<HomeView> {
                   children: [
                     const MainSections(),
                     const SizedBox(height: 20),
-                    Text(
-                      ' :  أحدث النشاطات',
-                      style: FontStyleApp.orangeBold25.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: getResponsiveText(context, 25),
+                    Container(
+                      width: 158,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(Icons.trending_up, color: kOrange),
+                          SizedBox(width: 8),
+                          Text(
+                            "أحدث النشاطات",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 10),
