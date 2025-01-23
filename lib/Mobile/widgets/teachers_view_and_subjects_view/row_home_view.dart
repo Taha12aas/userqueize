@@ -32,7 +32,7 @@ class RowText extends StatelessWidget {
           child: Text(
             subjectName,
             style: FontStyleApp.boldWhite15.copyWith(
-              fontSize: getResponsiveText(context, 15),
+              fontSize: getResponsiveText(context, 14),
             ),
           ),
         ),

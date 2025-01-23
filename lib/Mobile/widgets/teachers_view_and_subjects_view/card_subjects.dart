@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/row_home_view.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
 
 class CardSubjects extends StatelessWidget {
@@ -45,6 +47,19 @@ class CardSubjects extends StatelessWidget {
         ),
         child: Row(
           children: [
+            const SizedBox(
+              width: 10,
+            ),
+            CubitTeacher.user.printingPermission
+                ? IconButton(
+                    color: const Color.fromARGB(255, 209, 92, 8),
+                    iconSize: 30,
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.download,
+                    ),
+                  )
+                : const SizedBox(),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +96,7 @@ class CardSubjects extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: screenWidth * 0.02)
+            SizedBox(width: screenWidth * 0.02),
           ],
         ),
       ),

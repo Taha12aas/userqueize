@@ -7,16 +7,17 @@ class Teacher {
   final String? password;
   final int verificationCode;
   final Map<String, dynamic> classesSubjects;
-  Teacher({
-    this.id,
-    required this.name,
-    required this.photo,
-    required this.phone,
-    required this.address,
-    this.password,
-    required this.verificationCode,
-    required this.classesSubjects,
-  });
+  final bool printingPermission;
+  Teacher(
+      {this.id,
+      required this.name,
+      required this.photo,
+      required this.phone,
+      required this.address,
+      this.password,
+      required this.verificationCode,
+      required this.classesSubjects,
+      required this.printingPermission});
 
   factory Teacher.fromJson(Map<String, dynamic> json) {
     return Teacher(
@@ -27,6 +28,7 @@ class Teacher {
       password: json['password'],
       verificationCode: json['verificationCode'],
       classesSubjects: json['classes_subjects'],
+      printingPermission: json['printing_permission'],
     );
   }
 
@@ -38,7 +40,8 @@ class Teacher {
       'address': address,
       'password': password,
       'verificationCode': verificationCode,
-      'classes_subjects': classesSubjects
+      'classes_subjects': classesSubjects,
+      'printing_permission':printingPermission
     };
   }
 }
