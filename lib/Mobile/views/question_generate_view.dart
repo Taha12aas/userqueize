@@ -83,10 +83,19 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                   children: [
                     Expanded(
                       child: CounterColumn(
+                        minValue: 0,
+                        valueNotifier: trueOrFalseCount,
+                        title: ': الصح والخطأ',
+                        counterValue: 1,
+                        maxValue: 29,
+                      ),
+                    ),
+                    Expanded(
+                      child: CounterColumn(
                         minValue: 2,
                         valueNotifier: answersCount,
                         maxValue: 3,
-                        title: ': عدد الخيارات',
+                        title: ': الخيارات',
                         counterValue: 1,
                       ),
                     ),
@@ -95,7 +104,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                         minValue: 5,
                         valueNotifier: qustionsCount,
                         maxValue: 55,
-                        title: ': عدد الاسئلة',
+                        title: ': الاسئلة',
                         counterValue: 5,
                       ),
                     ),
@@ -103,20 +112,29 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                 ),
               ),
               const SizedBox(height: 17),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'التكرار من دورة سابقة',
+                    style: FontStyleApp.orangeBold20.copyWith(
+                      fontSize: getResponsiveText(context, 18),
+                    ),
+                  ),
+                  Checkbox(
+                    activeColor: kOrange,
+                    value: true,
+                    onChanged: (value) {
+                      value = false;
+                    },
+                  ),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 22),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
-                      child: CounterColumn(
-                        minValue: 0,
-                        valueNotifier: trueOrFalseCount,
-                        title: ':  اسئلة الصح والخطأ',
-                        counterValue: 1,
-                        maxValue: 29,
-                      ),
-                    ),
                     Expanded(
                       child: CounterColumn(
                         minValue: 0,

@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/row_home_view.dart';
-import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:docx_template/docx_template.dart';
 
 class CardSubjects extends StatelessWidget {
   const CardSubjects({
@@ -54,7 +58,65 @@ class CardSubjects extends StatelessWidget {
                 ? IconButton(
                     color: const Color.fromARGB(255, 209, 92, 8),
                     iconSize: 30,
-                    onPressed: () {},
+                    onPressed: () {
+                      void generateWordFile() async {
+                        // البيانات الأصلية
+
+                        final data = [
+                          {
+                            "answers": [
+                              "السرية والتكاملية",
+                              "عدم الاهتمام بالمعلومات"
+                            ],
+                            "question": "ما هي الغاية من حماية المعلومات؟"
+                          },
+                          {
+                            "answers": ["نعم", "لا"],
+                            "question":
+                                "هل يمكن استخدام طرف ثالث موثوق به لمنع الإنكار؟"
+                          },
+                          {
+                            "answers": ["نعم", "لا"],
+                            "question":
+                                "هل يجب أن تتوفر المعلومات للجهات المصرح لها فقط؟"
+                          },
+                          {
+                            "answers": ["نعم", "لا"],
+                            "question":
+                                "هل يمكن تحليل حركة البيانات حتى مع استخدام التشفير؟"
+                          },
+                          {
+                            "answers": ["صح", "خطأ"],
+                            "question":
+                                "تعتبر المعلومات غير المتاحة مفيدة لأحد؟"
+                          },
+                        ];
+
+                        // إنشاء ملف Word
+                        final template = await DocxTemplate.fromBytes(
+                            File('template.docx').readAsBytesSync());
+
+                        // النصوص المدخلة
+                        Content c = Content();
+                        for (var item in data) {
+                          c.add(TextContent('question', item['question']));
+                          c.add(ListContent(
+                              'answers', item['answers'] as List<Content>));
+                        }
+
+                        // مسار الحفظ
+                        final outputDir =
+                            await getApplicationDocumentsDirectory();
+                        final filePath = '${outputDir.path}/questions.docx';
+
+                        final d = await template.generate(c);
+                        if (d != null) {
+                          final of = File(filePath);
+                          await of.writeAsBytes(d);
+                          log('File saved to $filePath');
+                        }
+                      }
+                    },
                     icon: const Icon(
                       Icons.download,
                     ),

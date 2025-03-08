@@ -30,6 +30,7 @@ environment:
 dependencies:
   arabic_font: ^0.0.9
   cupertino_icons: ^1.0.8
+  docx_template: ^0.4.0
   file_picker: ^8.1.6
   flutter:
     sdk: flutter
@@ -41,10 +42,10 @@ dependencies:
   http: ^1.2.2
   image_picker: ^1.1.2
   modal_progress_hud_nsn: ^0.5.1
+  path_provider: ^2.1.5
   pin_code_fields: ^8.0.1
   skeletonizer: ^1.4.3
   supabase_flutter: ^2.8.1
-  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0

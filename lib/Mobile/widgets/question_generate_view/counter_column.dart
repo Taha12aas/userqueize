@@ -8,7 +8,8 @@ class CounterColumn extends StatelessWidget {
     required this.title,
     required this.counterValue,
     required this.maxValue,
-    required this.valueNotifier, required this.minValue,
+    required this.valueNotifier,
+    required this.minValue,
   });
   final String title;
   final int counterValue;
@@ -24,10 +25,12 @@ class CounterColumn extends StatelessWidget {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: FontStyleApp.orangeBold20.copyWith(
-                fontSize: getResponsiveText(context, 18),
+            FittedBox(
+              child: Text(
+                title,
+                style: FontStyleApp.orangeBold20.copyWith(
+                  fontSize: getResponsiveText(context, 18),
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -40,7 +43,7 @@ class CounterColumn extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.symmetric(
-                horizontal: 16,
+                horizontal: 4,
                 vertical: 8,
               ),
               child: Row(

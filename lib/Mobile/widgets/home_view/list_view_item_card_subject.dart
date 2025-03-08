@@ -26,6 +26,8 @@ class ListViewItemCardSubject extends StatelessWidget {
                   courseDate: CubitSubject.subjectsCount[index].coursesDate,
                   seasonSubject:
                       CubitSubject.subjectsCount[index].seasonSubject,
+                  subject: CubitSubject.subjectsCount[index].nameSubject,
+                  classTeacher: CubitSubject.subjectsCount[index].classSabject,
                   onTap: () {
                     Navigator.pushNamed(context, ReadingGeneratedQuestions.id,
                         arguments: [
@@ -36,8 +38,6 @@ class ListViewItemCardSubject extends StatelessWidget {
                           CubitSubject.subjectsCount[index].generateTime
                         ]);
                   },
-                  subject: CubitSubject.subjectsCount[index].nameSubject,
-                  classTeacher: CubitSubject.subjectsCount[index].classSabject,
                 ),
               );
             },
