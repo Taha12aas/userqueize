@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subject.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
+import 'package:userqueize/Mobile/widgets/question_generate_view/check_box.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/counter_column.dart';
 import 'package:userqueize/Service/generator_service.dart';
@@ -30,6 +31,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
   File? file;
   String responseMessage = '';
   bool isLoading = false;
+  bool isSelected = false;
   ValueNotifier<int> qustionsCount = ValueNotifier(5);
   ValueNotifier<int> answersCount = ValueNotifier(2);
   ValueNotifier<int> trueOrFalseCount = ValueNotifier(0);
@@ -44,7 +46,6 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
         years.add(CubitSubject.subjectsCount[i].coursesDate);
       }
     }
-
     return Scaffold(
       appBar: customAppBar('انشاء اسئلة', context),
       body: SingleChildScrollView(
@@ -112,58 +113,59 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                 ),
               ),
               const SizedBox(height: 17),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'التكرار من دورة سابقة',
-                    style: FontStyleApp.orangeBold20.copyWith(
-                      fontSize: getResponsiveText(context, 18),
-                    ),
-                  ),
-                  Checkbox(
-                    activeColor: kOrange,
-                    value: true,
-                    onChanged: (value) {
-                      value = false;
-                    },
-                  ),
-                ],
+              CheckBox(
+                onChanged: (p0) {
+                  if (p0 == true) {
+                    isSelected = true;
+
+                    setState(() {});
+                  } else {
+                    isSelected = false;
+                    setState(() {});
+                  }
+                },
+                isSelected: isSelected,
+                title: 'التكرار من دورة سابقة',
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 22),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: CounterColumn(
-                        minValue: 0,
-                        valueNotifier: frequentlyQuestionsCount,
-                        maxValue: 28,
-                        title: ': الاسئلة المكررة',
-                        counterValue: 2,
+              const SizedBox(
+                height: 10,
+              ),
+              isSelected
+                  ? Padding(
+                      padding: const EdgeInsets.only(right: 22),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                            child: CounterColumn(
+                              minValue: 0,
+                              valueNotifier: frequentlyQuestionsCount,
+                              maxValue: 28,
+                              title: ': الاسئلة المكررة',
+                              counterValue: 2,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                ': أختر الدورة',
+                                style: FontStyleApp.orangeBold20.copyWith(
+                                  fontSize: getResponsiveText(context, 20),
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              SizedBox(
+                                width: 130,
+                                child: DropdownCheckSubject(items: years),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
+                    )
+                  : const SizedBox(),
               const SizedBox(height: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    ': أختر الدورة التي تريد تكرار الاسئلة منها',
-                    style: FontStyleApp.orangeBold20.copyWith(
-                      fontSize: getResponsiveText(context, 20),
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  SizedBox(
-                    width: 130,
-                    child: DropdownCheckSubject(items: years),
-                  ),
-                ],
-              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
