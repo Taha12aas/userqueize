@@ -32,6 +32,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
   String responseMessage = '';
   bool isLoading = false;
   bool isSelected = false;
+  bool isSelected2 = false;
   ValueNotifier<int> qustionsCount = ValueNotifier(5);
   ValueNotifier<int> answersCount = ValueNotifier(2);
   ValueNotifier<int> trueOrFalseCount = ValueNotifier(0);
@@ -48,188 +49,255 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
     }
     return Scaffold(
       appBar: customAppBar('انشاء اسئلة', context),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 16),
-              ContainerFileUpload(
-                onTap: () async {
-                  FilePickerResult? result =
-                      await FilePicker.platform.pickFiles(
-                    allowMultiple: false,
-                    type: FileType.custom,
-                    allowedExtensions: ['pdf', 'docx'],
-                  );
-                  if (result != null) {
-                    setState(() {
-                      file = File(result.files.single.path!);
-                    });
-                  } else {
-                    // ignore: use_build_context_synchronously
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      // ignore: use_build_context_synchronously
-                      showSnackBar(context, 'الرجاء اختيار ملف', Icons.error),
-                    );
-                  }
-                },
-              ),
-              const SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: CounterColumn(
-                        minValue: 0,
-                        valueNotifier: trueOrFalseCount,
-                        title: ': الصح والخطأ',
-                        counterValue: 1,
-                        maxValue: 29,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 16),
+                      ContainerFileUpload(
+                        onTap: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles(
+                            allowMultiple: false,
+                            type: FileType.custom,
+                            allowedExtensions: ['pdf', 'docx'],
+                          );
+                          if (result != null) {
+                            setState(() {
+                              file = File(result.files.single.path!);
+                            });
+                          } else {
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              // ignore: use_build_context_synchronously
+                              showSnackBar(
+                                  context, 'الرجاء اختيار ملف', Icons.error),
+                            );
+                          }
+                        },
                       ),
-                    ),
-                    Expanded(
-                      child: CounterColumn(
-                        minValue: 2,
-                        valueNotifier: answersCount,
-                        maxValue: 3,
-                        title: ': الخيارات',
-                        counterValue: 1,
-                      ),
-                    ),
-                    Expanded(
-                      child: CounterColumn(
-                        minValue: 5,
-                        valueNotifier: qustionsCount,
-                        maxValue: 55,
-                        title: ': الاسئلة',
-                        counterValue: 5,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 17),
-              CheckBox(
-                onChanged: (p0) {
-                  if (p0 == true) {
-                    isSelected = true;
-
-                    setState(() {});
-                  } else {
-                    isSelected = false;
-                    setState(() {});
-                  }
-                },
-                isSelected: isSelected,
-                title: 'التكرار من دورة سابقة',
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              isSelected
-                  ? Padding(
-                      padding: const EdgeInsets.only(right: 22),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            child: CounterColumn(
-                              minValue: 0,
-                              valueNotifier: frequentlyQuestionsCount,
-                              maxValue: 28,
-                              title: ': الاسئلة المكررة',
-                              counterValue: 2,
+                      const SizedBox(height: 25),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(
+                              child: CounterColumn(
+                                minValue: 0,
+                                valueNotifier: trueOrFalseCount,
+                                title: ': الصح والخطأ',
+                                counterValue: 1,
+                                maxValue: 29,
+                              ),
                             ),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                ': أختر الدورة',
-                                style: FontStyleApp.orangeBold20.copyWith(
-                                  fontSize: getResponsiveText(context, 20),
-                                ),
+                            Expanded(
+                              child: CounterColumn(
+                                minValue: 2,
+                                valueNotifier: answersCount,
+                                maxValue: 3,
+                                title: ': الخيارات',
+                                counterValue: 1,
                               ),
-                              const SizedBox(height: 15),
-                              SizedBox(
-                                width: 130,
-                                child: DropdownCheckSubject(items: years),
+                            ),
+                            Expanded(
+                              child: CounterColumn(
+                                minValue: 5,
+                                valueNotifier: qustionsCount,
+                                maxValue: 55,
+                                title: ': الاسئلة',
+                                counterValue: 5,
                               ),
-                            ],
-                          )
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
-                    )
-                  : const SizedBox(),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              CustomButtonIcon(
-                onPressed: () async {
-                  if (file != null) {
-                    setState(() => isLoading = true);
-                    showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (BuildContext context) {
-                        return const Center(
-                          child: CustomAnimatedLoader(
-                            color: kOrange,
-                          ),
-                        );
-                      },
-                    );
-                    responseMessage =
-                        await GeneratorService.uploadAndSendMessage(
-                      file!,
-                      '''قم بتوليد ${qustionsCount.value} أسئلة متعددة الخيارات (كل سؤال يحتوي على ${answersCount.value} خيارات) ومن ضمنها (${trueOrFalseCount.value}) أسئلة صح أو خطأ من الملف التالي بصيغة التالية فقط وبدون أي إضافات وبدون ذكر اسئلة تخص الصفحات:  
-
-للأسئلة متعددة الخيارات:  
-[
-  {
-      "question": "نص السؤال هنا",
-      "answers": [
-          "الإجابة 1",
-          "الإجابة 2",
-          "...",
-          "الإجابة ${answersCount.value}"
-      ]
-  }
-
-  للأسئلة صح أو خطأ:  
-  {
-      "question": "نص السؤال هنا",
-      "answers": [
-          "صح",
-          "خطأ"
-      ]
-  }
-]
-''',
-                    );
-                    setState(() => isLoading = false);
-                    log(responseMessage);
-                    // ignore: use_build_context_synchronously
-                    Navigator.pushNamed(context, CreateSubjectQuestionsView.id,
-                        arguments: [jsonDecode(responseMessage), subjectName]);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      showSnackBar(
-                          context, 'يرجى اختيار ملف وإدخال رسالة', Icons.error),
-                    );
-                  }
-                },
-                label: 'انشاء اسئلة',
-                iconData: Icons.generating_tokens_outlined,
-              ),
-            ],
+                      const SizedBox(height: 17),
+                      CheckBox(
+                        onChanged: (p0) {
+                          if (p0 == true) {
+                            isSelected = true;
+            
+                            setState(() {});
+                          } else {
+                            isSelected = false;
+                            setState(() {});
+                          }
+                        },
+                        isSelected: isSelected,
+                        title: 'التكرار من دورة سابقة',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      isSelected
+                          ? Padding(
+                              padding: const EdgeInsets.only(right: 22),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: CounterColumn(
+                                      minValue: 0,
+                                      valueNotifier: frequentlyQuestionsCount,
+                                      maxValue: 28,
+                                      title: ': الاسئلة المكررة',
+                                      counterValue: 2,
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        ': أختر الدورة',
+                                        style: FontStyleApp.orangeBold20.copyWith(
+                                          fontSize:
+                                              getResponsiveText(context, 20),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 15),
+                                      SizedBox(
+                                        width: 130,
+                                        child: DropdownCheckSubject(items: years),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          : const SizedBox(),
+                      const SizedBox(height: 17),
+                      CheckBox(
+                        onChanged: (p0) {
+                          if (p0 == true) {
+                            isSelected2 = true;
+            
+                            setState(() {});
+                          } else {
+                            isSelected2 = false;
+                            setState(() {});
+                          }
+                        },
+                        isSelected: isSelected2,
+                        title: 'التكرار من دورة سابقة',
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                      ),
+                      isSelected2
+                          ? Padding(
+                              padding: const EdgeInsets.only(right: 12),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: CounterColumn(
+                                      minValue: 0,
+                                      valueNotifier: trueOrFalseCount,
+                                      title: ': الصح والخطأ',
+                                      counterValue: 1,
+                                      maxValue: 29,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: CounterColumn(
+                                      minValue: 2,
+                                      valueNotifier: answersCount,
+                                      maxValue: 3,
+                                      title: ': الخيارات',
+                                      counterValue: 1,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: CounterColumn(
+                                      minValue: 5,
+                                      valueNotifier: qustionsCount,
+                                      maxValue: 55,
+                                      title: ': الاسئلة',
+                                      counterValue: 5,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+          CustomButtonIcon(
+            onPressed: () async {
+              if (file != null) {
+                setState(() => isLoading = true);
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return const Center(
+                      child: CustomAnimatedLoader(
+                        color: kOrange,
+                      ),
+                    );
+                  },
+                );
+                responseMessage = await GeneratorService.uploadAndSendMessage(
+                  file!,
+                  '''قم بتوليد ${qustionsCount.value} أسئلة متعددة الخيارات (كل سؤال يحتوي على ${answersCount.value} خيارات) ومن ضمنها (${trueOrFalseCount.value}) أسئلة صح أو خطأ من الملف التالي بصيغة التالية فقط وبدون أي إضافات وبدون ذكر اسئلة تخص الصفحات:  
+          
+          للأسئلة متعددة الخيارات:  
+          [
+            {
+          "question": "نص السؤال هنا",
+          "answers": [
+              "الإجابة 1",
+              "الإجابة 2",
+              "...",
+              "الإجابة ${answersCount.value}"
+          ]
+            }
+          
+            للأسئلة صح أو خطأ:  
+            {
+          "question": "نص السؤال هنا",
+          "answers": [
+              "صح",
+              "خطأ"
+          ]
+            }
+          ]
+          ''',
+                );
+                setState(() => isLoading = false);
+                log(responseMessage);
+                // ignore: use_build_context_synchronously
+                Navigator.pushNamed(context, CreateSubjectQuestionsView.id,
+                    arguments: [jsonDecode(responseMessage), subjectName]);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  showSnackBar(
+                      context, 'يرجى اختيار ملف وإدخال رسالة', Icons.error),
+                );
+              }
+            },
+            label: 'انشاء اسئلة',
+            iconData: Icons.generating_tokens_outlined,
+          ),
+          const SizedBox(
+            height: 30,
+          )
+        ],
       ),
     );
   }
