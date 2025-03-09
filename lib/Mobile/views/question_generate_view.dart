@@ -39,7 +39,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
   ValueNotifier<int> easy = ValueNotifier(0);
   ValueNotifier<int> normal = ValueNotifier(0);
   ValueNotifier<int> hard = ValueNotifier(0);
-
+  List<ValueNotifier<int>> values = [];
   @override
   Widget build(BuildContext context) {
     List subjectName = ModalRoute.of(context)!.settings.arguments as List;
@@ -121,13 +121,14 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                                 itemCount: 2,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
+                                  values.add(ValueNotifier(0));
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 7),
-                                    child: RepeatCoursers(title: '2000',
-                                        frequentlyQuestionsCount:
-                                            frequentlyQuestionsCount,
-                                        ),
+                                    child: RepeatCoursers(
+                                      title: '2000',
+                                      frequentlyQuestionsCount: values[index],
+                                    ),
                                   );
                                 },
                               ),
