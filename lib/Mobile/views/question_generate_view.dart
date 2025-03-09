@@ -5,18 +5,17 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
-import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subject.dart';
 import 'package:userqueize/Mobile/widgets/log_in_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/check_box.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
-import 'package:userqueize/Mobile/widgets/question_generate_view/counter_column.dart';
+import 'package:userqueize/Mobile/widgets/question_generate_view/questions_descreption.dart';
+import 'package:userqueize/Mobile/widgets/question_generate_view/questions_level.dart';
+import 'package:userqueize/Mobile/widgets/question_generate_view/repeat_coursers.dart';
 import 'package:userqueize/Service/generator_service.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_animated_loader.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
-import 'package:userqueize/utils/font_style.dart';
-import 'package:userqueize/utils/responsive_text.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
 class QuestionGenerateView extends StatefulWidget {
@@ -37,6 +36,10 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
   ValueNotifier<int> answersCount = ValueNotifier(2);
   ValueNotifier<int> trueOrFalseCount = ValueNotifier(0);
   ValueNotifier<int> frequentlyQuestionsCount = ValueNotifier(0);
+  ValueNotifier<int> easy = ValueNotifier(0);
+  ValueNotifier<int> normal = ValueNotifier(0);
+  ValueNotifier<int> hard = ValueNotifier(0);
+
   @override
   Widget build(BuildContext context) {
     List subjectName = ModalRoute.of(context)!.settings.arguments as List;
@@ -78,53 +81,25 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               // ignore: use_build_context_synchronously
                               showSnackBar(
-                                  context, 'الرجاء اختيار ملف', Icons.error),
+                                  // ignore: use_build_context_synchronously
+                                  context,
+                                  'الرجاء اختيار ملف',
+                                  Icons.error),
                             );
                           }
                         },
                       ),
                       const SizedBox(height: 25),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Expanded(
-                              child: CounterColumn(
-                                minValue: 0,
-                                valueNotifier: trueOrFalseCount,
-                                title: ': الصح والخطأ',
-                                counterValue: 1,
-                                maxValue: 29,
-                              ),
-                            ),
-                            Expanded(
-                              child: CounterColumn(
-                                minValue: 2,
-                                valueNotifier: answersCount,
-                                maxValue: 3,
-                                title: ': الخيارات',
-                                counterValue: 1,
-                              ),
-                            ),
-                            Expanded(
-                              child: CounterColumn(
-                                minValue: 5,
-                                valueNotifier: qustionsCount,
-                                maxValue: 55,
-                                title: ': الاسئلة',
-                                counterValue: 5,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      QuestionsDescreption(
+                          trueOrFalseCount: trueOrFalseCount,
+                          answersCount: answersCount,
+                          qustionsCount: qustionsCount),
                       const SizedBox(height: 17),
                       CheckBox(
                         onChanged: (p0) {
                           if (p0 == true) {
                             isSelected = true;
-            
+
                             setState(() {});
                           } else {
                             isSelected = false;
@@ -138,38 +113,23 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                         height: 10,
                       ),
                       isSelected
-                          ? Padding(
-                              padding: const EdgeInsets.only(right: 22),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: CounterColumn(
-                                      minValue: 0,
-                                      valueNotifier: frequentlyQuestionsCount,
-                                      maxValue: 28,
-                                      title: ': الاسئلة المكررة',
-                                      counterValue: 2,
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        ': أختر الدورة',
-                                        style: FontStyleApp.orangeBold20.copyWith(
-                                          fontSize:
-                                              getResponsiveText(context, 20),
+                          ? SizedBox(
+                              height: MediaQuery.sizeOf(context).height * .14,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                reverse: true,
+                                itemCount: 2,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 7),
+                                    child: RepeatCoursers(title: '2000',
+                                        frequentlyQuestionsCount:
+                                            frequentlyQuestionsCount,
                                         ),
-                                      ),
-                                      const SizedBox(height: 15),
-                                      SizedBox(
-                                        width: 130,
-                                        child: DropdownCheckSubject(items: years),
-                                      ),
-                                    ],
-                                  )
-                                ],
+                                  );
+                                },
                               ),
                             )
                           : const SizedBox(),
@@ -178,7 +138,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                         onChanged: (p0) {
                           if (p0 == true) {
                             isSelected2 = true;
-            
+
                             setState(() {});
                           } else {
                             isSelected2 = false;
@@ -186,47 +146,14 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                           }
                         },
                         isSelected: isSelected2,
-                        title: 'التكرار من دورة سابقة',
+                        title: 'مستوى الاسئلة',
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       isSelected2
-                          ? Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: CounterColumn(
-                                      minValue: 0,
-                                      valueNotifier: trueOrFalseCount,
-                                      title: ': الصح والخطأ',
-                                      counterValue: 1,
-                                      maxValue: 29,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: CounterColumn(
-                                      minValue: 2,
-                                      valueNotifier: answersCount,
-                                      maxValue: 3,
-                                      title: ': الخيارات',
-                                      counterValue: 1,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: CounterColumn(
-                                      minValue: 5,
-                                      valueNotifier: qustionsCount,
-                                      maxValue: 55,
-                                      title: ': الاسئلة',
-                                      counterValue: 5,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
+                          ? QuestionsLevel(
+                              hard: hard, normal: normal, easy: easy)
                           : const SizedBox(),
                       const SizedBox(
                         height: 20,
