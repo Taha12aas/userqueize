@@ -29,22 +29,26 @@ class CustomButton extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(24),
       ),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kOrange,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
+      child: Center(
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kOrange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            minimumSize: Size(
+              MediaQuery.of(context).size.width * 0.96,
+              MediaQuery.of(context).size.height * 0.057,
+            ),
           ),
-          minimumSize: Size(
-            MediaQuery.of(context).size.width * 0.96,
-            MediaQuery.of(context).size.height * 0.057,
-          ),
-        ),
-        child: Text(
-          title,
-          style: FontStyleApp.boldWhite15.copyWith(
-            fontSize: getResponsiveText(context, 20),
+          child: FittedBox(
+            child: Text(
+              title,
+              style: FontStyleApp.boldWhite15.copyWith(
+                fontSize: getResponsiveText(context, 20),
+              ),
+            ),
           ),
         ),
       ),

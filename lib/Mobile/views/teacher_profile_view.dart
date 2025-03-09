@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:userqueize/Mobile/views/change_password_view.dart';
+import 'package:userqueize/Mobile/views/coursers_upload_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/column_teacher_info.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subjects_display.dart';
@@ -108,12 +109,31 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                           const SizedBox(
                             height: 20,
                           ),
-                          CustomButton(
-                            title: 'تغير كلمة المرور',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, ChangePasswordView.id);
-                            },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  title: 'تغير كلمة المرور',
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, ChangePasswordView.id);
+                                  },
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: CustomButton(
+                                  title: 'رفع دورات',
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, CoursersUploadView.id);
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(
                             height: 25,

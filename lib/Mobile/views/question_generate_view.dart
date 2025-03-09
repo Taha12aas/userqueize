@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
@@ -12,7 +11,6 @@ import 'package:userqueize/Mobile/widgets/question_generate_view/questions_descr
 import 'package:userqueize/Mobile/widgets/question_generate_view/questions_level.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/repeat_coursers.dart';
 import 'package:userqueize/Service/generator_service.dart';
-import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_animated_loader.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
@@ -43,13 +41,6 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
   @override
   Widget build(BuildContext context) {
     List subjectName = ModalRoute.of(context)!.settings.arguments as List;
-    List<String> years = [];
-    for (var i = 0; i < CubitSubject.subjectsCount.length; i++) {
-      if (subjectName[1] == CubitSubject.subjectsCount[i].nameSubject &&
-          subjectName[0] == CubitSubject.subjectsCount[i].classSabject) {
-        years.add(CubitSubject.subjectsCount[i].coursesDate);
-      }
-    }
     return Scaffold(
       appBar: customAppBar('انشاء اسئلة', context),
       body: Column(
