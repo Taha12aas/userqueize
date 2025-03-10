@@ -142,6 +142,16 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                             ],
                           ),
                           const SizedBox(
+                            height: 15,
+                          ),
+                          CustomButton(
+                            title: 'الدورات المرفوعة مسبقا',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, CoursersUploadView.id);
+                            },
+                          ),
+                          const SizedBox(
                             height: 25,
                           ),
                           ContainerTeacherSubjectsDisplay(
@@ -176,7 +186,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                 //       selectedImage!, 1);
                                 // }
                                 if (phoneNumber == state.user!.phone &&
-                                    address == state.user!.address ) {
+                                    address == state.user!.address) {
                                   Navigator.pop(context);
                                 }
                               }

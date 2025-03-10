@@ -109,7 +109,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                               width: double.infinity,
                               child: ListView.builder(
                                 reverse: true,
-                                itemCount: 2,
+                                itemCount: 5,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   values.add(ValueNotifier(0));
