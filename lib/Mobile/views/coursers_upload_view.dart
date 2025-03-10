@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subject.dart';
-import 'package:userqueize/Mobile/widgets/add_teacher_view/info_text_field.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -47,8 +46,7 @@ class CoursersUploadView extends StatelessWidget {
                         ),
                       )
                     ],
-                  ),
-                  const Spacer(),
+                  ),  
                   Column(
                     children: [
                       Text(
@@ -69,24 +67,12 @@ class CoursersUploadView extends StatelessWidget {
                         ),
                       )
                     ],
-                  )
+                  ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(
-                    
-                    width: 150,
-                    child: InfoTextField(
-                      initialValue: 'تاريخ الدورة',
-                      iconData: Icons.date_range_outlined,
-                      validator: (p0) {
-                        return null;
-                      },
-                    ),
-                  ),
-                  const Spacer(),
                   Column(
                     children: [
                       Text(

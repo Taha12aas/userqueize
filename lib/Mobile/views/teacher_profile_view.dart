@@ -1,8 +1,10 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:userqueize/Mobile/views/change_password_view.dart';
 import 'package:userqueize/Mobile/views/coursers_upload_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
@@ -29,6 +31,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
   String address = '';
   int phoneNumber = 0;
   GlobalKey<FormState> globalKey = GlobalKey();
+  File? selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +72,9 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                             height: 5,
                           ),
                           TeacherPhoto(
+                            onPressed: () {
+                              _pickImage();
+                            },
                             image: state.user!.photo,
                           ),
                           const SizedBox(
@@ -165,8 +171,12 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                     phoneNumber,
                                   );
                                 }
+                                // if (selectedImage != null) {
+                                //   TeacherService.uploadImage(
+                                //       selectedImage!, 1);
+                                // }
                                 if (phoneNumber == state.user!.phone &&
-                                    address == state.user!.address) {
+                                    address == state.user!.address ) {
                                   Navigator.pop(context);
                                 }
                               }
@@ -206,5 +216,18 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
     }
     address = p0;
     return null;
+  }
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedFile != null) {
+      setState(() {
+        selectedImage = File(pickedFile.path);
+      });
+    }
   }
 }

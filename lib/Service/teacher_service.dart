@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -33,6 +34,32 @@ class TeacherService {
         .from('teachers')
         .update({columnName: value}).eq('name', teacherName);
     debugPrint('تمت تعديل البيانات: $data');
+  }
+
+  static Future<String> uploadImage(File imageFile, int userId) async {
+    try {
+      // إنشاء مسار فريد للصورة (مثال: user_123/20231005120000.jpg)
+      final String fileName =
+          'user_$userId/${DateTime.now().millisecondsSinceEpoch}.jpg';
+
+      // رفع الملف إلى bucket "img"
+      await supabase.storage.from('img').upload(fileName, imageFile,
+          fileOptions: const FileOptions(contentType: 'image/jpeg'));
+
+      // الحصول على الرابط العام
+      final String publicUrl =
+          supabase.storage.from('img').getPublicUrl(fileName);
+
+      // تحديث رابط الصورة في جدول المدرسين
+      await supabase
+          .from('teachers')
+          .update({'photo': publicUrl}).eq('id', userId);
+
+      return publicUrl;
+    } catch (e) {
+      debugPrint('حدث خطأ أثناء رفع الصورة: $e');
+      throw Exception('فشل في تحميل الصورة');
+    }
   }
 
   // ignore: body_might_complete_normally_nullable
