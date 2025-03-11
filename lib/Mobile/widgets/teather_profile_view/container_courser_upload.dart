@@ -5,30 +5,36 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subject.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
-import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
-import 'package:userqueize/utils/custom_app_bar.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
 
-class CoursersUploadView extends StatefulWidget {
-  const CoursersUploadView({super.key});
-  static String id = 'CoursersUploadView';
+class ContainerCourserUpload extends StatefulWidget {
+  const ContainerCourserUpload({
+    super.key,
+  });
 
   @override
-  State<CoursersUploadView> createState() => _CoursersUploadViewState();
+  State<ContainerCourserUpload> createState() => _ContainerCourserUploadState();
 }
 
-class _CoursersUploadViewState extends State<CoursersUploadView> {
+class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
   DateTime? _selectedDate;
+
   File? file;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customAppBar('رفع الدورات', context),
-      body: Padding(
+    return Container(
+      decoration: const BoxDecoration(
+        color: kBackGround,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
+        ),
+      ),
+      child: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(
           children: [
@@ -81,7 +87,7 @@ class _CoursersUploadViewState extends State<CoursersUploadView> {
                         iconSize: 40,
                         color: kOrange,
                         onPressed: () {
-                          // _showDatePicker(context);
+                          _showDatePicker(context);
                         },
                         icon: const Icon(Icons.date_range),
                       ),
@@ -106,9 +112,7 @@ class _CoursersUploadViewState extends State<CoursersUploadView> {
                           height: 100,
                           width: 100,
                           child: DropdownCheckSubject(
-                            items: [
-                              'taha',
-                            ],
+                            items: ['اول', 'ثاني'],
                           ),
                         ),
                       ],
@@ -121,12 +125,42 @@ class _CoursersUploadViewState extends State<CoursersUploadView> {
             CustomButton(
               title: 'حفظ',
               onPressed: () {
+                
                 Navigator.pop(context);
               },
             )
           ],
         ),
       ),
+    );
+  }
+
+  void _showDatePicker(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(
+            "اختر سنة",
+            textAlign: TextAlign.center,
+          ),
+          content: SizedBox(
+            width: 300,
+            height: 300,
+            child: YearPicker(
+              selectedDate: _selectedDate ?? DateTime.now(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedDate = value;
+                });
+                Navigator.pop(context);
+              },
+              firstDate: DateTime(2000),
+              lastDate: DateTime.now(),
+            ),
+          ),
+        );
+      },
     );
   }
 }

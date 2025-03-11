@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'package:userqueize/Mobile/widgets/teather_profile_view/container_courser_upload.dart';
+import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
 class ContainerClassAndSubject extends StatelessWidget {
@@ -11,6 +14,7 @@ class ContainerClassAndSubject extends StatelessWidget {
   final String classs;
   final String subject;
   final Color? color;
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,15 +23,31 @@ class ContainerClassAndSubject extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          TextButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return const ContainerCourserUpload();
+                },
+              );
+            },
+            child: Text(
+              'اضغط هنا لرفع دورة',
+              style: FontStyleApp.orange15
+                  .copyWith(fontSize: getResponsiveText(context, 15)),
+            ),
+          ),
           const Spacer(
-            flex: 4,
+            flex: 1,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: Text(
               subject,
               style: TextStyle(
-                  fontSize: getResponsiveText(context, 15), color: Colors.black),
+                  fontSize: getResponsiveText(context, 15),
+                  color: Colors.black),
             ),
           ),
           const Spacer(),
@@ -37,7 +57,6 @@ class ContainerClassAndSubject extends StatelessWidget {
                 fontSize: getResponsiveText(context, 15), color: Colors.black),
           ),
           const Spacer(),
-
         ],
       ),
     );

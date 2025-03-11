@@ -12,6 +12,7 @@ import 'package:userqueize/Mobile/widgets/add_teacher_view/column_teacher_info.d
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subjects_display.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/teather_profile_view/teacher_photor.dart';
+import 'package:userqueize/Service/teacher_service.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
@@ -181,10 +182,10 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                     phoneNumber,
                                   );
                                 }
-                                // if (selectedImage != null) {
-                                //   TeacherService.uploadImage(
-                                //       selectedImage!, 1);
-                                // }
+                                if (selectedImage != null) {
+                                  TeacherService.uploadImage(
+                                      selectedImage!, 1);
+                                }
                                 if (phoneNumber == state.user!.phone &&
                                     address == state.user!.address) {
                                   Navigator.pop(context);

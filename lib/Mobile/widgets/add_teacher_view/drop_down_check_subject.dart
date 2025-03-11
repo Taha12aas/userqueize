@@ -6,7 +6,7 @@ class DropdownCheckSubject extends StatefulWidget {
     super.key,
     required this.items,
   });
-  final List<String> items;
+  final List items;
 
   @override
   State<DropdownCheckSubject> createState() => _DropdownCheckSubjectState();
@@ -40,7 +40,7 @@ class _DropdownCheckSubjectState extends State<DropdownCheckSubject> {
           selectedValue = newValue;
         });
       },
-      items: widget.items.map((String item) {
+      items: widget.items.map(( item) {
         return DropdownMenuItem<String>(
           value: item,
           child: Align(

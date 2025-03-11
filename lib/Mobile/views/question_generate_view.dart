@@ -61,7 +61,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                               await FilePicker.platform.pickFiles(
                             allowMultiple: false,
                             type: FileType.custom,
-                            allowedExtensions: ['pdf', 'docx'],
+                            allowedExtensions: ['pdf', 'docx' ],
                           );
                           if (result != null) {
                             setState(() {
