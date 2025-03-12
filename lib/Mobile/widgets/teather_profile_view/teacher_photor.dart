@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 
+import 'package:userqueize/utils/constants.dart';
+
 class TeacherPhoto extends StatefulWidget {
   const TeacherPhoto({
     super.key,
@@ -24,16 +26,55 @@ class _TeacherPhotoState extends State<TeacherPhoto> {
         ? FileImage(widget.selectedImage!)
         : NetworkImage(widget.image) as ImageProvider;
 
-    return CircleAvatar(
-      radius: MediaQuery.sizeOf(context).height * .07,
-      backgroundImage: imageProvider,
-      child: Align(
-        alignment: Alignment.bottomLeft,
-        child: IconButton(
-          onPressed: widget.onPressed,
-          icon: const Icon(Icons.add_a_photo),
-          color: Colors.orange,
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 5.0,
+            offset: const Offset(3, 3),
+          ),
+        ],
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: kOrange,
+          width: 0.5,
         ),
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          CircleAvatar(
+            radius: MediaQuery.sizeOf(context).height * .07,
+            backgroundImage: imageProvider,
+          ),
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: GestureDetector(
+              onTap: widget.onPressed,
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: kOrange,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      blurRadius: 5.0,
+                      offset: const Offset(2, 2),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.add_a_photo,
+                  color: kBlack,
+                  size: 24,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

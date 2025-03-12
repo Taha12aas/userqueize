@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/counter_column.dart';
 
@@ -30,6 +29,9 @@ class QuestionsDescreption extends StatelessWidget {
               maxValue: 29,
             ),
           ),
+          const SizedBox(
+            width: 10,
+          ),
           Expanded(
             child: CounterColumn(
               minValue: 2,
@@ -38,6 +40,9 @@ class QuestionsDescreption extends StatelessWidget {
               title: ': الخيارات',
               counterValue: 1,
             ),
+          ),
+          const SizedBox(
+            width: 10,
           ),
           Expanded(
             child: CounterColumn(

@@ -38,8 +38,12 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
   ValueNotifier<int> normal = ValueNotifier(0);
   ValueNotifier<int> hard = ValueNotifier(0);
   List<ValueNotifier<int>> values = [];
+
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     List subjectName = ModalRoute.of(context)!.settings.arguments as List;
     return Scaffold(
       appBar: customAppBar('انشاء اسئلة', context),
@@ -52,7 +56,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const SizedBox(height: 16),
                       ContainerFileUpload(
@@ -61,7 +65,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                               await FilePicker.platform.pickFiles(
                             allowMultiple: false,
                             type: FileType.custom,
-                            allowedExtensions: ['pdf', 'docx' ],
+                            allowedExtensions: ['pdf', 'docx'],
                           );
                           if (result != null) {
                             setState(() {
@@ -86,26 +90,28 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                           answersCount: answersCount,
                           qustionsCount: qustionsCount),
                       const SizedBox(height: 17),
-                      CheckBox(
-                        onChanged: (p0) {
-                          if (p0 == true) {
-                            isSelected = true;
+                      FittedBox(
+                        child: CheckBox(
+                          onChanged: (p0) {
+                            if (p0 == true) {
+                              isSelected = true;
 
-                            setState(() {});
-                          } else {
-                            isSelected = false;
-                            setState(() {});
-                          }
-                        },
-                        isSelected: isSelected,
-                        title: 'التكرار من دورة سابقة',
+                              setState(() {});
+                            } else {
+                              isSelected = false;
+                              setState(() {});
+                            }
+                          },
+                          isSelected: isSelected,
+                          title: 'التكرار من دورة سابقة',
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       isSelected
                           ? SizedBox(
-                              height: MediaQuery.sizeOf(context).height * .14,
+                              height: width * 0.25,
                               width: double.infinity,
                               child: ListView.builder(
                                 reverse: true,
@@ -115,10 +121,12 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                                   values.add(ValueNotifier(0));
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 7),
-                                    child: RepeatCoursers(
-                                      title: '2000',
-                                      frequentlyQuestionsCount: values[index],
+                                        horizontal: 5),
+                                    child: FittedBox(
+                                      child: RepeatCoursers(
+                                        title: '2000',
+                                        frequentlyQuestionsCount: values[index],
+                                      ),
                                     ),
                                   );
                                 },
@@ -126,22 +134,24 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                             )
                           : const SizedBox(),
                       const SizedBox(height: 17),
-                      CheckBox(
-                        onChanged: (p0) {
-                          if (p0 == true) {
-                            isSelected2 = true;
+                      FittedBox(
+                        child: CheckBox(
+                          onChanged: (p0) {
+                            if (p0 == true) {
+                              isSelected2 = true;
 
-                            setState(() {});
-                          } else {
-                            isSelected2 = false;
-                            setState(() {});
-                          }
-                        },
-                        isSelected: isSelected2,
-                        title: 'مستوى الاسئلة',
+                              setState(() {});
+                            } else {
+                              isSelected2 = false;
+                              setState(() {});
+                            }
+                          },
+                          isSelected: isSelected2,
+                          title: 'مستوى الاسئلة',
+                        ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: height * 0.03,
                       ),
                       isSelected2
                           ? QuestionsLevel(

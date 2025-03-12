@@ -19,73 +19,75 @@ class CounterColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: valueNotifier,
-      builder: (context, value, child) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FittedBox(
-              child: Text(
-                title,
-                style: FontStyleApp.orangeBold20.copyWith(
-                  fontSize: getResponsiveText(context, 18),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.orange,
-                  width: 2,
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 4,
-                vertical: 8,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: const Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.orange,
-                    ),
-                    onPressed: () {
-                      if (valueNotifier.value > minValue) {
-                        valueNotifier.value -= counterValue;
-                      }
-                    },
+    return FittedBox(
+      child: ValueListenableBuilder(
+        valueListenable: valueNotifier,
+        builder: (context, value, child) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FittedBox(
+                child: Text(
+                  title,
+                  style: FontStyleApp.orangeBold20.copyWith(
+                    fontSize: getResponsiveText(context, 18),
                   ),
-                  Text(
-                    '${valueNotifier.value}',
-                    style: FontStyleApp.orangeBold25.copyWith(
-                      fontSize: getResponsiveText(
-                        context,
-                        25,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                  vertical: 8,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.orange,
+                      ),
+                      onPressed: () {
+                        if (valueNotifier.value > minValue) {
+                          valueNotifier.value -= counterValue;
+                        }
+                      },
+                    ),
+                    Text(
+                      '${valueNotifier.value}',
+                      style: FontStyleApp.orangeBold25.copyWith(
+                        fontSize: getResponsiveText(
+                          context,
+                          25,
+                        ),
                       ),
                     ),
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.arrow_drop_up,
-                      color: Colors.orange,
+                    IconButton(
+                      icon: const Icon(
+                        Icons.arrow_drop_up,
+                        color: Colors.orange,
+                      ),
+                      onPressed: () {
+                        if (valueNotifier.value <= maxValue) {
+                          valueNotifier.value += counterValue;
+                        }
+                      },
                     ),
-                    onPressed: () {
-                      if (valueNotifier.value <= maxValue) {
-                        valueNotifier.value += counterValue;
-                      }
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
-        );
-      },
+            ],
+          );
+        },
+      ),
     );
   }
 }
