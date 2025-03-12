@@ -30,6 +30,24 @@ class _HomeViewState extends State<HomeView> {
     BlocProvider.of<CubitSubject>(context).fetchSubject(CubitTeacher.user.name);
     super.initState();
   }
+  // late List<dynamic>
+  //     fullQuestionTex; //هاد المتغير مشان يخزن قيمة يلي تم ارسالها من صفحة لوح ان
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     final args = ModalRoute.of(context)!.settings.arguments;
+  //     if (args != null && args is List) {
+  //       BlocProvider.of<CubitTeacher>(context)
+  //           .fetchUsers(CubitTeacher.user.phone);
+  //       BlocProvider.of<CubitSubject>(context)
+  //           .fetchSubject(CubitTeacher.user.name);
+  //     } else {
+  //       log('كول فستق طه');
+  //     }
+  //   });
+  // }
 
   void _handleConnectivityChange(bool isConnected) {
     if (_isConnected.value != isConnected) {

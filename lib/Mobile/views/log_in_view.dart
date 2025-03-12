@@ -28,6 +28,7 @@ class _LogInViewState extends State<LogInView> {
   int phoneNumber = 0;
   String password = '';
   GlobalKey<FormState> globalKey = GlobalKey();
+  bool s = false;
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +109,14 @@ class _LogInViewState extends State<LogInView> {
                           } else {
                             if (state is SuccessState) {
                               if (state.user!.password == password) {
+                                s = true;
+                                // BlocProvider.of<CubitSubject>(context)
+                                //     .fetchSubject(CubitTeacher.user.name);//هااااااااادددددد
+
                                 // BlocProvider.of<CubitSubject>(context)
                                 //     .fetchSubject(CubitTeacher.user.name);
                                 Navigator.pushNamedAndRemoveUntil(
+                                  arguments: s,
                                   context,
                                   HomeView.id,
                                   (route) => false,

@@ -35,32 +35,43 @@ class TeacherService {
         .update({columnName: value}).eq('name', teacherName);
     debugPrint('تمت تعديل البيانات: $data');
   }
+static Future<String> uploadImage(File imageFile, int phoneUser) async {
+  try {
+    final String fileName = 'user_$phoneUser/${DateTime.now().millisecondsSinceEpoch}.jpg';
+    debugPrint("🚀 محاولة رفع الصورة إلى: $fileName");
 
-  static Future<String> uploadImage(File imageFile, int userId) async {
-    try {
-      // إنشاء مسار فريد للصورة (مثال: user_123/20231005120000.jpg)
-      final String fileName =
-          'user_$userId/${DateTime.now().millisecondsSinceEpoch}.jpg';
+    // رفع الصورة
+    final response = await supabase.storage.from('img').upload(
+          fileName,
+          imageFile,
+          fileOptions: const FileOptions(contentType: 'image/jpeg'),
+        );
 
-      // رفع الملف إلى bucket "img"
-      await supabase.storage.from('img').upload(fileName, imageFile,
-          fileOptions: const FileOptions(contentType: 'image/jpeg'));
+    debugPrint("✅ استجابة الرفع: $response");
 
-      // الحصول على الرابط العام
-      final String publicUrl =
-          supabase.storage.from('img').getPublicUrl(fileName);
+    // الحصول على الرابط العام
+    final String publicUrl = supabase.storage.from('img').getPublicUrl(fileName);
+    debugPrint("✅ الصورة تم رفعها بنجاح: $publicUrl");
 
-      // تحديث رابط الصورة في جدول المدرسين
-      await supabase
-          .from('teachers')
-          .update({'photo': publicUrl}).eq('id', userId);
+    // تحديث رابط الصورة في جدول المدرسين مع إرجاع الاستجابة
+    final updateResponse = await supabase
+        .from('teachers')
+        .update({'photo': publicUrl})
+        .eq('phone', phoneUser)
+        .select() // أضف هذا السطر!
+        .single(); // للحصول على استجابة واحدة
 
-      return publicUrl;
-    } catch (e) {
-      debugPrint('حدث خطأ أثناء رفع الصورة: $e');
-      throw Exception('فشل في تحميل الصورة');
-    }
+    debugPrint("✅ تم تحديث السجل: ${updateResponse['photo']}");
+
+    return publicUrl;
+  } on PostgrestException catch (e) {
+    debugPrint('❌ خطأ في قاعدة البيانات: ${e.message}');
+    throw Exception('فشل في التحديث: ${e.message}');
+  } catch (e) {
+    debugPrint('❌ خطأ غير متوقع: $e');
+    throw Exception('فشل في العملية: $e');
   }
+}
 
   // ignore: body_might_complete_normally_nullable
   static Future<int?> sendVerificationCode(int phoneNumber) async {

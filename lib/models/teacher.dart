@@ -1,7 +1,7 @@
 class Teacher {
   int? id;
   final String name;
-  final String photo;
+  String photo;
   final int phone;
   final String address;
   final String? password;

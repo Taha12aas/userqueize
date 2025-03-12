@@ -73,6 +73,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                             height: 5,
                           ),
                           TeacherPhoto(
+                            selectedImage: selectedImage,
                             onPressed: () {
                               _pickImage();
                             },
@@ -164,7 +165,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                           ),
                           CustomButton(
                             title: 'حفظ',
-                            onPressed: () {
+                            onPressed: () async {
                               if (globalKey.currentState!.validate()) {
                                 if (address != state.user!.address) {
                                   BlocProvider.of<CubitTeacher>(context)
@@ -183,11 +184,23 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                   );
                                 }
                                 if (selectedImage != null) {
-                                  TeacherService.uploadImage(
-                                      selectedImage!, 1);
+                                  final newImageUrl =
+                                      await TeacherService.uploadImage(
+                                          selectedImage!, state.user!.phone);
+                                  // ignore: use_build_context_synchronously
+                                  BlocProvider.of<CubitTeacher>(context)
+                                      .updateUsers(
+                                    'photo',
+                                    state.user!.name,
+                                    newImageUrl,
+                                  );
+                                  setState(() {
+                                    state.user!.photo = newImageUrl;
+                                  });
                                 }
                                 if (phoneNumber == state.user!.phone &&
                                     address == state.user!.address) {
+                                  // ignore: use_build_context_synchronously
                                   Navigator.pop(context);
                                 }
                               }

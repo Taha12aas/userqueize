@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+
 class TeacherPhoto extends StatefulWidget {
   const TeacherPhoto({
     super.key,
     required this.image,
-    this.selectedImage, required this.onPressed,
+    this.selectedImage,
+    required this.onPressed,
   });
 
   final String image;
   final File? selectedImage;
   final VoidCallback onPressed;
+
   @override
   State<TeacherPhoto> createState() => _TeacherPhotoState();
 }
 
 class _TeacherPhotoState extends State<TeacherPhoto> {
-  File? _selectedImage;
-
   @override
   Widget build(BuildContext context) {
+    final ImageProvider imageProvider = widget.selectedImage != null
+        ? FileImage(widget.selectedImage!)
+        : NetworkImage(widget.image) as ImageProvider;
+
     return CircleAvatar(
       radius: MediaQuery.sizeOf(context).height * .07,
-      backgroundImage: _selectedImage != null
-          ? FileImage(_selectedImage!) as ImageProvider
-          : NetworkImage(widget.image),
+      backgroundImage: imageProvider,
       child: Align(
         alignment: Alignment.bottomLeft,
         child: IconButton(
@@ -34,6 +37,4 @@ class _TeacherPhotoState extends State<TeacherPhoto> {
       ),
     );
   }
-
-   
 }
