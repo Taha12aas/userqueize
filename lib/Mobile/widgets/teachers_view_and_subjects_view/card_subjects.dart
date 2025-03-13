@@ -56,7 +56,7 @@ class CardSubjects extends StatelessWidget {
             ),
             CubitTeacher.user.printingPermission
                 ? IconButton(
-                    color: const Color.fromARGB(255, 209, 92, 8),
+                    color: kOrange,
                     iconSize: 30,
                     onPressed: () {
                       void generateWordFile() async {
