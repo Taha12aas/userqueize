@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -38,8 +39,9 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(24),
             ),
             minimumSize: Size(
-              MediaQuery.of(context).size.width * 0.96,
-              MediaQuery.of(context).size.height * 0.057,
+              MediaQuery.of(context).size.width * 0.96, 
+              clampDouble(40, MediaQuery.of(context).size.height * 0.05,
+                  60), 
             ),
           ),
           child: FittedBox(
