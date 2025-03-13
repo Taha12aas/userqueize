@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
             ),
             minimumSize: Size(
               double.infinity,
-              clampDouble(40, MediaQuery.of(context).size.height * 0.05, 60),
+              clampDouble(MediaQuery.of(context).size.height * 0.05, 40, 60),
             ),
           ),
           child: FittedBox(
