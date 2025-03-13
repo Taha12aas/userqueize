@@ -9,9 +9,8 @@ class LogoImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image(
-      image: const AssetImage(klogo),
-      fit: BoxFit.contain,
-      height: MediaQuery.sizeOf(context).height * .25,
-    );
+        image: const AssetImage(klogo),
+        fit: BoxFit.contain,
+        width: MediaQuery.sizeOf(context).width * .7);
   }
 }

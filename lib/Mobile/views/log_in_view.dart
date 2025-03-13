@@ -46,12 +46,11 @@ class _LogInViewState extends State<LogInView> {
                   BoxConstraints(minHeight: MediaQuery.sizeOf(context).height),
               child: IntrinsicHeight(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  padding: const EdgeInsets.only(left: 18, right: 18, top: 120),
                   child: Column(
                     children: [
-                      const SizedBox(height: 40),
                       const LogoImage(),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       const LogoApp(),
                       const SizedBox(height: 30),
                       const Row(
