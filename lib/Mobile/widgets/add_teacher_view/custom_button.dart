@@ -39,9 +39,8 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(24),
             ),
             minimumSize: Size(
-              MediaQuery.of(context).size.width * 0.96, 
-              clampDouble(40, MediaQuery.of(context).size.height * 0.05,
-                  60), 
+              double.infinity,
+              clampDouble(40, MediaQuery.of(context).size.height * 0.05, 60),
             ),
           ),
           child: FittedBox(
