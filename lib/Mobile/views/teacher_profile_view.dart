@@ -6,7 +6,6 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:userqueize/Mobile/views/change_password_view.dart';
-import 'package:userqueize/Mobile/views/coursers_upload_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/column_teacher_info.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subjects_display.dart';
@@ -137,7 +136,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                               title: 'الدورات المرفوعة مسبقا',
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, CoursersUploadView.id);
+                                    context, HomeView.id);
                               },
                             ),
                             const SizedBox(height: 25),

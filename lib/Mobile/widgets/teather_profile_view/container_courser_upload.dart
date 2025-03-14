@@ -1,12 +1,17 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subject.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
 import 'package:userqueize/Service/generator_service.dart';
+import 'package:userqueize/cubits/cubitPreLoadedCourse/cubit_pre_loaded_course.dart';
+import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
+import 'package:userqueize/models/pre_loaded_course.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_animated_loader.dart';
 import 'package:userqueize/utils/font_style.dart';
@@ -25,9 +30,10 @@ class ContainerCourserUpload extends StatefulWidget {
 class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
   DateTime? _selectedDate;
   String responseMessage = '';
-
+  String? selectSesion;
   File? file;
   bool isLoading = false;
+  ValueNotifier<bool>? valueNotifier = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -102,11 +108,15 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 100,
                           width: 100,
                           child: DropdownCheckSubject(
-                            items: ['اول', 'ثاني'],
+                            valueNotifier: valueNotifier!,
+                            items: const ['اول', 'ثاني'],
+                            onChanged: (p0) {
+                              selectSesion = p0;
+                            },
                           ),
                         ),
                       ],
@@ -120,6 +130,8 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
               title: 'حفظ',
               onPressed: () async {
                 if (file != null) {
+                  valueNotifier!.value = true;
+
                   setState(() => isLoading = true);
                   showDialog(
                     context: context,
@@ -154,12 +166,20 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
             }
           ]
                     ''',
-                  );
+                  ) ;
+                  BlocProvider.of<CubitPreLoadedCourse>(context).uploadCourse(
+                      PreLoadedCourse(
+                          courses:jsonDecode(responseMessage) ,
+                          subjectName: "taha",
+                          courseHistory: _selectedDate.toString(),
+                          teacherPhone: CubitTeacher.user.phone,
+                          season: selectSesion!));
                   setState(() => isLoading = false);
                   log(responseMessage);
                   // ignore: use_build_context_synchronously
                   Navigator.pop(context);
                 } else {
+                  valueNotifier!.value = false;
                   Navigator.pop(context);
 
                   ScaffoldMessenger.of(context).showSnackBar(
