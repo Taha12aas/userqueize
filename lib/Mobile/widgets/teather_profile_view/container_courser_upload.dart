@@ -181,11 +181,29 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                           season: selectSesion!));
                   setState(() => isLoading = false);
                   log(responseMessage);
+
+                  if (mounted) {
+                    setState(() => isLoading = false);
+                  }
+
                   // ignore: use_build_context_synchronously
-                  Navigator.pop(context);
+                  if (Navigator.canPop(context)) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                  }
+
+                  // ignore: use_build_context_synchronously
+                  if (Navigator.canPop(context)) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                  }
                 } else {
                   valueNotifier!.value = false;
-                  Navigator.pop(context);
+
+
+                  if (Navigator.canPop(context)) {
+                    Navigator.pop(context);
+                  }
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     showSnackBar(
