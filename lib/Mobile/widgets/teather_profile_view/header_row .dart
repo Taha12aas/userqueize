@@ -17,7 +17,7 @@ class HeaderRow extends StatelessWidget {
           flex: 2,
           child: Center(
             child: Text(
-              'اضغط هنا لرفع دورة',
+              'ارفع دورة',
               style: FontStyleApp.whiteBold18.copyWith(
                 fontSize: getResponsiveText(context, 18),
               ),

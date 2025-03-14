@@ -32,7 +32,7 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
             Container(
               color: kOrange,
               child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                 child: HeaderRow(),
               ),
             ),

@@ -216,7 +216,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   showSnackBar(
-                      context, 'يرجى اختيار ملف وإدخال رسالة', Icons.error),
+                      context, 'يرجى اختيار ملف', Icons.error),
                 );
               }
             },

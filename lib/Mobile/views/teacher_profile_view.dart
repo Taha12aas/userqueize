@@ -129,16 +129,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                     },
                                   ),
                                 ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: CustomButton(
-                                    title: 'رفع دورات',
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, CoursersUploadView.id);
-                                    },
-                                  ),
-                                ),
+                               
                               ],
                             ),
                             const SizedBox(height: 15),

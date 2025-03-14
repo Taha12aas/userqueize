@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -5,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/drop_down_check_subject.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/container_file_upload.dart';
+import 'package:userqueize/Service/generator_service.dart';
 import 'package:userqueize/utils/constants.dart';
+import 'package:userqueize/utils/custom_animated_loader.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 import 'package:userqueize/utils/show_snack_bar.dart';
@@ -21,9 +24,10 @@ class ContainerCourserUpload extends StatefulWidget {
 
 class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
   DateTime? _selectedDate;
+  String responseMessage = '';
 
   File? file;
-
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,16 +53,6 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                   setState(() {
                     file = File(result.files.single.path!);
                   });
-                } else {
-                  // ignore: use_build_context_synchronously
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    // ignore: use_build_context_synchronously
-                    showSnackBar(
-                        // ignore: use_build_context_synchronously
-                        context,
-                        'الرجاء اختيار ملف',
-                        Icons.error),
-                  );
                 }
               },
             ),
@@ -124,9 +118,54 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
             const Spacer(),
             CustomButton(
               title: 'حفظ',
-              onPressed: () {
-                
-                Navigator.pop(context);
+              onPressed: () async {
+                if (file != null) {
+                  setState(() => isLoading = true);
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return const Center(
+                        child: CustomAnimatedLoader(
+                          color: kOrange,
+                        ),
+                      );
+                    },
+                  );
+                  responseMessage = await GeneratorService.uploadAndSendMessage(
+                    file!,
+                    '''قم باستخراج جميع الأسئلة بدون أي إضافات و بدون رد مع تنسيق اللغة الصحيح على شكل  [
+            {
+          "question": "نص السؤال هنا",
+          "answers": [
+              "الإجابة 1",
+              "الإجابة 2",
+              "...",
+          ]
+            }
+          
+            للأسئلة صح أو خطأ:  
+            {
+          "question": "نص السؤال هنا",
+          "answers": [
+              "صح",
+              "خطأ"
+          ]
+            }
+          ]
+                    ''',
+                  );
+                  setState(() => isLoading = false);
+                  log(responseMessage);
+                  // ignore: use_build_context_synchronously
+                  Navigator.pop(context);
+                } else {
+                  Navigator.pop(context);
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    showSnackBar(context, 'يرجى اختيار ملف', Icons.error),
+                  );
+                }
               },
             )
           ],
