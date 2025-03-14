@@ -60,10 +60,13 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
+                                  
                                   showModalBottomSheet(
                                     context: context,
                                     builder: (context) {
-                                      return  ContainerCourserUpload(subjectName: subjects[index].toString(),);
+                                      return ContainerCourserUpload(
+                                        subjectName: subjects[index],
+                                      );
                                     },
                                   );
                                 },
