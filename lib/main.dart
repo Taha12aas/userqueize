@@ -14,6 +14,7 @@ import 'package:userqueize/Mobile/views/register_view.dart';
 import 'package:userqueize/Mobile/views/subjects_view.dart';
 import 'package:userqueize/Mobile/views/teacher_profile_view.dart';
 import 'package:userqueize/Mobile/views/teacher_subjects_view.dart';
+import 'package:userqueize/cubits/cubitPreLoadedCourse/cubit_pre_loaded_course.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
@@ -41,6 +42,7 @@ class UserQuize extends StatelessWidget {
         BlocProvider(
           create: (context) => CubitSubject(),
         ),
+        BlocProvider(create: (context) => CubitPreLoadedCourse(),)
       ],
       child: MaterialApp(
         routes: {
