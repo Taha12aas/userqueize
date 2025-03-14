@@ -63,7 +63,7 @@ class ContainerTeacherSubjectsDisplay extends StatelessWidget {
                                   showModalBottomSheet(
                                     context: context,
                                     builder: (context) {
-                                      return const ContainerCourserUpload();
+                                      return  ContainerCourserUpload(subjectName: subjects[index].toString(),);
                                     },
                                   );
                                 },

@@ -21,8 +21,9 @@ import 'package:userqueize/utils/show_snack_bar.dart';
 class ContainerCourserUpload extends StatefulWidget {
   const ContainerCourserUpload({
     super.key,
+    required this.subjectName,
   });
-
+  final String subjectName;
   @override
   State<ContainerCourserUpload> createState() => _ContainerCourserUploadState();
 }
@@ -34,6 +35,7 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
   File? file;
   bool isLoading = false;
   ValueNotifier<bool>? valueNotifier = ValueNotifier(false);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -129,7 +131,9 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
             CustomButton(
               title: 'حفظ',
               onPressed: () async {
-                if (file != null) {
+                if (file != null &&
+                    selectSesion != null &&
+                    _selectedDate != null) {
                   valueNotifier!.value = true;
 
                   setState(() => isLoading = true);
@@ -166,11 +170,12 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
             }
           ]
                     ''',
-                  ) ;
+                  );
+                  // ignore: use_build_context_synchronously
                   BlocProvider.of<CubitPreLoadedCourse>(context).uploadCourse(
                       PreLoadedCourse(
-                          courses:jsonDecode(responseMessage) ,
-                          subjectName: "taha",
+                          courses: jsonDecode(responseMessage),
+                          subjectName: widget.subjectName,
                           courseHistory: _selectedDate.toString(),
                           teacherPhone: CubitTeacher.user.phone,
                           season: selectSesion!));
@@ -183,7 +188,8 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                   Navigator.pop(context);
 
                   ScaffoldMessenger.of(context).showSnackBar(
-                    showSnackBar(context, 'يرجى اختيار ملف', Icons.error),
+                    showSnackBar(
+                        context, 'يرجى تعبئة الحقول كاملة ', Icons.error),
                   );
                 }
               },
