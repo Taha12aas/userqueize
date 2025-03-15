@@ -7,6 +7,7 @@ import 'package:userqueize/Mobile/views/create_questions_view.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
 import 'package:userqueize/Mobile/views/log_in_view.dart';
+import 'package:userqueize/Mobile/views/pre_loaded_corses_view.dart';
 import 'package:userqueize/Mobile/views/question_generate_view.dart';
 import 'package:userqueize/Mobile/views/reading_generated_questions.dart';
 import 'package:userqueize/Mobile/views/register_view.dart';
@@ -41,7 +42,9 @@ class UserQuize extends StatelessWidget {
         BlocProvider(
           create: (context) => CubitSubject(),
         ),
-        BlocProvider(create: (context) => CubitPreLoadedCourse(),)
+        BlocProvider(
+          create: (context) => CubitPreLoadedCourse(),
+        )
       ],
       child: MaterialApp(
         routes: {
@@ -59,6 +62,8 @@ class UserQuize extends StatelessWidget {
               const ReadingGeneratedQuestions(),
           RegisterView.id: (context) => const RegisterView(),
           AlertView.id: (context) => const AlertView(),
+          PreLoadedCorsesView.id: (context) =>
+              const PreLoadedCorsesView(),
         },
         theme: ThemeData(scaffoldBackgroundColor: kBackGround),
         debugShowCheckedModeBanner: false,

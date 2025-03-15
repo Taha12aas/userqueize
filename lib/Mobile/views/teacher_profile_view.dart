@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:userqueize/Mobile/views/change_password_view.dart';
 import 'package:userqueize/Mobile/views/home_view.dart';
+import 'package:userqueize/Mobile/views/pre_loaded_corses_view.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/column_teacher_info.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/container_teache_subjects_display.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
@@ -128,7 +129,6 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                     },
                                   ),
                                 ),
-                               
                               ],
                             ),
                             const SizedBox(height: 15),
@@ -136,7 +136,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                               title: 'الدورات المرفوعة مسبقا',
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, HomeView.id);
+                                    context, PreLoadedCorsesView.id);
                               },
                             ),
                             const SizedBox(height: 25),

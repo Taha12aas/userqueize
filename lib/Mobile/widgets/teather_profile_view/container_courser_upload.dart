@@ -21,9 +21,10 @@ import 'package:userqueize/utils/show_snack_bar.dart';
 class ContainerCourserUpload extends StatefulWidget {
   const ContainerCourserUpload({
     super.key,
-    required this.subjectName,
+    required this.subjectName, required this.subjectClass,
   });
   final String subjectName;
+  final String subjectClass;
   @override
   State<ContainerCourserUpload> createState() => _ContainerCourserUploadState();
 }
@@ -173,7 +174,7 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                   );
                   // ignore: use_build_context_synchronously
                   BlocProvider.of<CubitPreLoadedCourse>(context).uploadCourse(
-                      PreLoadedCourse(
+                      PreLoadedCourse(subjectClass: widget.subjectClass,
                           courses: jsonDecode(responseMessage),
                           subjectName: widget.subjectName,
                           courseHistory: _selectedDate.toString(),

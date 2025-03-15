@@ -4,6 +4,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:userqueize/Mobile/widgets/add_teacher_view/custom_button.dart';
 import 'package:userqueize/Mobile/widgets/home_view/list_view_item_card_subject.dart';
 import 'package:userqueize/Mobile/widgets/home_view/main_sections.dart';
+import 'package:userqueize/cubits/cubitPreLoadedCourse/cubit_pre_loaded_course.dart';
 import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/cubits/cubitTeacher/ques_app_status.dart';
@@ -28,6 +29,8 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     BlocProvider.of<CubitTeacher>(context).fetchUsers(CubitTeacher.user.phone);
     BlocProvider.of<CubitSubject>(context).fetchSubject(CubitTeacher.user.name);
+    BlocProvider.of<CubitPreLoadedCourse>(context).fetchPreLoadedCourses();
+
     super.initState();
   }
   // late List<dynamic>
