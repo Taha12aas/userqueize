@@ -21,7 +21,8 @@ import 'package:userqueize/utils/show_snack_bar.dart';
 class ContainerCourserUpload extends StatefulWidget {
   const ContainerCourserUpload({
     super.key,
-    required this.subjectName, required this.subjectClass,
+    required this.subjectName,
+    required this.subjectClass,
   });
   final String subjectName;
   final String subjectClass;
@@ -174,10 +175,11 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                   );
                   // ignore: use_build_context_synchronously
                   BlocProvider.of<CubitPreLoadedCourse>(context).uploadCourse(
-                      PreLoadedCourse(subjectClass: widget.subjectClass,
+                      PreLoadedCourse(
+                          subjectClass: widget.subjectClass,
                           courses: jsonDecode(responseMessage),
                           subjectName: widget.subjectName,
-                          courseHistory: _selectedDate.toString(),
+                          courseHistory: _selectedDate!.year.toString(),
                           teacherPhone: CubitTeacher.user.phone,
                           season: selectSesion!));
                   setState(() => isLoading = false);
@@ -200,7 +202,6 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                   }
                 } else {
                   valueNotifier!.value = false;
-
 
                   if (Navigator.canPop(context)) {
                     Navigator.pop(context);
