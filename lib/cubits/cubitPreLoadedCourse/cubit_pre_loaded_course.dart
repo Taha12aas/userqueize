@@ -18,7 +18,7 @@ class CubitPreLoadedCourse extends Cubit<CubitPreLoadedCourseStatus> {
         courses.add(PreLoadedCourse.fromJson(result[i]));
       }
 
-      emit(SuccessStatePre(courses: courses));
+    emit(SuccessStatePre(courses: courses));
     } catch (e) {
       log(e.toString());
       emit(FaliureStatePre());

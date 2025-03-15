@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/widgets/teather_profile_view/container_courser_upload.dart';
-import 'package:userqueize/Mobile/widgets/teather_profile_view/header_row%20.dart';
+import 'package:userqueize/Mobile/widgets/teather_profile_view/header_row.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';

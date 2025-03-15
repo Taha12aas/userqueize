@@ -188,6 +188,9 @@ class _ContainerCourserUploadState extends State<ContainerCourserUpload> {
                   if (mounted) {
                     setState(() => isLoading = false);
                   }
+                  // ignore: use_build_context_synchronously
+                  BlocProvider.of<CubitPreLoadedCourse>(context)
+                      .fetchPreLoadedCourses();
 
                   // ignore: use_build_context_synchronously
                   if (Navigator.canPop(context)) {
