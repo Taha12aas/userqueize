@@ -9,7 +9,9 @@ class CubitSubject extends Cubit<CubitSubjectStatus> {
   CubitSubject() : super(LoadingStatee());
   static List<SubjectsGenerated> subjectsCount = [];
   void fetchSubject(String teacherName) async {
+          subjectsCount = [];
     try {
+
       List<Map<String, dynamic>> result =
           await SubjectService.fetchSubject(teacherName);
       for (var i = 0; i < result.length; i++) {

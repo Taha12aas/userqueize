@@ -102,11 +102,11 @@ class _CreateSubjectQuestionsViewState
                   await Future.delayed(const Duration(seconds: 4));
                   CubitSubject.subjectsCount.clear();
                   Navigator.pushNamedAndRemoveUntil(
-                    // ignore: use_build_context_synchronously
-                    context,
-                    HomeView.id,
-                    (route) => false,
-                  );
+                      // ignore: use_build_context_synchronously
+                      context,
+                      HomeView.id,
+                      (route) => false,
+                      arguments: false);
                 },
               ),
             ),

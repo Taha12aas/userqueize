@@ -11,6 +11,7 @@ import 'package:userqueize/Mobile/widgets/question_generate_view/questions_descr
 import 'package:userqueize/Mobile/widgets/question_generate_view/questions_level.dart';
 import 'package:userqueize/Mobile/widgets/question_generate_view/repeat_coursers.dart';
 import 'package:userqueize/Service/generator_service.dart';
+import 'package:userqueize/cubits/cubitPreLoadedCourse/cubit_pre_loaded_course.dart';
 import 'package:userqueize/utils/constants.dart';
 import 'package:userqueize/utils/custom_animated_loader.dart';
 import 'package:userqueize/utils/custom_app_bar.dart';
@@ -28,6 +29,7 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
   File? file;
   String responseMessage = '';
   bool isLoading = false;
+  List<dynamic> questions = [];
   bool isSelected = false;
   bool isSelected2 = false;
   ValueNotifier<int> qustionsCount = ValueNotifier(5);
@@ -115,16 +117,18 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                               width: double.infinity,
                               child: ListView.builder(
                                 reverse: true,
-                                itemCount: 5,
+                                itemCount: CubitPreLoadedCourse.courses.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
+
                                   values.add(ValueNotifier(0));
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     child: FittedBox(
                                       child: RepeatCoursers(
-                                        title: '2000',
+                                        title: CubitPreLoadedCourse
+                                            .courses[index].courseHistory,
                                         frequentlyQuestionsCount: values[index],
                                       ),
                                     ),
@@ -139,7 +143,6 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                           onChanged: (p0) {
                             if (p0 == true) {
                               isSelected2 = true;
-
                               setState(() {});
                             } else {
                               isSelected2 = false;
@@ -169,7 +172,16 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
           CustomButtonIcon(
             onPressed: () async {
               if (file != null) {
+                
                 setState(() => isLoading = true);
+
+                for (var i = 0; i < CubitPreLoadedCourse.courses.length; i++) {
+                  qustionsCount.value -= values[i].value;
+                  for (var j = 0; j < values[i].value; j++) {
+                    questions.add(CubitPreLoadedCourse.courses[i].courses[j]);
+                  }
+                }
+
                 showDialog(
                   context: context,
                   barrierDismissible: false,
@@ -210,13 +222,16 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                 );
                 setState(() => isLoading = false);
                 log(responseMessage);
+                log("/////////////////////////////////////");
+                log(questions.toString());
+                questions.addAll(jsonDecode(responseMessage));
                 // ignore: use_build_context_synchronously
-                Navigator.pushNamed(context, CreateSubjectQuestionsView.id,
-                    arguments: [jsonDecode(responseMessage), subjectName]);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, CreateSubjectQuestionsView.id, (route) => false,
+                    arguments: [questions, subjectName]);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  showSnackBar(
-                      context, 'يرجى اختيار ملف', Icons.error),
+                  showSnackBar(context, 'يرجى اختيار ملف', Icons.error),
                 );
               }
             },

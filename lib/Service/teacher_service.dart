@@ -13,6 +13,7 @@ class TeacherService {
         await supabase.from('teachers').select().eq('phone', teacherNumber);
 
     debugPrint('Response: $response');
+    
     debugPrint(response.length.toString());
     return response;
   }

@@ -29,6 +29,7 @@ class TeacherProfileView extends StatefulWidget {
 }
 
 class _TeacherProfileViewState extends State<TeacherProfileView> {
+  bool x = false;
   String address = '';
   int phoneNumber = 0;
   GlobalKey<FormState> globalKey = GlobalKey();
@@ -57,6 +58,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         HomeView.id,
+                        arguments: x,
                         (route) => false,
                       );
                     } else {
@@ -151,12 +153,13 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                               title: 'حفظ',
                               onPressed: () async {
                                 if (globalKey.currentState!.validate()) {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
 
                                   try {
                                     if (address != state.user!.address) {
+                                            setState(() {
+                                        _isLoading = true;
+                                      });
+                                
                                       BlocProvider.of<CubitTeacher>(context)
                                           .updateUsers(
                                         'address',
@@ -165,6 +168,9 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                       );
                                     }
                                     if (phoneNumber != state.user!.phone) {
+                                            setState(() {
+                                        _isLoading = true;
+                                      });
                                       BlocProvider.of<CubitTeacher>(context)
                                           .updateUsers(
                                         'phone',
@@ -173,6 +179,9 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                       );
                                     }
                                     if (selectedImage != null) {
+                                            setState(() {
+                                        _isLoading = true;
+                                      });
                                       final newImageUrl =
                                           await TeacherService.uploadImage(
                                         selectedImage!,
@@ -187,11 +196,6 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                       );
                                       setState(() {
                                         state.user!.photo = newImageUrl;
-                                      });
-                                    }
-                                    if (mounted) {
-                                      setState(() {
-                                        _isLoading = false;
                                       });
                                     }
                                     if (phoneNumber == state.user!.phone &&

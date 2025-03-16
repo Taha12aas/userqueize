@@ -112,8 +112,6 @@ class _LogInViewState extends State<LogInView> {
                                 // BlocProvider.of<CubitSubject>(context)
                                 //     .fetchSubject(CubitTeacher.user.name);//هااااااااادددددد
 
-                                // BlocProvider.of<CubitSubject>(context)
-                                //     .fetchSubject(CubitTeacher.user.name);
                                 Navigator.pushNamedAndRemoveUntil(
                                   arguments: s,
                                   context,

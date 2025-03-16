@@ -10,6 +10,7 @@ class CubitPreLoadedCourse extends Cubit<CubitPreLoadedCourseStatus> {
   CubitPreLoadedCourse() : super(InitStatePre());
   static List<PreLoadedCourse> courses = [];
   void fetchPreLoadedCourses() async {
+    courses = [];
     try {
       emit(LoadingStatePre());
       final result = await PreLoadedCoursesService.fetchPreLoadedCourses(
@@ -18,7 +19,7 @@ class CubitPreLoadedCourse extends Cubit<CubitPreLoadedCourseStatus> {
         courses.add(PreLoadedCourse.fromJson(result[i]));
       }
 
-    emit(SuccessStatePre(courses: courses));
+      emit(SuccessStatePre(courses: courses));
     } catch (e) {
       log(e.toString());
       emit(FaliureStatePre());

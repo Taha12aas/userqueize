@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
@@ -25,32 +27,33 @@ class _HomeViewState extends State<HomeView> {
   final ValueNotifier<bool> _isConnected = ValueNotifier(true);
   final ValueNotifier<bool> _showOnlineBanner = ValueNotifier(false);
 
-  @override
-  void initState() {
-    BlocProvider.of<CubitTeacher>(context).fetchUsers(CubitTeacher.user.phone);
-    BlocProvider.of<CubitSubject>(context).fetchSubject(CubitTeacher.user.name);
-    BlocProvider.of<CubitPreLoadedCourse>(context).fetchPreLoadedCourses();
-
-    super.initState();
-  }
-  // late List<dynamic>
-  //     fullQuestionTex; //هاد المتغير مشان يخزن قيمة يلي تم ارسالها من صفحة لوح ان
-
   // @override
   // void initState() {
+  //   BlocProvider.of<CubitTeacher>(context).fetchUsers(CubitTeacher.user.phone);
+  //   BlocProvider.of<CubitSubject>(context).fetchSubject(CubitTeacher.user.name);
+  //   BlocProvider.of<CubitPreLoadedCourse>(context).fetchPreLoadedCourses();
+
   //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     final args = ModalRoute.of(context)!.settings.arguments;
-  //     if (args != null && args is List) {
-  //       BlocProvider.of<CubitTeacher>(context)
-  //           .fetchUsers(CubitTeacher.user.phone);
-  //       BlocProvider.of<CubitSubject>(context)
-  //           .fetchSubject(CubitTeacher.user.name);
-  //     } else {
-  //       log('كول فستق طه');
-  //     }
-  //   });
   // }
+  late List<dynamic>
+      fullQuestionTex; //هاد المتغير مشان يخزن قيمة يلي تم ارسالها من صفحة لوح ان
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final args = ModalRoute.of(context)!.settings.arguments;
+      if (args != null) {
+        BlocProvider.of<CubitTeacher>(context)
+            .fetchUsers(CubitTeacher.user.phone);
+        BlocProvider.of<CubitSubject>(context)
+            .fetchSubject(CubitTeacher.user.name);
+        BlocProvider.of<CubitPreLoadedCourse>(context).fetchPreLoadedCourses();
+      } else {
+        log('كول فستق طه');
+      }
+    });
+  }
 
   void _handleConnectivityChange(bool isConnected) {
     if (_isConnected.value != isConnected) {
