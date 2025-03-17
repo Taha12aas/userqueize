@@ -88,7 +88,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
   void checkVerificationCode(BuildContext context) {
     if (_pinController.text.length == 4 &&
         _pinController.text == CubitTeacher.verificationCode.toString()) {
-      Navigator.pushNamedAndRemoveUntil(context, HomeView.id, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, HomeView.id, (route) => false,arguments: false);
       ScaffoldMessenger.of(context).showSnackBar(
         showSnackBar(context, 'تمت العملبة بنجاح', Icons.check),
       );

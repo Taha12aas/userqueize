@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
+import 'dart:math';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:userqueize/Mobile/views/create_subject_questions_view.dart';
@@ -120,7 +120,6 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
                                 itemCount: CubitPreLoadedCourse.courses.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-
                                   values.add(ValueNotifier(0));
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -172,16 +171,44 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
           CustomButtonIcon(
             onPressed: () async {
               if (file != null) {
-                
                 setState(() => isLoading = true);
-
-                for (var i = 0; i < CubitPreLoadedCourse.courses.length; i++) {
-                  qustionsCount.value -= values[i].value;
-                  for (var j = 0; j < values[i].value; j++) {
-                    questions.add(CubitPreLoadedCourse.courses[i].courses[j]);
+                if (isSelected2) {
+                  if (easy.value + normal.value + hard.value !=
+                      qustionsCount.value) {
+                    ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
+                        context,
+                        'عدد مستويات الأسئلة لا يتطابق مع عدد الاسئلة الكلي',
+                        Icons.error));
+                    return;
                   }
                 }
 
+                if (isSelected) {
+                  for (var i = 0;
+                      i < CubitPreLoadedCourse.courses.length;
+                      i++) {
+                    qustionsCount.value -= values[i].value;
+                    for (var j = 0; j < values[i].value; j++) {
+                      questions.add(CubitPreLoadedCourse.courses[i]
+                          .courses[Random().nextInt(values[i].value)]);
+                    }
+                  }
+                  
+                }
+                if (trueOrFalseCount.value > qustionsCount.value) {
+                  ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
+                      context,
+                      'اسئلة الصح والخطأ أكثر من الاسئلة الكلية',
+                      Icons.error));
+                  return;
+                }
+                if (0 > qustionsCount.value) {
+                  ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
+                      context,
+                      'اسئلة التكرار أكثر من الاسئلة الكلية',
+                      Icons.error));
+                  return;
+                }
                 showDialog(
                   context: context,
                   barrierDismissible: false,
@@ -221,13 +248,13 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
           ''',
                 );
                 setState(() => isLoading = false);
-                log(responseMessage);
-                log("/////////////////////////////////////");
-                log(questions.toString());
                 questions.addAll(jsonDecode(responseMessage));
                 // ignore: use_build_context_synchronously
                 Navigator.pushNamedAndRemoveUntil(
-                    context, CreateSubjectQuestionsView.id, (route) => false,
+                    // ignore: use_build_context_synchronously
+                    context,
+                    CreateSubjectQuestionsView.id,
+                    (route) => false,
                     arguments: [questions, subjectName]);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(

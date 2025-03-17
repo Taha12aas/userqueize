@@ -108,6 +108,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                 ),
                                 Expanded(
                                   child: ColumnTeacherInfo(
+                                    isEnabled: false,
                                     validator: validateToPhoneNumber,
                                     labelText: ': رقم الهاتف',
                                     initialValue: '${state.user!.phone}',
@@ -153,13 +154,12 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                               title: 'حفظ',
                               onPressed: () async {
                                 if (globalKey.currentState!.validate()) {
-
                                   try {
                                     if (address != state.user!.address) {
-                                            setState(() {
+                                      setState(() {
                                         _isLoading = true;
                                       });
-                                
+
                                       BlocProvider.of<CubitTeacher>(context)
                                           .updateUsers(
                                         'address',
@@ -168,7 +168,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                       );
                                     }
                                     if (phoneNumber != state.user!.phone) {
-                                            setState(() {
+                                      setState(() {
                                         _isLoading = true;
                                       });
                                       BlocProvider.of<CubitTeacher>(context)
@@ -179,7 +179,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                       );
                                     }
                                     if (selectedImage != null) {
-                                            setState(() {
+                                      setState(() {
                                         _isLoading = true;
                                       });
                                       final newImageUrl =

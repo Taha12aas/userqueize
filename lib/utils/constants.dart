@@ -7,4 +7,5 @@ const kBackGround = Color(0xff1B202A);
 const kBlack = Colors.black;
 const kWhite = Colors.white;
 const kOrangeBlackColor = Color(0xff251E1A);
+const kred = Colors.red;
 const klogo = 'assets/images/loogo.png';

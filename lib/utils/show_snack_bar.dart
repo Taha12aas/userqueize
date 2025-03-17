@@ -4,8 +4,10 @@ import 'package:userqueize/utils/font_style.dart';
 import 'package:userqueize/utils/responsive_text.dart';
 
 SnackBar showSnackBar(BuildContext context, String content, IconData icon) {
+  final screenWidth = MediaQuery.of(context).size.width;
+
   return SnackBar(
-    padding: const EdgeInsets.symmetric(vertical: 6),
+    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
     duration: const Duration(seconds: 2),
     shape: const RoundedRectangleBorder(
       side: BorderSide(color: kOrange),
@@ -14,29 +16,28 @@ SnackBar showSnackBar(BuildContext context, String content, IconData icon) {
       ),
     ),
     behavior: SnackBarBehavior.floating,
-    content: Row(
-      children: [
-        const SizedBox(
-          width: 10,
-        ),
-        CircleAvatar(
-          backgroundColor: Colors.transparent,
-          child: Icon(
+    width: screenWidth * 0.9,
+    content: IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
             icon,
             color: kOrange,
+            size: 24,
           ),
-        ),
-        const Spacer(),
-        Text(
-          content,
-          style: FontStyleApp.whiteBold18.copyWith(
-            fontSize: getResponsiveText(context, 15),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              content,
+              style: FontStyleApp.whiteBold18.copyWith(
+                fontSize: getResponsiveText(context, 15),
+              ),
+              maxLines: 3,
+            ),
           ),
-        ),
-        const SizedBox(
-          width: 10,
-        )
-      ],
+        ],
+      ),
     ),
   );
 }

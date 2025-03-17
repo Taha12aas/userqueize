@@ -192,7 +192,7 @@ class _HomeViewState extends State<HomeView> {
                   child: CustomButton(
                     title: 'حاول مجدداً',
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
+                      Navigator.pushNamedAndRemoveUntil(arguments: false,
                         context,
                         HomeView.id,
                         (route) => false,
