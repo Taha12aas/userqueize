@@ -22,7 +22,7 @@ import 'package:userqueize/utils/responsive_text.dart';
 
 class TeacherProfileView extends StatefulWidget {
   const TeacherProfileView({super.key});
-  static String id = 'TeacherProfile';
+  static String id = 'TeacherProfileView';
 
   @override
   State<TeacherProfileView> createState() => _TeacherProfileViewState();
@@ -200,10 +200,10 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                     }
                                     if (phoneNumber == state.user!.phone &&
                                         address == state.user!.address) {
-                                      if (mounted) {
+                                  
                                         // ignore: use_build_context_synchronously
                                         Navigator.pop(context);
-                                      }
+                                      
                                     }
                                   } catch (e) {
                                     if (mounted) {
