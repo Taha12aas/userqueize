@@ -1,13 +1,13 @@
-import 'dart:developer';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/row_home_view.dart';
+import 'package:userqueize/cubits/cubitSubject/cubit_subject.dart';
 import 'package:userqueize/cubits/cubitTeacher/cubit_teacher.dart';
 import 'package:userqueize/utils/constants.dart';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:docx_template/docx_template.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class CardSubjects extends StatelessWidget {
   const CardSubjects({
@@ -24,9 +24,92 @@ class CardSubjects extends StatelessWidget {
   final String classTeacher;
   final String courseDate;
   final String seasonSubject;
+  Future<void> generatePdfFile(List subjectInfo) async {
+    // تحميل الخط العربي
+    final arabicFont = pw.Font.ttf(
+      await rootBundle.load('assets/fonts/Amiri-Bold.ttf'),
+    );
+
+    // إنشاء مستند PDF
+    final pdf = pw.Document();
+
+    // البحث عن الدورات المطابقة
+    List<dynamic> course = [];
+    for (var i = 0; i < CubitSubject.subjectsCount.length; i++) {
+      if (subjectInfo[0] == CubitSubject.subjectsCount[i].nameSubject &&
+          subjectInfo[1] == CubitSubject.subjectsCount[i].classSabject &&
+          subjectInfo[2] == CubitSubject.subjectsCount[i].coursesDate &&
+          subjectInfo[3] == CubitSubject.subjectsCount[i].seasonSubject &&
+          subjectInfo[4] == CubitSubject.subjectsCount[i].generateTime) {
+        course.addAll(CubitSubject.subjectsCount[i].courses);
+      }
+    }
+
+    // إضافة محتوى إلى PDF
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              // عنوان الصفحة
+              pw.Text(
+                'تفاصيل الدورات',
+                style: pw.TextStyle(
+                  fontSize: 24,
+                  fontWeight: pw.FontWeight.bold,
+                  font: arabicFont,
+                ),
+                textDirection: pw.TextDirection.rtl,
+                textAlign: pw.TextAlign.right,
+              ),
+              pw.SizedBox(height: 20),
+
+              // تكرار المحتوى من الـ course
+              ...course.map((courseItem) {
+                return pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text(
+                      'اسم الدورة: ${courseItem['name']}', // افترض أن courseItem يحتوي على حقل 'name'
+                      style: pw.TextStyle(
+                        fontSize: 18,
+                        font: arabicFont,
+                      ),
+                      textDirection: pw.TextDirection.rtl,
+                      textAlign: pw.TextAlign.right,
+                    ),
+                    pw.Text(
+                      'الوصف: ${courseItem['description']}', // افترض أن courseItem يحتوي على حقل 'description'
+                      style: pw.TextStyle(
+                        fontSize: 16,
+                        font: arabicFont,
+                      ),
+                      textDirection: pw.TextDirection.rtl,
+                      textAlign: pw.TextAlign.right,
+                    ),
+                    pw.SizedBox(height: 10),
+                  ],
+                );
+              }).toList(),
+            ],
+          );
+        },
+      ),
+    );
+
+    // حفظ الملف
+    final outputDir = await getApplicationDocumentsDirectory();
+    final filePath = '${outputDir.path}/courses_details.pdf';
+    final file = File(filePath);
+    await file.writeAsBytes(await pdf.save());
+
+    print('File saved to $filePath');
+  }
 
   @override
   Widget build(BuildContext context) {
+    List subjectInfo = ModalRoute.of(context)!.settings.arguments as List;
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
     return Bounceable(
@@ -59,64 +142,8 @@ class CardSubjects extends StatelessWidget {
                     color: kOrange,
                     iconSize: 30,
                     onPressed: () {
-                      void generateWordFile() async {
-                        // البيانات الأصلية
-
-                        final data = [
-                          {
-                            "answers": [
-                              "السرية والتكاملية",
-                              "عدم الاهتمام بالمعلومات"
-                            ],
-                            "question": "ما هي الغاية من حماية المعلومات؟"
-                          },
-                          {
-                            "answers": ["نعم", "لا"],
-                            "question":
-                                "هل يمكن استخدام طرف ثالث موثوق به لمنع الإنكار؟"
-                          },
-                          {
-                            "answers": ["نعم", "لا"],
-                            "question":
-                                "هل يجب أن تتوفر المعلومات للجهات المصرح لها فقط؟"
-                          },
-                          {
-                            "answers": ["نعم", "لا"],
-                            "question":
-                                "هل يمكن تحليل حركة البيانات حتى مع استخدام التشفير؟"
-                          },
-                          {
-                            "answers": ["صح", "خطأ"],
-                            "question":
-                                "تعتبر المعلومات غير المتاحة مفيدة لأحد؟"
-                          },
-                        ];
-
-                        // إنشاء ملف Word
-                        final template = await DocxTemplate.fromBytes(
-                            File('template.docx').readAsBytesSync());
-
-                        // النصوص المدخلة
-                        Content c = Content();
-                        for (var item in data) {
-                          c.add(TextContent('question', item['question']));
-                          c.add(ListContent(
-                              'answers', item['answers'] as List<Content>));
-                        }
-
-                        // مسار الحفظ
-                        final outputDir =
-                            await getApplicationDocumentsDirectory();
-                        final filePath = '${outputDir.path}/questions.docx';
-
-                        final d = await template.generate(c);
-                        if (d != null) {
-                          final of = File(filePath);
-                          await of.writeAsBytes(d);
-                          log('File saved to $filePath');
-                        }
-                      }
-                    },
+                      generatePdfFile(subjectInfo);
+                    }, // استدعاء الدالة هنا
                     icon: const Icon(
                       Icons.download,
                     ),
