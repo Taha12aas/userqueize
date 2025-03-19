@@ -27,7 +27,7 @@ class PreLoadedCorsesView extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: CardSubjects(
+                      child: CardSubjects(isdownlod: false,
                         courseDate:
                             CubitPreLoadedCourse.courses[index].courseHistory,
                         seasonSubject:

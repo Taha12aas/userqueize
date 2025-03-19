@@ -26,7 +26,7 @@ class ListViewItemCardSubject extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: CardSubjects(
+                child: CardSubjects(isdownlod: true,
                   onPressed: () async {
                     List courses = CubitSubject.subjectsCount[index].courses;
                     final arabicFont = pw.Font.ttf(

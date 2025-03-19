@@ -11,7 +11,7 @@ class CardSubjects extends StatelessWidget {
     required this.subject,
     required this.classTeacher,
     required this.courseDate,
-    required this.seasonSubject, this.onPressed,
+    required this.seasonSubject, this.onPressed, required this.isdownlod,
   });
 
   final void Function() onTap;
@@ -20,6 +20,7 @@ class CardSubjects extends StatelessWidget {
   final String courseDate;
   final String seasonSubject;
   final void Function()? onPressed;
+  final bool isdownlod;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +56,9 @@ class CardSubjects extends StatelessWidget {
                     color: kOrange,
                     iconSize: 30,
                     onPressed: onPressed,
-                    icon: const Icon(
+                    icon:isdownlod? const Icon(
                       Icons.download,
-                    ),
+                    ):const SizedBox(),
                   )
                 : const SizedBox(),
             Expanded(
