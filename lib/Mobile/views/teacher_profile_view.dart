@@ -200,10 +200,8 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                     }
                                     if (phoneNumber == state.user!.phone &&
                                         address == state.user!.address) {
-                                  
-                                        // ignore: use_build_context_synchronously
-                                        Navigator.pop(context);
-                                      
+                                      // ignore: use_build_context_synchronously
+                                      Navigator.pop(context);
                                     }
                                   } catch (e) {
                                     if (mounted) {
@@ -211,13 +209,16 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
                                         _isLoading = false;
                                       });
                                     }
-                                    // ignore: use_build_context_synchronously
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content:
-                                            Text("حدث خطأ أثناء التحديث: $e"),
-                                      ),
-                                    );
+                                    if (mounted) {
+                                      // ignore: use_build_context_synchronously
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content:
+                                              Text("حدث خطأ أثناء التحديث: $e"),
+                                        ),
+                                      );
+                                    }
                                   }
                                 }
                               },
