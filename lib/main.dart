@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:userqueize/Mobile/views/alert_view.dart';
@@ -22,10 +23,18 @@ import 'package:userqueize/utils/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // تعيين شريط النظام بشكل صريح
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: kBackGround, // إزالة اللون الأبيض في شريط الحالة
+    systemNavigationBarColor:
+        kBackGround, // إزالة اللون الأبيض في شريط التنقل السفلي
+    systemNavigationBarIconBrightness:
+        Brightness.dark, // ضبط سطوع الأيقونات في شريط التنقل
+  ));
   await Supabase.initialize(
-    url: 'https://gewushokramjbiqcbpng.supabase.co', // URL الخاص بكs
+    url: 'https://gewushokramjbiqcbpng.supabase.co',
     anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdld3VzaG9rcmFtamJpcWNicG5nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwNjQ1MjksImV4cCI6MjA0OTY0MDUyOX0.9v7QMV8NgGhSgBnGRqZKxr2GNSLY1dZcgvm-ioIkdXg', // مفتاح الوصول العام (مفتاح API)
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdld3VzaG9rcmFtamJpcWNicG5nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwNjQ1MjksImV4cCI6MjA0OTY0MDUyOX0.9v7QMV8NgGhSgBnGRqZKxr2GNSLY1dZcgvm-ioIkdXg',
   );
   runApp(const UserQuize());
 }
@@ -64,10 +73,11 @@ class UserQuize extends StatelessWidget {
           RegisterView.id: (context) => const RegisterView(),
           AlertView.id: (context) => const AlertView(),
           PreLoadedCorsesView.id: (context) => const PreLoadedCorsesView(),
-          
-          ReadingPreLoadedCoursesView.id: (context) => const ReadingPreLoadedCoursesView(),
+          ReadingPreLoadedCoursesView.id: (context) =>
+              const ReadingPreLoadedCoursesView(),
         },
-        theme: ThemeData(scaffoldBackgroundColor: kBackGround),
+        theme: ThemeData(
+            primaryColor: kBackGround, scaffoldBackgroundColor: kBackGround),
         debugShowCheckedModeBanner: false,
         initialRoute: LogInView.id,
       ),
