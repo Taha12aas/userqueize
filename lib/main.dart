@@ -29,7 +29,7 @@ void main() async {
     systemNavigationBarColor:
         kBackGround, // إزالة اللون الأبيض في شريط التنقل السفلي
     systemNavigationBarIconBrightness:
-        Brightness.dark, // ضبط سطوع الأيقونات في شريط التنقل
+        Brightness.light, // ضبط سطوع الأيقونات في شريط التنقل
   ));
   await Supabase.initialize(
     url: 'https://gewushokramjbiqcbpng.supabase.co',

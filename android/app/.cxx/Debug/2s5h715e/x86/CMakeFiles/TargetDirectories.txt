@@ -1,0 +1,2 @@
+C:/Users/asdfg/Documents/GitHub/userqueize/android/app/.cxx/Debug/2s5h715e/x86/CMakeFiles/edit_cache.dir
+C:/Users/asdfg/Documents/GitHub/userqueize/android/app/.cxx/Debug/2s5h715e/x86/CMakeFiles/rebuild_cache.dir
