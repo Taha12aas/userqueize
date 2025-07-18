@@ -130,22 +130,24 @@ class _LogInViewState extends State<LogInView> {
                         },
                         child: BlocBuilder<CubitTeacher, QuesAppStatus>(
                           builder: (context, state) {
-                            return CustomButtonIcon(
-                              iconData: Icons.login,
-                              label: 'تسجيل الدخول',
-                              onPressed: () {
-                                if (globalKey.currentState!.validate()) {
-                                  isActiv = true;
-                                  setState(() {});
-                                  BlocProvider.of<CubitTeacher>(context)
-                                      .fetchUsers(phoneNumber);
-                                }
-                              },
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 100),
+                              child: CustomButtonIcon(
+                                iconData: Icons.login,
+                                label: 'تسجيل الدخول',
+                                onPressed: () {
+                                  if (globalKey.currentState!.validate()) {
+                                    isActiv = true;
+                                    setState(() {});
+                                    BlocProvider.of<CubitTeacher>(context)
+                                        .fetchUsers(phoneNumber);
+                                  }
+                                },
+                              ),
                             );
                           },
                         ),
                       ),
-                      const SizedBox(height: 65),
                     ],
                   ),
                 ),

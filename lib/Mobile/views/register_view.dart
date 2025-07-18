@@ -49,7 +49,7 @@ class _RegisterViewState extends State<RegisterView> {
                   BoxConstraints(minHeight: MediaQuery.sizeOf(context).height),
               child: IntrinsicHeight(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  padding: const EdgeInsets.only(left: 18, right: 18, top: 120),
                   child: Column(
                     children: [
                       const SizedBox(height: 40),
@@ -127,22 +127,24 @@ class _RegisterViewState extends State<RegisterView> {
                         },
                         child: BlocBuilder<CubitTeacher, QuesAppStatus>(
                           builder: (context, state) {
-                            return CustomButtonIcon(
-                              iconData: Icons.login,
-                              label: 'انشاء حساب',
-                              onPressed: () {
-                                if (globalKey.currentState!.validate()) {
-                                  isActiv = true;
-                                  setState(() {});
-                                  BlocProvider.of<CubitTeacher>(context)
-                                      .fetchUsers(phoneNumber);
-                                }
-                              },
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 100),
+                              child: CustomButtonIcon(
+                                iconData: Icons.login,
+                                label: 'انشاء حساب',
+                                onPressed: () {
+                                  if (globalKey.currentState!.validate()) {
+                                    isActiv = true;
+                                    setState(() {});
+                                    BlocProvider.of<CubitTeacher>(context)
+                                        .fetchUsers(phoneNumber);
+                                  }
+                                },
+                              ),
                             );
                           },
                         ),
                       ),
-                      const SizedBox(height: 65),
                     ],
                   ),
                 ),

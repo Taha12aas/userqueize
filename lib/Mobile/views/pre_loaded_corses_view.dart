@@ -20,37 +20,42 @@ class PreLoadedCorsesView extends StatelessWidget {
           builder: (context, state) {
             log(state.toString());
             if (state is SuccessStatePre) {
-              return Padding(
-                padding: const EdgeInsets.all(18),
-                child: ListView.builder(
-                  itemCount: CubitPreLoadedCourse.courses.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: CardSubjects(isdownlod: false,
-                        courseDate:
-                            CubitPreLoadedCourse.courses[index].courseHistory,
-                        seasonSubject:
-                            CubitPreLoadedCourse.courses[index].season,
-                        subject:
-                            CubitPreLoadedCourse.courses[index].subjectName,
-                        classTeacher:
-                            CubitPreLoadedCourse.courses[index].subjectClass,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            arguments: [
+              return SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: ListView.builder(
+                    itemCount: CubitPreLoadedCourse.courses.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: CardSubjects(
+                          isdownlod: false,
+                          courseDate:
                               CubitPreLoadedCourse.courses[index].courseHistory,
+                          seasonSubject:
                               CubitPreLoadedCourse.courses[index].season,
+                          subject:
                               CubitPreLoadedCourse.courses[index].subjectName,
+                          classTeacher:
                               CubitPreLoadedCourse.courses[index].subjectClass,
-                            ],
-                            context,
-                            ReadingPreLoadedCoursesView.id,
-                          );
-                        },
-                      ),
-                    );
-                  },
+                          onTap: () {
+                            Navigator.pushNamed(
+                              arguments: [
+                                CubitPreLoadedCourse
+                                    .courses[index].courseHistory,
+                                CubitPreLoadedCourse.courses[index].season,
+                                CubitPreLoadedCourse.courses[index].subjectName,
+                                CubitPreLoadedCourse
+                                    .courses[index].subjectClass,
+                              ],
+                              context,
+                              ReadingPreLoadedCoursesView.id,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
                 ),
               );
             } else {

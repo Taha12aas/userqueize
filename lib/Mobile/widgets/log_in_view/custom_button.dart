@@ -26,15 +26,14 @@ class CustomButtonIcon extends StatelessWidget {
           foregroundColor: Colors.orange[50],
           side: const BorderSide(color: kOrange, width: 2),
           shadowColor: Colors.transparent,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          elevation: 0,
+           elevation: 0,
           backgroundColor: Colors.transparent,
         ),
         onPressed: onPressed,
         label: Text(
           label,
           style: FontStyleApp.orangeBold20.copyWith(
-            fontSize: getResponsiveText(context, 20),
+            fontSize: getResponsiveText(context, 14),
           ),
         ),
       ),

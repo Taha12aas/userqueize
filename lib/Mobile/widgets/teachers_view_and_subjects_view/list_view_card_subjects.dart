@@ -21,7 +21,7 @@ class ListViewCardSubjects extends StatelessWidget {
             child: CardTeacherSubject(
               classTeacher: listClasses[index],
               subject: listSubject[index],
-              teacherImag: 'assets/images/Teachers.png',
+          
               onTap: () {
                 Navigator.pushNamed(context, QuestionGenerateView.id,
                     arguments: [listClasses[index],listSubject[index]]);

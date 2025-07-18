@@ -30,12 +30,13 @@ class AuthTextField extends StatelessWidget {
       child: TextFieldIconS(iconData: iconData),
       builder: (context, value, child) {
         return TextFormField(
-          initialValue: initialValue, //موقت للحذف
+          initialValue: initialValue,
           validator: validator,
           keyboardType: keyboardType! ? TextInputType.number : null,
           obscureText: obscureText! ? value : obscureText!,
           style: const TextStyle(fontWeight: FontWeight.bold),
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 1),
             hintText: hintText,
             fillColor: Colors.white,
             filled: true,

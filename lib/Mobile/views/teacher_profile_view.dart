@@ -48,190 +48,194 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
         key: globalKey,
         child: Scaffold(
           appBar: customAppBar('ملف المدرس', context),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18),
-            child: Center(
-              child: SingleChildScrollView(
-                child: BlocListener<CubitTeacher, QuesAppStatus>(
-                  listener: (context, state) {
-                    if (state is LoadingState) {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        HomeView.id,
-                        arguments: x,
-                        (route) => false,
-                      );
-                    } else {
-                      log(state.toString());
-                    }
-                  },
-                  child: BlocBuilder<CubitTeacher, QuesAppStatus>(
-                    builder: (context, state) {
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: BlocListener<CubitTeacher, QuesAppStatus>(
+                    listener: (context, state) {
                       if (state is LoadingState) {
-                        return const CircularProgressIndicator(
-                          color: kOrange,
-                        );
-                      } else if (state is SuccessState) {
-                        List<dynamic> classes =
-                            state.user!.classesSubjects['صف'];
-                        List<dynamic> subjects =
-                            state.user!.classesSubjects['مواد'];
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 5),
-                            TeacherPhoto(
-                              selectedImage: selectedImage,
-                              onPressed: () {
-                                _pickImage();
-                              },
-                              image: state.user!.photo,
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              state.user!.name,
-                              style: FontStyleApp.whiteBold18.copyWith(
-                                fontSize: getResponsiveText(context, 18),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: ColumnTeacherInfo(
-                                    validator: validateToAddress,
-                                    labelText: ': العنوان',
-                                    initialValue: state.user!.address,
-                                    iconData: FontAwesomeIcons.locationDot,
-                                    horizntalSize: 64,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ColumnTeacherInfo(
-                                    isEnabled: false,
-                                    validator: validateToPhoneNumber,
-                                    labelText: ': رقم الهاتف',
-                                    initialValue: '${state.user!.phone}',
-                                    iconData: FontAwesomeIcons.phone,
-                                    horizntalSize: 89,
-                                    keyboardType: true,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: CustomButton(
-                                    title: 'تغير كلمة المرور',
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, ChangePasswordView.id);
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 15),
-                            CustomButton(
-                              title: 'الدورات المرفوعة مسبقا',
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, PreLoadedCorsesView.id);
-                              },
-                            ),
-                            const SizedBox(height: 25),
-                            ContainerTeacherSubjectsDisplay(
-                              classes: classes,
-                              subjects: subjects,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.1,
-                            ),
-                            CustomButton(
-                              title: 'حفظ',
-                              onPressed: () async {
-                                if (globalKey.currentState!.validate()) {
-                                  try {
-                                    if (address != state.user!.address) {
-                                      setState(() {
-                                        _isLoading = true;
-                                      });
-
-                                      BlocProvider.of<CubitTeacher>(context)
-                                          .updateUsers(
-                                        'address',
-                                        state.user!.name,
-                                        address,
-                                      );
-                                    }
-                                    if (phoneNumber != state.user!.phone) {
-                                      setState(() {
-                                        _isLoading = true;
-                                      });
-                                      BlocProvider.of<CubitTeacher>(context)
-                                          .updateUsers(
-                                        'phone',
-                                        state.user!.name,
-                                        phoneNumber,
-                                      );
-                                    }
-                                    if (selectedImage != null) {
-                                      setState(() {
-                                        _isLoading = true;
-                                      });
-                                      final newImageUrl =
-                                          await TeacherService.uploadImage(
-                                        selectedImage!,
-                                        state.user!.phone,
-                                      );
-                                      // ignore: use_build_context_synchronously
-                                      BlocProvider.of<CubitTeacher>(context)
-                                          .updateUsers(
-                                        'photo',
-                                        state.user!.name,
-                                        newImageUrl,
-                                      );
-                                      setState(() {
-                                        state.user!.photo = newImageUrl;
-                                      });
-                                    }
-                                    if (phoneNumber == state.user!.phone &&
-                                        address == state.user!.address) {
-                                      // ignore: use_build_context_synchronously
-                                      Navigator.pop(context);
-                                    }
-                                  } catch (e) {
-                                    if (mounted) {
-                                      setState(() {
-                                        _isLoading = false;
-                                      });
-                                    }
-                                    if (mounted) {
-                                      // ignore: use_build_context_synchronously
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content:
-                                              Text("حدث خطأ أثناء التحديث: $e"),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                }
-                              },
-                            )
-                          ],
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          HomeView.id,
+                          arguments: x,
+                          (route) => false,
                         );
                       } else {
-                        return const Text(
-                          "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-                          style: FontStyleApp.orangeBold30,
-                        );
+                        log(state.toString());
                       }
                     },
+                    child: BlocBuilder<CubitTeacher, QuesAppStatus>(
+                      builder: (context, state) {
+                        if (state is LoadingState) {
+                          return const CircularProgressIndicator(
+                            color: kOrange,
+                          );
+                        } else if (state is SuccessState) {
+                          List<dynamic> classes =
+                              state.user!.classesSubjects['صف'];
+                          List<dynamic> subjects =
+                              state.user!.classesSubjects['مواد'];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const SizedBox(height: 5),
+                              TeacherPhoto(
+                                selectedImage: selectedImage,
+                                onPressed: () {
+                                  _pickImage();
+                                },
+                                image: state.user!.photo,
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                state.user!.name,
+                                style: FontStyleApp.whiteBold18.copyWith(
+                                  fontSize: getResponsiveText(context, 18),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: ColumnTeacherInfo(
+                                      validator: validateToAddress,
+                                      labelText: ': العنوان',
+                                      initialValue: state.user!.address,
+                                      iconData: FontAwesomeIcons.locationDot,
+                                      horizntalSize: 64,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: ColumnTeacherInfo(
+                                      isEnabled: false,
+                                      validator: validateToPhoneNumber,
+                                      labelText: ': رقم الهاتف',
+                                      initialValue: '${state.user!.phone}',
+                                      iconData: FontAwesomeIcons.phone,
+                                      horizntalSize: 89,
+                                      keyboardType: true,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: CustomButton(
+                                      title: 'تغير كلمة المرور',
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, ChangePasswordView.id);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 15),
+                              CustomButton(
+                                title: 'الدورات المرفوعة مسبقا',
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, PreLoadedCorsesView.id);
+                                },
+                              ),
+                              const SizedBox(height: 25),
+                              ContainerTeacherSubjectsDisplay(
+                                classes: classes,
+                                subjects: subjects,
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.sizeOf(context).height * 0.01,
+                              ),
+                              CustomButton(
+                                title: 'حفظ',
+                                onPressed: () async {
+                                  if (globalKey.currentState!.validate()) {
+                                    try {
+                                      if (address != state.user!.address) {
+                                        setState(() {
+                                          _isLoading = true;
+                                        });
+
+                                        BlocProvider.of<CubitTeacher>(context)
+                                            .updateUsers(
+                                          'address',
+                                          state.user!.name,
+                                          address,
+                                        );
+                                      }
+                                      if (phoneNumber != state.user!.phone) {
+                                        setState(() {
+                                          _isLoading = true;
+                                        });
+                                        BlocProvider.of<CubitTeacher>(context)
+                                            .updateUsers(
+                                          'phone',
+                                          state.user!.name,
+                                          phoneNumber,
+                                        );
+                                      }
+                                      if (selectedImage != null) {
+                                        setState(() {
+                                          _isLoading = true;
+                                        });
+                                        final newImageUrl =
+                                            await TeacherService.uploadImage(
+                                          selectedImage!,
+                                          state.user!.phone,
+                                        );
+                                        // ignore: use_build_context_synchronously
+                                        BlocProvider.of<CubitTeacher>(context)
+                                            .updateUsers(
+                                          'photo',
+                                          state.user!.name,
+                                          newImageUrl,
+                                        );
+                                        setState(() {
+                                          state.user!.photo = newImageUrl;
+                                        });
+                                      }
+                                      if (phoneNumber == state.user!.phone &&
+                                          address == state.user!.address) {
+                                        // ignore: use_build_context_synchronously
+                                        Navigator.pop(context);
+                                      }
+                                    } catch (e) {
+                                      if (mounted) {
+                                        setState(() {
+                                          _isLoading = false;
+                                        });
+                                      }
+                                      if (mounted) {
+                                        // ignore: use_build_context_synchronously
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                                "حدث خطأ أثناء التحديث: $e"),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  }
+                                },
+                              )
+                            ],
+                          );
+                        } else {
+                          return const Text(
+                            "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+                            style: FontStyleApp.orangeBold30,
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),

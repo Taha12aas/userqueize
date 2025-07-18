@@ -30,6 +30,8 @@ class _CreateSubjectQuestionsViewState
   TextEditingController answerThreeController = TextEditingController();
   TextEditingController answerFourController = TextEditingController();
 
+  List fullQuestionTex = [];
+
   @override
   void dispose() {
     questionController.dispose();
@@ -40,10 +42,21 @@ class _CreateSubjectQuestionsViewState
     super.dispose();
   }
 
-  late List fullQuestionTex;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (fullQuestionTex.isEmpty) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      fullQuestionTex = List.from(args['questions'] ?? []);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    fullQuestionTex = ModalRoute.of(context)!.settings.arguments as List;
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final List subjectInfo = args['subject'] ?? [];
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -58,62 +71,57 @@ class _CreateSubjectQuestionsViewState
         },
       ),
       appBar: customAppBar('الأسئلة المولدة', context),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            QuestionAndAnswer(
-              data: fullQuestionTex[0],
-              isIcon: true,
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width * .5,
-              child: CustomButtonIcon(
-                iconData: Icons.save_alt,
-                label: 'حفظ',
-                onPressed: () async {
-                  BlocProvider.of<CubitSubject>(context).addCourse(
-                    SubjectsGenerated(
-                      nameSubject: fullQuestionTex[1][1],
-                      coursesDate: DateTime.now().year.toString(),
-                      courses: fullQuestionTex[0],
-                      nameTeacher: CubitTeacher.user.name,
-                      classSabject: fullQuestionTex[1][0],
-                      seasonSubject: DateTime.now().month < DateTime.march
-                          ? 'اول'
-                          : 'ثاني',
-                      generateTime: DateTime.now().toString(),
-                    ),
-                  );
-                  showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return const Center(
-                        child: CustomAnimatedLoader(
-                          color: kWhite,
-                        ),
-                      );
-                    },
-                  );
-                  await Future.delayed(const Duration(seconds: 4));
-                  CubitSubject.subjectsCount.clear();
-                  Navigator.pushNamedAndRemoveUntil(
-                      // ignore: use_build_context_synchronously
-                      context,
-                      HomeView.id,
-                      (route) => false,
-                      arguments: false);
-                },
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              QuestionAndAnswer(
+                data: fullQuestionTex,
+                isIcon: true,
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            )
-          ],
+              const SizedBox(height: 20),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: CustomButtonIcon(
+                  iconData: Icons.save_alt,
+                  label: 'حفظ',
+                  onPressed: () async {
+                    BlocProvider.of<CubitSubject>(context).addCourse(
+                      SubjectsGenerated(
+                        nameSubject: subjectInfo[1],
+                        classSabject: subjectInfo[0],
+                        coursesDate: DateTime.now().year.toString(),
+                        courses: fullQuestionTex,
+                        nameTeacher: CubitTeacher.user.name,
+                        seasonSubject: DateTime.now().month < DateTime.march
+                            ? 'اول'
+                            : 'ثاني',
+                        generateTime: DateTime.now().toString(),
+                      ),
+                    );
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return const Center(
+                          child: CustomAnimatedLoader(
+                            color: kWhite,
+                          ),
+                        );
+                      },
+                    );
+                    await Future.delayed(const Duration(seconds: 4));
+                    CubitSubject.subjectsCount.clear();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, HomeView.id, (route) => false,
+                        arguments: false);
+                  },
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
@@ -125,127 +133,122 @@ class _CreateSubjectQuestionsViewState
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
+      backgroundColor: Colors.transparent,
       builder: (context) {
-        return Form(
-          key: globalKey,
-          child: Container(
-            decoration: const BoxDecoration(
-              color: kBackGround,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(26),
-                topRight: Radius.circular(26),
-              ),
-            ),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      ': السؤال',
-                      style: FontStyleApp.orangeDinNextLTArabic18,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InfoTextField(
-                        validator: validateToQuestion,
-                        controller: questionController,
-                        iconData: FontAwesomeIcons.circlePlus),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      ': الخيار الاول',
-                      style: FontStyleApp.orangeDinNextLTArabic18,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InfoTextField(
-                        validator: validateToQuestion,
-                        controller: answerOneController,
-                        iconData: FontAwesomeIcons.commentMedical),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      ': الخيار الثاني',
-                      style: FontStyleApp.orangeDinNextLTArabic18,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InfoTextField(
-                        validator: validateToQuestion,
-                        controller: answerTowController,
-                        iconData: FontAwesomeIcons.commentMedical),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      ': الخيار الثالث',
-                      style: FontStyleApp.orangeDinNextLTArabic18,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InfoTextField(
-                        controller: answerThreeController,
-                        iconData: FontAwesomeIcons.commentMedical),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      ': الخيار الرابع',
-                      style: FontStyleApp.orangeDinNextLTArabic18,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InfoTextField(
-                        controller: answerFourController,
-                        iconData: FontAwesomeIcons.commentMedical),
-                    SizedBox(
-                      height: height * 0.04,
-                    ),
-                    CustomButtonIcon(
-                      iconData: Icons.add_box_outlined,
-                      label: 'اضافة سؤال',
-                      onPressed: () {
-                        setState(() {
-                          if (globalKey.currentState!.validate()) {
-                            fullQuestionTex.add({
-                              'question': questionController.text,
-                              'answers': [
-                                answerOneController.text,
-                                answerTowController.text,
-                                answerThreeController.text,
-                                answerFourController.text
-                              ]
-                            });
-                            questionController.clear();
-                            answerOneController.clear();
-                            answerTowController.clear();
-                            answerThreeController.clear();
-                            answerFourController.clear();
-                            Navigator.pop(
-                              context,
-                            );
-                          }
-                        });
-                      },
-                    )
-                  ],
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.85,
+          maxChildSize: 0.95,
+          minChildSize: 0.4,
+          builder: (context, scrollController) {
+            return Container(
+              decoration: const BoxDecoration(
+                color: kBackGround,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(26),
+                  topRight: Radius.circular(26),
                 ),
               ),
-            ),
-          ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 15,
+                  right: 15,
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 15,
+                  top: 20,
+                ),
+                child: Form(
+                  key: globalKey,
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Text(
+                          ': السؤال',
+                          style: FontStyleApp.orangeDinNextLTArabic18,
+                        ),
+                        const SizedBox(height: 10),
+                        InfoTextField(
+                          validator: validateToQuestion,
+                          controller: questionController,
+                          iconData: FontAwesomeIcons.circlePlus,
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          ': الخيار الأول',
+                          style: FontStyleApp.orangeDinNextLTArabic18,
+                        ),
+                        const SizedBox(height: 10),
+                        InfoTextField(
+                          validator: validateToQuestion,
+                          controller: answerOneController,
+                          iconData: FontAwesomeIcons.commentMedical,
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          ': الخيار الثاني',
+                          style: FontStyleApp.orangeDinNextLTArabic18,
+                        ),
+                        const SizedBox(height: 10),
+                        InfoTextField(
+                          validator: validateToQuestion,
+                          controller: answerTowController,
+                          iconData: FontAwesomeIcons.commentMedical,
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          ': الخيار الثالث',
+                          style: FontStyleApp.orangeDinNextLTArabic18,
+                        ),
+                        const SizedBox(height: 10),
+                        InfoTextField(
+                          controller: answerThreeController,
+                          iconData: FontAwesomeIcons.commentMedical,
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          ': الخيار الرابع',
+                          style: FontStyleApp.orangeDinNextLTArabic18,
+                        ),
+                        const SizedBox(height: 10),
+                        InfoTextField(
+                          controller: answerFourController,
+                          iconData: FontAwesomeIcons.commentMedical,
+                        ),
+                        const SizedBox(height: 30),
+                        CustomButtonIcon(
+                          iconData: Icons.add_box_outlined,
+                          label: 'اضافة سؤال',
+                          onPressed: () {
+                            if (globalKey.currentState!.validate()) {
+                              setState(() {
+                                fullQuestionTex.add({
+                                  'question': questionController.text,
+                                  'answers': [
+                                    answerOneController.text,
+                                    answerTowController.text,
+                                    answerThreeController.text,
+                                    answerFourController.text,
+                                  ],
+                                });
+                                questionController.clear();
+                                answerOneController.clear();
+                                answerTowController.clear();
+                                answerThreeController.clear();
+                                answerFourController.clear();
+                              });
+                              Navigator.pop(context);
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
     );

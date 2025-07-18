@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:userqueize/Mobile/widgets/teachers_view_and_subjects_view/row_home_view.dart';
 import 'package:userqueize/utils/constants.dart';
 
@@ -8,14 +9,13 @@ class CardTeacherSubject extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.subject,
-    required this.teacherImag,
     required this.classTeacher,
   });
 
   final void Function() onTap;
   final String subject;
   final String classTeacher;
-  final String teacherImag;
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -42,17 +42,12 @@ class CardTeacherSubject extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const SizedBox(
-              width: 5,
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                teacherImag,
-                height: screenHeight * 0.074,
-                width: screenHeight * 0.074,
-                fit: BoxFit.cover,
-              ),
+            Padding(
+              padding: const EdgeInsets.all(9.0),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: SvgPicture.asset('assets/images/subject1.svg',
+                      color: kOrange, width: screenWidth * 0.12)),
             ),
             Expanded(
               child: Column(

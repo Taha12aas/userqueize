@@ -49,226 +49,239 @@ class _QuestionGenerateViewState extends State<QuestionGenerateView> {
     List subjectName = ModalRoute.of(context)!.settings.arguments as List;
     return Scaffold(
       appBar: customAppBar('انشاء اسئلة', context),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const SizedBox(height: 16),
-                      ContainerFileUpload(
-                        onTap: () async {
-                          FilePickerResult? result =
-                              await FilePicker.platform.pickFiles(
-                            allowMultiple: false,
-                            type: FileType.custom,
-                            allowedExtensions: ['pdf', 'docx'],
-                          );
-                          if (result != null) {
-                            setState(() {
-                              file = File(result.files.single.path!);
-                            });
-                          } else {
-                            // ignore: use_build_context_synchronously
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              // ignore: use_build_context_synchronously
-                              showSnackBar(
-                                  // ignore: use_build_context_synchronously
-                                  context,
-                                  'الرجاء اختيار ملف',
-                                  Icons.error),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const SizedBox(height: 16),
+                        ContainerFileUpload(
+                          onTap: () async {
+                            FilePickerResult? result =
+                                await FilePicker.platform.pickFiles(
+                              allowMultiple: false,
+                              type: FileType.custom,
+                              allowedExtensions: ['pdf', 'docx'],
                             );
-                          }
-                        },
-                      ),
-                      const SizedBox(height: 25),
-                      QuestionsDescreption(
-                          trueOrFalseCount: trueOrFalseCount,
-                          answersCount: answersCount,
-                          qustionsCount: qustionsCount),
-                      const SizedBox(height: 17),
-                      FittedBox(
-                        child: CheckBox(
-                          onChanged: (p0) {
-                            if (p0 == true) {
-                              isSelected = true;
-
-                              setState(() {});
+                            if (result != null) {
+                              setState(() {
+                                file = File(result.files.single.path!);
+                              });
                             } else {
-                              isSelected = false;
-                              setState(() {});
+                              // ignore: use_build_context_synchronously
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                // ignore: use_build_context_synchronously
+                                showSnackBar(
+                                    // ignore: use_build_context_synchronously
+                                    context,
+                                    'الرجاء اختيار ملف',
+                                    Icons.error),
+                              );
                             }
                           },
-                          isSelected: isSelected,
-                          title: 'التكرار من دورة سابقة',
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      isSelected
-                          ? SizedBox(
-                              height: width * 0.25,
-                              width: double.infinity,
-                              child: ListView.builder(
-                                reverse: true,
-                                itemCount: CubitPreLoadedCourse.courses.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) {
-                                  values.add(ValueNotifier(0));
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: FittedBox(
-                                      child: RepeatCoursers(
-                                        title: CubitPreLoadedCourse
-                                            .courses[index].courseHistory,
-                                        frequentlyQuestionsCount: values[index],
+                        const SizedBox(height: 25),
+                        QuestionsDescreption(
+                            trueOrFalseCount: trueOrFalseCount,
+                            answersCount: answersCount,
+                            qustionsCount: qustionsCount),
+                        const SizedBox(height: 17),
+                        FittedBox(
+                          child: CheckBox(
+                            onChanged: (p0) {
+                              if (p0 == true) {
+                                isSelected = true;
+
+                                setState(() {});
+                              } else {
+                                isSelected = false;
+                                setState(() {});
+                              }
+                            },
+                            isSelected: isSelected,
+                            title: 'التكرار من دورة سابقة',
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        isSelected
+                            ? SizedBox(
+                                height: width * 0.25,
+                                width: double.infinity,
+                                child: ListView.builder(
+                                  reverse: true,
+                                  itemCount:
+                                      CubitPreLoadedCourse.courses.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    values.add(ValueNotifier(0));
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      child: FittedBox(
+                                        child: RepeatCoursers(
+                                          title: CubitPreLoadedCourse
+                                              .courses[index].courseHistory,
+                                          frequentlyQuestionsCount:
+                                              values[index],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            )
-                          : const SizedBox(),
-                      const SizedBox(height: 17),
-                      FittedBox(
-                        child: CheckBox(
-                          onChanged: (p0) {
-                            if (p0 == true) {
-                              isSelected2 = true;
-                              setState(() {});
-                            } else {
-                              isSelected2 = false;
-                              setState(() {});
-                            }
-                          },
-                          isSelected: isSelected2,
-                          title: 'مستوى الاسئلة',
+                                    );
+                                  },
+                                ),
+                              )
+                            : const SizedBox(),
+                        const SizedBox(height: 17),
+                        FittedBox(
+                          child: CheckBox(
+                            onChanged: (p0) {
+                              if (p0 == true) {
+                                isSelected2 = true;
+                                setState(() {});
+                              } else {
+                                isSelected2 = false;
+                                setState(() {});
+                              }
+                            },
+                            isSelected: isSelected2,
+                            title: 'مستوى الاسئلة',
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      isSelected2
-                          ? QuestionsLevel(
-                              hard: hard, normal: normal, easy: easy)
-                          : const SizedBox(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                        SizedBox(
+                          height: height * 0.03,
+                        ),
+                        isSelected2
+                            ? QuestionsLevel(
+                                hard: hard, normal: normal, easy: easy)
+                            : const SizedBox(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          CustomButtonIcon(
-            onPressed: () async {
-              if (file != null) {
-                setState(() => isLoading = true);
-                if (isSelected2) {
-                  if (easy.value + normal.value + hard.value !=
-                      qustionsCount.value) {
-                    ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
-                        context,
-                        'عدد مستويات الأسئلة لا يتطابق مع عدد الاسئلة الكلي',
-                        Icons.error));
-                    return;
-                  }
-                }
-
-                if (isSelected) {
-                  for (var i = 0;
-                      i < CubitPreLoadedCourse.courses.length;
-                      i++) {
-                    qustionsCount.value -= values[i].value;
-                    for (var j = 0; j < values[i].value; j++) {
-                      questions.add(CubitPreLoadedCourse.courses[i]
-                          .courses[Random().nextInt(values[i].value)]);
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+              ),
+              child: CustomButtonIcon(
+                onPressed: () async {
+                  if (file != null) {
+                    setState(() => isLoading = true);
+                    if (isSelected2) {
+                      if (easy.value + normal.value + hard.value !=
+                          qustionsCount.value) {
+                        ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
+                            context,
+                            'عدد مستويات الأسئلة لا يتطابق مع عدد الاسئلة الكلي',
+                            Icons.error));
+                        return;
+                      }
                     }
-                  }
-                  
-                }
-                if (trueOrFalseCount.value > qustionsCount.value) {
-                  ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
-                      context,
-                      'اسئلة الصح والخطأ أكثر من الاسئلة الكلية',
-                      Icons.error));
-                  return;
-                }
-                if (0 > qustionsCount.value) {
-                  ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
-                      context,
-                      'اسئلة التكرار أكثر من الاسئلة الكلية',
-                      Icons.error));
-                  return;
-                }
-                showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return const Center(
-                      child: CustomAnimatedLoader(
-                        color: kOrange,
-                      ),
+
+                    if (isSelected) {
+                      for (var i = 0;
+                          i < CubitPreLoadedCourse.courses.length;
+                          i++) {
+                        qustionsCount.value -= values[i].value;
+                        for (var j = 0; j < values[i].value; j++) {
+                          questions.add(CubitPreLoadedCourse.courses[i]
+                              .courses[Random().nextInt(values[i].value)]);
+                        }
+                      }
+                    }
+                    if (trueOrFalseCount.value > qustionsCount.value) {
+                      ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
+                          context,
+                          'اسئلة الصح والخطأ أكثر من الاسئلة الكلية',
+                          Icons.error));
+                      return;
+                    }
+                    if (0 > qustionsCount.value) {
+                      ScaffoldMessenger.of(context).showSnackBar(showSnackBar(
+                          context,
+                          'اسئلة التكرار أكثر من الاسئلة الكلية',
+                          Icons.error));
+                      return;
+                    }
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return const Center(
+                          child: CustomAnimatedLoader(
+                            color: kOrange,
+                          ),
+                        );
+                      },
                     );
-                  },
-                );
-                responseMessage = await GeneratorService.uploadAndSendMessage(
-                  file!,
-                  '''قم بتوليد ${qustionsCount.value} أسئلة متعددة الخيارات (كل سؤال يحتوي على ${answersCount.value} خيارات) ومن ضمنها (${trueOrFalseCount.value}) أسئلة صح أو خطأ من الملف التالي بصيغة التالية فقط وبدون أي إضافات وبدون ذكر اسئلة تخص الصفحات:  
-          
-          للأسئلة متعددة الخيارات:  
-          [
-            {
-          "question": "نص السؤال هنا",
-          "answers": [
-              "الإجابة 1",
-              "الإجابة 2",
-              "...",
-              "الإجابة ${answersCount.value}"
-          ]
-            }
-          
-            للأسئلة صح أو خطأ:  
-            {
-          "question": "نص السؤال هنا",
-          "answers": [
-              "صح",
-              "خطأ"
-          ]
-            }
-          ]
-          ''',
-                );
-                setState(() => isLoading = false);
-                questions.addAll(jsonDecode(responseMessage));
-                // ignore: use_build_context_synchronously
-                Navigator.pushNamedAndRemoveUntil(
+                    responseMessage =
+                        await GeneratorService.uploadAndSendMessage(
+                      file!,
+                      '''قم بتوليد ${qustionsCount.value} أسئلة متعددة الخيارات (كل سؤال يحتوي على ${answersCount.value} خيارات) ومن ضمنها (${trueOrFalseCount.value}) أسئلة صح أو خطأ من الملف التالي بصيغة التالية فقط وبدون أي إضافات وبدون ذكر اسئلة تخص الصفحات:  
+              
+              للأسئلة متعددة الخيارات:  
+              [
+                {
+              "question": "نص السؤال هنا",
+              "answers": [
+                  "الإجابة 1",
+                  "الإجابة 2",
+                  "...",
+                  "الإجابة ${answersCount.value}"
+              ]
+                }
+              
+                للأسئلة صح أو خطأ:  
+                {
+              "question": "نص السؤال هنا",
+              "answers": [
+                  "صح",
+                  "خطأ"
+              ]
+                }
+              ]
+              ''',
+                    );
+                    setState(() => isLoading = false);
+                    questions.addAll(jsonDecode(responseMessage));
                     // ignore: use_build_context_synchronously
-                    context,
-                    CreateSubjectQuestionsView.id,
-                    (route) => false,
-                    arguments: [questions, subjectName]);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  showSnackBar(context, 'يرجى اختيار ملف', Icons.error),
-                );
-              }
-            },
-            label: 'انشاء اسئلة',
-            iconData: Icons.generating_tokens_outlined,
-          ),
-          const SizedBox(
-            height: 30,
-          )
-        ],
+                    Navigator.pushNamedAndRemoveUntil(
+                      // ignore: use_build_context_synchronously
+                      context,
+                      CreateSubjectQuestionsView.id,
+                      (route) => false,
+                      arguments: {
+                        'questions': questions,
+                        'subject': subjectName,
+                      },
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      showSnackBar(context, 'يرجى اختيار ملف', Icons.error),
+                    );
+                  }
+                },
+                label: 'انشاء اسئلة',
+                iconData: Icons.generating_tokens_outlined,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            )
+          ],
+        ),
       ),
     );
   }
