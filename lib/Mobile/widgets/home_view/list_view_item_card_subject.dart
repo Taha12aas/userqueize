@@ -18,6 +18,7 @@ class ListViewItemCardSubject extends StatelessWidget {
     if (Platform.isAndroid) {
       final status = await Permission.manageExternalStorage.request();
       if (!status.isGranted) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: const Text("يجب منح صلاحية التخزين أولاً"),
@@ -108,7 +109,7 @@ class ListViewItemCardSubject extends StatelessWidget {
 
                       buffer.writeln('</w:body></w:document>');
 
-                      final contentTypesXml =
+                      const contentTypesXml =
                           '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
@@ -116,7 +117,7 @@ class ListViewItemCardSubject extends StatelessWidget {
   <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
 </Types>''';
 
-                      final relsXml =
+                      const relsXml =
                           '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
   <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
@@ -139,6 +140,7 @@ class ListViewItemCardSubject extends StatelessWidget {
                           type: StorageDirectory.downloads);
                       final dir = dirs?.first;
                       if (dir == null) {
+                        // ignore: use_build_context_synchronously
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                               content:
@@ -150,8 +152,9 @@ class ListViewItemCardSubject extends StatelessWidget {
                       final filePath =
                           '${dir.path}/${subject.nameSubject}_questions.docx';
                       final file = File(filePath);
-                      await file.writeAsBytes(zipData!);
+                      await file.writeAsBytes(zipData);
 
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content: Text(
